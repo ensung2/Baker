@@ -1,0 +1,104 @@
+
+#header {
+    width: 250px;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    overflow-y: auto;
+    z-index: 100;
+    border-right: 1px solid #2d2d2d;
+
+    background-color: #0f0f0f;
+}
+
+.header_bar {
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header_bar h1 {display: inline-block}
+
+.nav_bar {
+    font-size: 1.5rem;
+    padding: 15px 10px;
+}
+
+.header_logo {
+    font-size: 2.3rem;
+    box-sizing: border-box;
+    font-family: 'Titan One', sans-serif;
+    font-weight: 400;
+}
+
+.header_logo:hover {
+    color: #ffcc00;
+}
+
+.header_logo a {
+    padding: 10px;
+}
+
+.header_menu {
+    padding: 10px 0;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+}
+
+.header_menu i {padding-right: 8px}
+
+.header_menu .menu li {
+    margin: 10px;
+    display: block;
+}
+
+.header_menu .menu li a {
+    display: block;
+    font-size: 1rem;
+    line-height: 1;
+    padding: 1rem 2rem;
+    position: relative;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.header_menu .menu li a:hover, .login_out:hover {
+    background-color: #ffffff;
+    color: #0f0f0f;
+}
+
+.header_menu .menu li a:hover .fa-cookie-bite {color: #e17c3c}
+.header_menu .menu li a:hover .fa-clipboard-list {color: #30b09d}
+.header_menu .menu li a:hover .fa-youtube {color: #c4302b}
+.login_out {
+    margin: 10px;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.5s;
+    text-align: center;
+    background-color: #313131;
+}
+
+.git_link {
+    padding-top: 300px;
+    padding-left: 32px;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    font-weight: 300;
+    color: #424242;
+    font-size: 0.9rem;
+}
+
+.git_link a {
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.git_link a:hover {
+    color: #ffffff;
+    border-bottom: 1px solid #ffffff;
+}
+
+.git_link i {padding-right: 5px;}

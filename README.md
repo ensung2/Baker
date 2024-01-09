@@ -16,7 +16,7 @@
 * 레시피 작성, 사진 업로드, 페이지 내에서 유튜브 바로 검색
 ---
 ### 🛠️ 사용 기술 및 개발 환경
-* server : ㄴ
+* server : 
 * DB : MySQL, H2 Database
 * Langueage : Java, Html5, Css3, JavaScript
 * Tool : IntelliJ IDEA, GitHub, POSTMAN
