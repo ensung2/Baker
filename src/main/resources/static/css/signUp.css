@@ -1,0 +1,74 @@
+form  {
+    width: 550px;
+    height: 580px;
+    border-radius: 20px;
+    position: relative;
+    top: 80px;
+    margin: 0 auto;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    box-sizing: border-box;
+
+    background-color: #ffffff;
+}
+
+.sign_up {
+    padding: 50px 40px;
+    width: 450px;
+    margin: 0 auto;
+}
+
+.form_title h2 {
+    font-size: 3rem;
+    color: #313131;
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+
+/* form_box */
+
+.form_box {
+    padding: 8px 35px;
+}
+
+.form_box label {
+    color: #424242;
+    width: 100%;
+    display: block;
+    font-weight: 600;
+    padding-bottom: 3px;
+}
+
+.form_box input {
+    width: 300px;
+    padding: 10px;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    border: 2px solid #9f9f9f;
+    color: #313131;
+    font-family: 'IBM Plex Sans KR', sans-serif4;
+}
+
+.login_btn {
+    display: block;
+    margin: 15px auto;
+    width: 300px;
+    padding: 12px;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    background-color: #313131;
+    font-size: 1rem;
+    border-radius: 5px;
+
+}
+
+.login_btn:hover {
+    background-color: #e17c3c;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.sign_up_btn {
+    color: dimgrey;
+    text-align: center;
+    font-size: 0.8rem;
+}

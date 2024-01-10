@@ -1,0 +1,16 @@
+.wirte  {
+    display: flex;
+    padding: 100px 100px;
+    min-height: 100vh;
+}
+
+/* info left */
+
+.wirte_left {
+    width: calc(100% - 50%);
+}
+
+
+.write_right {
+    width: calc(100% - 50%);
+}

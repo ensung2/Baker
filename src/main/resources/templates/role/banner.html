@@ -13,17 +13,17 @@
     <nav class="header_menu">
         <ul class="menu">
             <li class="menu_01">
-                <a href="/today"><i class="fa-solid fa-cookie-bite"></i> 오늘의 레시피</a>
+                <a th:href="@{/content/writeRecipe.html}"><i class="fa-solid fa-cookie-bite"></i> 오늘의 레시피</a>
             </li>
             <li class="menu_02">
-                <a href="/list"><i class="fa-solid fa-clipboard-list"></i> 레시피 리스트</a>
+                <a href="/content/recipeList.html"><i class="fa-solid fa-clipboard-list"></i> 레시피 리스트</a>
             </li>
             <li class="menu_03">
-                <a href="/youtube"><i class="fa-brands fa-youtube"></i> 유튜브 레시피 검색</a>
+                <a th:href="@{/content/youtube.html}"><i class="fa-brands fa-youtube"></i> 유튜브 레시피 검색</a>
             </li>
         </ul>
         <div class="login_out">
-            <a href="/user">로그인</a>
+            <a th:href="@{/templates/members/loginForm.html}">로그인</a>
         </div>
     </nav>
     <h5 class="git_link">

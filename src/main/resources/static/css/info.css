@@ -89,8 +89,6 @@
     left: 250px;
     animation: img_fadeIn 10s;
     /*transition-delay: 3s;*/
-
-
 }
 
 @keyframes img_fadeIn {

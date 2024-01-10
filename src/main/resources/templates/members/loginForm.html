@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<body>
+<div id="content" role="main">
+        <form action="/members/login" role="form"  method="post">
+            <section class="login">
+                <div class="form_title">
+                    <h2>LOGIN</h2>
+                </div>
+
+                <button class="kakaoLogin"><a href="#"><img src="/img/kakao_login.png" alt="카카오톡 로그인 버튼"></a></button>
+                <p>또는 이메일로 로그인</p>
+
+                <div class="form_box">
+                    <label th:for="inputEmail">아이디</label>
+                    <input type="text" name="userId" class="text_form" placeholder="아이디를 입력하세요">
+                </div>
+                <div class="form_box">
+                    <label th:for="inputPassword">비밀번호</label>
+                    <input type="password" name="userPw" class="text_form" placeholder="비밀번호를 입력하세요">
+                </div>
+                <button type="submit" class="login_btn">로그인</button>
+                <div class="sign_up_btn" action="/members/createMemberForm.html">이메일로 회원가입</div>
+            </section>
+        </form>
+
+</div>
+</body>
+</html>

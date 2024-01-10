@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="header">
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="author" content="ensung2">
+  <meta name="description" content="Baker. 나만의 레시피북을 만들어 보세요.">
+  <meta name="keywords" content="레시피북, 제과, 제빵, 레시피, 다이어리, 온라인레시피북">
+
+  <meta property="og:url" content="">
+  <meta property="og:title" content="Baker. 나만의 레시피 북">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="">
+  <meta property="og:description" content="Baker. 나만의 레시피북을 만들어 보세요.">
+
+  <link rel="shortcut icon" href="/img/logo_500.png">
+  <link rel="apple-touch-icon-precomposed" href="/img/logo_500.png">
+
+  <title>Baker. 나만의 레시피 북</title>
+
+  <link rel="stylesheet" type="text/css" href="/css/banner.css">
+  <link rel="stylesheet" type="text/css" href="/css/default.css">
+  <link rel="stylesheet" type="text/css" href="/css/info.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cute+Font&family=IBM+Plex+Sans+KR:wght@500&family=Titan+One&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/bfdc62a914.js" crossorigin="anonymous"></script>
+</head>
+</head>
+<body>
+<div id="header" role="banner">
+  <div class="header_bar">
+    <h1 class="nav_bar">
+      <a href="/header"><i class="fas fa-light fa-bars"></i></a>
+    </h1>
+    <h1 class="header_logo">
+      <a href="/">Baker.</a>
+    </h1>
+  </div>
+  <nav class="header_menu">
+    <ul class="menu">
+      <li class="menu_01">
+        <a th:href="@{/content/writeRecipe.html}"><i class="fa-solid fa-cookie-bite"></i> 오늘의 레시피</a>
+      </li>
+      <li class="menu_02">
+        <a href="/content/recipeList.html"><i class="fa-solid fa-clipboard-list"></i> 레시피 리스트</a>
+      </li>
+      <li class="menu_03">
+        <a href="youtube.html"><i class="fa-brands fa-youtube"></i> 유튜브 레시피 검색</a>
+      </li>
+    </ul>
+    <div class="login_out">
+      <a href="/members/new.html">로그인</a>
+    </div>
+  </nav>
+  <h5 class="git_link">
+    <a href="https://github.com/ensung2/Baker" target="_blank"><i class="fa-brands fa-github-alt"></i>@ensung2</a>
+  </h5>
+</div>
+</body>
+</html>

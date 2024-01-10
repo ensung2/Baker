@@ -1,6 +1,15 @@
-<!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/default::header">
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>Baker. 나만의 레시피 북</title>
+</head>
 <body>
+<div id="wrap">
+<div th:replace="role/banner::#header"/>
 <div id="content" role="main">
   <section class="info">
     <div class="info_left">
@@ -27,6 +36,7 @@
     </div>
 
   </section>
+</div>
 </div>
 </body>
 </html>
