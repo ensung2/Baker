@@ -1,16 +1,132 @@
-.wirte  {
-    display: flex;
-    padding: 100px 100px;
+.recipe_form  {
+    background-color: whitesmoke;
     min-height: 100vh;
+    padding: 80px 100px;
+    font-family: 'IBM Plex Sans KR', sans-serif;
 }
 
-/* info left */
+.write {
+    display: flex;
+}
 
-.wirte_left {
+.write_left, .write_right {
+    border-radius: 10px;
+    background-color: #ffffff;
     width: calc(100% - 50%);
+    border: 1.5px solid rgba(0,0,0,0.1);
+    margin: 0 auto;
+}
+.recipe_title {
+    text-align: center;
+    padding: 50px 0px 10px 0px;
+    /*background-color: #e17c3c*/
 }
 
 
-.write_right {
-    width: calc(100% - 50%);
+#recipe_type {
+    display: block;
+    width: 100px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #e17c3c;
 }
+
+#recipe_type option {
+    color: #2d2d2d;
+}
+
+.recipeName {
+    border: none;
+    width: 400px;
+    font-size: 1.7rem;
+    text-align: center;
+    margin-top: 10px;
+    color: #2d2d2d;
+}
+
+.recipeInfo {
+    border: none;
+    width: 400px;
+    text-align: center;
+    color: #313131;
+}
+
+.recipe_img {
+    width: 100%;
+    height: 220px;
+    padding: 20px 0;
+    /*background-color: aquamarine;*/
+}
+
+.recipeImg {
+    color: dimgrey;
+    padding-left: 50px;
+}
+
+.recipe_material {
+    padding: 10px 0px 50px 0px;
+    /*background-color: #e17c3c;*/
+    text-align: center;
+}
+
+.recipe_material label {
+    display: block;
+    font-size: 1.2rem;
+    color: #e17c3c;
+    padding-bottom: 10px;
+}
+
+.recipe_material textarea {
+    text-align: left;
+    color: #313131;
+    padding: 0;
+    resize: none;
+    font-size: 1em;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    border-radius: 10px;
+    border: 2px dashed rgba(0,0,0,0.1);
+}
+
+.recipe_write {
+    padding-top: 50px;
+    /*background-color: #e17c3c;*/
+    text-align: center;
+}
+
+.recipe_write label {
+    display: block;
+    font-size: 1.2rem;
+    color: #e17c3c;
+    padding-bottom: 10px;
+}
+
+.recipe_write textarea {
+    text-align: left;
+    color: #313131;
+    padding: 0;
+    resize: none;
+    font-size: 1rem;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    border-radius: 10px;
+    border: 2px dashed rgba(0,0,0,0.1);
+}
+.write_end_btn {
+    display: block;
+    padding: 10px 40px;
+    margin: 0 auto;
+    background-color: #2d2d2d;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.submit_btn {
+    /*background-color: #ffcc00;*/
+    padding-top: 20px;
+    padding-bottom: 50px;
+}
+
+
+
