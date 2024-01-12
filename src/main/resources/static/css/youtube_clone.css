@@ -1,0 +1,112 @@
+.youtube_clone  {
+    position: relative;
+    background-color: #0f0f0f;
+    height: 100vh;
+    padding: 80px 100px;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+}
+
+.you_title {
+    padding-bottom: 20px;
+}
+
+.creator i {
+    color: #c4302b;
+    padding-right: 5px;
+}
+
+.creator mark {
+    padding: 0 10px;
+    border-radius: 5px;
+    background-color: #313131;
+    font-weight: lighter;
+}
+
+.level {
+    background-color: #e17c3c;
+}
+
+.level h3 {
+    position: absolute;
+    display: inline-block;
+    font-weight: 200;
+}
+
+.level h3 i {
+    color: #ffcc00;
+}
+
+
+swiper-container {
+    position: absolute;
+    width: 25%;
+    height: 25%;
+    border-radius: 15px;
+    margin-top: 35px;
+    box-sizing: border-box;
+    background-color: rgba(0,0,0,0.0);
+    overflow: hidden;
+}
+
+swiper-container a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* 채널 이미지 */
+.swiper01 swiper-slide:nth-child(1) {
+    background-color: #bd8869;
+    background: url("../img/011_hoya.jpg") no-repeat center;
+}
+.swiper01 swiper-slide:nth-child(2) {
+    background: url("../img/012_kkuume.jpg") no-repeat center;
+}
+.swiper01 swiper-slide:nth-child(3) {
+    background: url("../img/013_goms.jpg") no-repeat center;
+}
+.swiper02 swiper-slide:nth-child(1) {
+    background: url("../img/021_jinyeong.jpg") no-repeat center;
+}
+.swiper02 swiper-slide:nth-child(2) {
+    background: url("../img/022_cookingsee.jpg") no-repeat center;
+}
+.swiper02 swiper-slide:nth-child(3) {
+    background: url("../img/023_sizning.jpg") no-repeat center;
+}
+
+.swiper03 swiper-slide:nth-child(1) {
+    background: url("../img/031_cookingtree.jpg") no-repeat center;
+}
+.swiper03 swiper-slide:nth-child(2) {
+    background: url("../img/032_joconde.jpg") no-repeat center;
+}
+.swiper03 swiper-slide:nth-child(3) {
+    background: url("../img/033_jadore.jpg") no-repeat center;
+}
+
+/*=================================================================================*/
+.swiper02, .level h3:nth-child(2) {
+    left: 36%;
+}
+
+.swiper03, .level h3:nth-child(3) {
+    left: 63.5%;
+}
+
+swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
