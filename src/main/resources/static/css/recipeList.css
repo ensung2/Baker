@@ -1,0 +1,85 @@
+.list_form  {
+    width: 1000px;
+    height: 700px;
+    padding: 80px 20px;
+    margin: 0 auto;
+
+}
+
+/* recipe_search - 레시피 검색바 (타입선택하여 검색 가능)*/
+
+.recipe_search {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 30px;
+}
+
+.recipe_type {
+    margin-right: 10px;
+    font-size: 1.2rem;
+    padding: 0 10px;
+    border: 1px solid #e17c3c;
+    color: #e17c3c;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+}
+
+.recipe_type option {
+    color: #313131;
+}
+
+.search_field {
+    margin-right: 10px;
+    font-size: 1.2rem;
+    width: 40%;
+    padding: 4px 10px;
+    border-radius: 0;
+    border: 1px solid #e17c3c;
+    color: #e17c3c;
+}
+
+#searchBtn {
+    font-size: 1.2rem;
+    background-color: #e17c3c;
+    padding: 4px 15px;
+}
+
+/* list - 검색 결과 목록 */
+
+.list {
+    width: 100%;
+    border-top: 2px solid #e17c3c;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+}
+
+.list_head {
+    background-color: #ffffff;
+    padding: 10px 0 10px 30px;
+}
+
+.list_head td {
+    font-size: 1.2rem;
+    padding: 10px 0 10px 20px;
+    color: #e17c3c;
+}
+
+.list_body tr {
+
+}
+
+.list_body td {
+    padding: 6px 0 6px 20px;
+    color: #424242;
+    border-bottom: 1.5px dashed rgba(225,124,60,0.3);
+}
+
+.list_page {
+    text-align: center;
+    padding: 30px 50px;
+    background-color: #ffffff;
+    color: #e17c3c;
+    font-size: 1rem;
+}
+
+
+
+

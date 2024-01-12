@@ -1,10 +1,123 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/default::header">
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>Baker. 나만의 레시피 북</title>
+</head>
 <body>
-<div id="content" role="main">
-  <section class="list">
+<div id="wrap">
+  <div th:replace="role/banner::#header"/>
+  <div id="content" role="main">
+    <form action="/content/recipeList" class="list_form" role="form">
+      <div class="recipe_search" >
+        <select class="recipe_type">
+          <option value="BREAD">Bread</option>
+          <option value="COOKIE">Cookie</option>
+          <option value="CAKE">Cake</option>
+        </select>
+        <input type="text" class="search_field" placeholder="레시피명를 입력해주세요" maxlength="15">
+        <button id="searchBtn" type="submit">검색</button>
+      </div>
+      <table class="list">
+        <thead class="list_head">
+        <tr>
+          <td>No.</td>
+          <td>Type</td>
+          <td>Recipe Name</td>
+          <td>Date</td>
+        </tr>
+        </thead>
+        <tbody class="list_body">
+          <tr>
+            <td>1</td>
+            <td>Bread</td>
+            <td>우유식빵</td>
+            <td>2024-01-12</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Bread</td>
+            <td>우유식빵</td>
+            <td>2024-01-12</td>
+          </tr><tr>
+            <td>1</td>
+            <td>Bread</td>
+            <td>우유식빵</td>
+            <td>2024-01-12</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Bread</td>
+            <td>우유식빵</td>
+            <td>2024-01-12</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Bread</td>
+            <td>우유식빵</td>
+            <td>2024-01-12</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Bread</td>
+            <td>우유식빵</td>
+            <td>2024-01-12</td>
+          </tr><tr>
+            <td>1</td>
+            <td>Bread</td>
+            <td>우유식빵</td>
+            <td>2024-01-12</td>
+          </tr><tr>
+            <td>1</td>
+            <td>Bread</td>
+            <td>우유식빵</td>
+            <td>2024-01-12</td>
+          </tr><tr>
+            <td>1</td>
+            <td>Bread</td>
+            <td>우유식빵</td>
+            <td>2024-01-12</td>
+          </tr><tr>
+            <td>1</td>
+            <td>Bread</td>
+            <td>우유식빵</td>
+            <td>2024-01-12</td>
+          </tr>
+        </tbody>
+<!--        <tbody>
+        <tr th:each="item, status:${items.getContent()}">
+          <td th:text="${item.id}"></td>
+          <td th:text="${item.itemType == T(Baker.community.constant.ItemType)}"></td>
+          <td><a th:href="${item.id}" th:text="${item.itemNm}"></a></td>
+          <td th:text="${item.regTime}"></td>
+        </tr>
+        </tbody>-->
+      </table>
+      <div class="list_page">페이징 넘버 구역</div>
+<!--      <div th:with="start=${(items.number/maxPage)*maxPage + 1}, end=(${(items.totalPages == 0) ? 1 : (start + (maxPage - 1) < items.totalPages ? start + (maxPage - 1) : items.totalPages)})" >
+        <ul class="pagination justify-content-center">
 
-  </section>
+          <li class="page-item" th:classappend="${items.first}?'disabled'">
+            <a th:onclick="'javascript:page(' + ${items.number - 1} + ')'" aria-label='Previous' class="page-link">
+              <span aria-hidden='true'>Previous</span>
+            </a>
+          </li>
+
+          <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${items.number eq page-1}?'active':''">
+            <a th:onclick="'javascript:page(' + ${page - 1} + ')'" th:inline="text" class="page-link">[[${page}]]</a>
+          </li>
+
+          <li class="page-item" th:classappend="${items.last}?'disabled'">
+            <a th:onclick="'javascript:page(' + ${items.number + 1} + ')'" aria-label='Next' class="page-link">
+              <span aria-hidden='true'>Next</span>
+            </a>
+          </li>
+        </ul>
+      </div>-->
+    </form>
+  </div>
 </div>
 </body>
 </html>

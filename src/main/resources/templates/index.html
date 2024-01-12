@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments/default::header">
     <meta charset="UTF-8">
@@ -11,7 +12,8 @@
     <div id="wrap">
         <div th:replace="role/banner::#header"/>
 <!--        <div th:replace="content/content::#content"></div>-->
-        <div th:replace="content/modifyRecipe::#content"></div>
+<!--        <div layout:fragment="content" id="content"></div>-->
+        <div th:replace="content/recipeList::#content"></div>
     </div>
 </body>
 </html>

@@ -14,7 +14,7 @@ a {
 #wrap {
     width: 100%;
     height: 100vh;
-    background-color: #0f0f0f;
+    background-color: whitesmoke;
 }
 
 #content {
@@ -22,7 +22,7 @@ a {
     max-width: 2000px;
     min-height: 100vh;
     padding-left: 250px;
-    background-color: whitesmoke;
+
 }
 
 button {
