@@ -15,6 +15,11 @@ import java.util.List;
 @RequestMapping(value = "/new")
 public class NewItemController {
 
+    @GetMapping(value = "/")
+    public String newRecipe() {
+        return "content/writeRecipe";
+    }
+
     @GetMapping(value = "/ex01")
     public String newRecipe01(Model model) {
         ItemDto itemDto = new ItemDto();

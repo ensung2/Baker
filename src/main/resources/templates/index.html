@@ -11,9 +11,34 @@
 <body>
     <div id="wrap">
         <div th:replace="role/banner::#header"/>
-<!--        <div th:replace="content/content::#content"></div>-->
-<!--        <div layout:fragment="content" id="content"></div>-->
-        <div th:replace="content/youtube_clone::#content"></div>
+<!--        <div th:replace="content/youtube_clone::#content"></div>-->
+        <div id="content" role="main">
+            <section class="info">
+                <div class="info_left">
+                    <img src="/img/logo_500.png" alt="Baker 로고이미지">
+                    <span>Baker.</span>
+                    <p>
+                        <b>혼자서 첫 홈베이킹 하던 날, 기억 하시나요?</b>
+                        <br>
+                        <br>
+                        오븐 온도가 너무 높아서 빵이 타버렸을 때,<br>
+                        반죽을 오래 섞어서 쿠키가 딱딱 해졌을 때,<br>
+                        여러 번의 시도 끝에 맛있는 케이크가 만들어졌을 때!
+                        <br>
+                        <br>
+                        모든 베이킹의 순간을 <em>Baker.</em>에 기록해 보세요.<br>
+                        어느 순간 <mark>&nbsp;나만의 레시피북 </mark>&nbsp;이 완성됩니다.
+                    </p>
+                </div>
+                <div class="info_right">
+                    <img src="/img/info_img_01.jpg" alt="빵1">
+                    <img src="/img/info_img_02.jpg" alt="빵2">
+                    <img src="/img/info_img_03.jpg" alt="빵3">
+                    <img src="/img/info_img_04.jpg" alt="빵4">
+                </div>
+
+            </section>
+        </div>
     </div>
 </body>
 </html>
