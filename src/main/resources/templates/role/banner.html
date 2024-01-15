@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+                xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <body>
 <div id="header" role="banner">
     <div class="header_bar">
@@ -7,7 +8,7 @@
             <a href="/header"><i class="fas fa-light fa-bars"></i></a>
         </h1>
         <h1 class="header_logo">
-            <a href="/">Baker.</a>
+            <a th:href="@{/}">Baker.</a>
         </h1>
     </div>
     <nav class="header_menu">
@@ -23,7 +24,10 @@
             </li>
         </ul>
         <div class="login_out">
-            <a th:href="@{/templates/members/loginForm.html}">로그인</a>
+            <a th:href="@{/members/login}" sec:authorize="isAnonymous()">로그인</a>
+        </div>
+        <div class="login_out">
+            <a th:href="@{/}" sec:authorize="isAuthenticated()">로그아웃</a>
         </div>
     </nav>
     <h5 class="git_link">

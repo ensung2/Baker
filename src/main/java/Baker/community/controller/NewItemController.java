@@ -15,9 +15,9 @@ import java.util.List;
 @RequestMapping(value = "/new")
 public class NewItemController {
 
-    @GetMapping(value = "/")
+    @GetMapping(value = "/writeRecipe")
     public String newRecipe() {
-        return "content/writeRecipe";
+        return "/content/writeRecipe";
     }
 
     @GetMapping(value = "/ex01")
@@ -31,7 +31,7 @@ public class NewItemController {
         itemDto.setRecipe("레시피 설명");
 
         model.addAttribute("itemDto", itemDto);
-        return "content/newRecipe";
+        return "/content/newRecipe";
     }
 
     @GetMapping(value = "/ex02")
@@ -47,7 +47,7 @@ public class NewItemController {
             itemDtoList.add(itemDto);
         }
         model.addAttribute("itemDtoList", itemDtoList);
-        return "content/recipeList";
+        return "/content/recipeList";
 
     }
 }

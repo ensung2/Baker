@@ -14,7 +14,7 @@ public class ItemDto {
 
     private ItemType itemType;          // 레시피 타입 (bread, cookie, cake)
 
-    private String itemName;                // 레시피명
+    private String itemName;            // 레시피명
 
     private String info;                // 레시피 한 줄 설명
 

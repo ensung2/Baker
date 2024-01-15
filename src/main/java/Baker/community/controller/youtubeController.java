@@ -10,7 +10,7 @@ public class youtubeController {
 
     @GetMapping("/")
     public String youRcommend() {
-        return "content/youtubeRecommend";
+        return "/content/youtubeRecommend";
     }
 
 }

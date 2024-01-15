@@ -83,14 +83,19 @@
 .header_menu .menu li a:hover .fa-cookie-bite {color: #e17c3c}
 .header_menu .menu li a:hover .fa-clipboard-list {color: #30b09d}
 .header_menu .menu li a:hover .fa-youtube {color: #c4302b}
+
 .login_out {
-    margin: 10px;
-    padding: 1rem 2rem;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.5s;
     text-align: center;
     background-color: #313131;
+    margin: 10px;
+    border-radius: 10px;
+    transition: all 0.3s;
+}
+
+.login_out a {
+    display: block;
+    padding: 1rem 2rem;
+    font-size: 1rem;
 }
 
 .git_link {
