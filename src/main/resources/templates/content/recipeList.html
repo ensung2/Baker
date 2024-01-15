@@ -30,70 +30,13 @@
         </tr>
         </thead>
         <tbody class="list_body">
-          <tr>
-            <td>1</td>
-            <td>Bread</td>
-            <td>우유식빵</td>
-            <td>2024-01-12</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Bread</td>
-            <td>우유식빵</td>
-            <td>2024-01-12</td>
-          </tr><tr>
-            <td>1</td>
-            <td>Bread</td>
-            <td>우유식빵</td>
-            <td>2024-01-12</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Bread</td>
-            <td>우유식빵</td>
-            <td>2024-01-12</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Bread</td>
-            <td>우유식빵</td>
-            <td>2024-01-12</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Bread</td>
-            <td>우유식빵</td>
-            <td>2024-01-12</td>
-          </tr><tr>
-            <td>1</td>
-            <td>Bread</td>
-            <td>우유식빵</td>
-            <td>2024-01-12</td>
-          </tr><tr>
-            <td>1</td>
-            <td>Bread</td>
-            <td>우유식빵</td>
-            <td>2024-01-12</td>
-          </tr><tr>
-            <td>1</td>
-            <td>Bread</td>
-            <td>우유식빵</td>
-            <td>2024-01-12</td>
-          </tr><tr>
-            <td>1</td>
-            <td>Bread</td>
-            <td>우유식빵</td>
-            <td>2024-01-12</td>
-          </tr>
-        </tbody>
-<!--        <tbody>
-        <tr th:each="item, status:${items.getContent()}">
-          <td th:text="${item.id}"></td>
-          <td th:text="${item.itemType == T(Baker.community.constant.ItemType)}"></td>
-          <td><a th:href="${item.id}" th:text="${item.itemNm}"></a></td>
-          <td th:text="${item.regTime}"></td>
+        <tr th:each="itemDto, status:${itemDtoList}">
+          <td th:text="${status.index}"></td>
+          <td th:text="${itemDto.itemType}"></td>
+          <td th:text="${itemDto.itemName}"></td>
+          <td th:text="${itemDto.regTime}"></td>
         </tr>
-        </tbody>-->
+        </tbody>
       </table>
       <div class="list_page">페이징 넘버 구역</div>
 <!--      <div th:with="start=${(items.number/maxPage)*maxPage + 1}, end=(${(items.totalPages == 0) ? 1 : (start + (maxPage - 1) < items.totalPages ? start + (maxPage - 1) : items.totalPages)})" >
