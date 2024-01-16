@@ -12,10 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/new")
-public class NewItemController {
+@RequestMapping("/recipe")
+public class ItemController {
 
-    @GetMapping(value = "/")
+    @GetMapping(value ="/write")
     public String newRecipe() {
         return "/content/writeRecipe";
     }

@@ -10,6 +10,6 @@ public class ListController {
 
     @GetMapping("/")
     public String listPage() {
-        return "content/recipeList";
+        return "/content/recipeList";
     }
 }

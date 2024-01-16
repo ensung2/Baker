@@ -3,17 +3,13 @@ package Baker.community.entity;
 
 import Baker.community.constant.ItemType;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "item")
-@Getter
-@Setter
-@ToString
+@Data
 
 public class Item {
 

@@ -9,10 +9,10 @@
 </head>
 <body>
 <div id="wrap">
-    <div id="header" role="banner">
+    <div id="section" role="banner" th:fragment="section">
         <div class="header_bar">
             <h1 class="nav_bar">
-                <a href="/header"><i class="fas fa-light fa-bars"></i></a>
+                <a href="#"><i class="fas fa-light fa-bars"></i></a>
             </h1>
             <h1 class="header_logo">
                 <a th:href="@{/}">Baker.</a>
@@ -21,21 +21,21 @@
         <nav class="header_menu">
             <ul class="menu" >
                 <li class="menu_01">
-                    <a th:href="@{/new/}"><i class="fa-solid fa-cookie-bite"></i> 오늘의 레시피</a>
+                    <a th:href="@{/write}"><i class="fa-solid fa-cookie-bite"></i> 오늘의 레시피</a>
                 </li>
                 <li class="menu_02">
-                    <a th:href="@{/list/}"><i class="fa-solid fa-clipboard-list"></i> 레시피 리스트</a>
+                    <a th:href="@{/list}"><i class="fa-solid fa-clipboard-list"></i> 레시피 리스트</a>
                 </li>
                 <li class="menu_03">
-                    <a th:href="@{/you_recommend/}"><i class="fa-brands fa-youtube"></i> 유튜브 레시피 추천</a>
+                    <a th:href="@{/youtube}"> <i class="fa-brands fa-youtube"></i> 유튜브 레시피 추천</a>
                 </li>
             </ul>
-            <div class="login_out" sec:authorize="isAnonymous()">
-                <a href="/members/login">로그인</a>
-            </div>
-            <div class="login_out" sec:authorize="isAuthenticated()">
-                <a href="/members/logout">로그아웃</a>
-            </div>
+            <th:block sec:authentication="isAnonymous()">
+                <a class="login" th:href="@{/members/login}">로그인</a>
+            </th:block>
+            <th:block sec:authentication="isAuthenticated()">
+                <a class="logout" th:href="@{/members/logout}">로그아웃</a>
+            </th:block>
         </nav>
         <h5 class="git_link">
             <a href="https://github.com/ensung2/Baker" target="_blank"><i class="fa-brands fa-github-alt"></i>@ensung2</a>

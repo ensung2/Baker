@@ -59,7 +59,6 @@
     background-color: #313131;
     font-size: 1rem;
     border-radius: 5px;
-
 }
 
 .login_btn:hover {
@@ -72,7 +71,6 @@
     color: dimgrey;
     text-align: center;
     font-size: 0.8rem;
-
 }
 
 .field_error {

@@ -3,25 +3,18 @@ package Baker.community.entity;
 import Baker.community.constant.Role;
 import Baker.community.dto.MemberFormDto;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Entity
 @Table(name = "member")
-@Getter
-@Setter
-@ToString
+@Data
 public class Member {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;            // 유저 번호
 
     private String name;        // 닉네임
 
-    @Column(name = "member_email")
+    @Id
+    @Column(unique = true)
     private String email;       // 아이디
 
     private String password;    // 유저 비밀번호
@@ -33,7 +26,7 @@ public class Member {
     public static Member createMember(MemberFormDto memberFormDto,
                                       PasswordEncoder passwordEncoder) {
         Member member = new Member();
-        member.setPassword(memberFormDto.getName());
+        member.setName(memberFormDto.getName());
         member.setEmail(memberFormDto.getEmail());
 
         // 스프링 시큐리티 설정 클래스 빈을 파라미터로 넘김 -> 비밀번호 암호화

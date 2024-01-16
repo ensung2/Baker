@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="~{fragments/default::header}">
     <meta charset="UTF-8">
@@ -10,7 +9,7 @@
 </head>
 <body>
     <div id="wrap">
-        <div th:replace="~{role/banner::#header}"></div>
+        <div th:replace="~{role/banner::section}"></div>
         <div id="content" role="main">
             <section class="info">
                 <div class="info_left">
@@ -35,9 +34,7 @@
                     <img src="/img/info_img_03.jpg" alt="빵3">
                     <img src="/img/info_img_04.jpg" alt="빵4">
                 </div>
-
             </section>
         </div>
-    </div>
 </body>
 </html>

@@ -107,7 +107,6 @@
 .sign_up_btn {
     display: block;
     margin: 0 auto;
-    font-family: 'IBM Plex Sans KR', sans-serif;
     color: dimgrey;
     font-size: 0.8rem;
     cursor: pointer;

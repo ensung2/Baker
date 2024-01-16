@@ -15,6 +15,9 @@
     <meta property="og:image" content="">
     <meta property="og:description" content="Baker. 나만의 레시피북을 만들어 보세요.">
 
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+
     <link rel="shortcut icon" th:href="@{/img/logo_500.png}">
     <link rel="apple-touch-icon-precomposed" th:href="@{/img/logo_500.png}">
 
@@ -27,7 +30,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/memberForm.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/writeRecipe.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/recipeList.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/youtube_clone.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/youtube.css}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

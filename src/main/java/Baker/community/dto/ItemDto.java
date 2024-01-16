@@ -1,13 +1,11 @@
 package Baker.community.dto;
 
 import Baker.community.constant.ItemType;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
+@Data
 public class ItemDto {
 
     private Long id;                    // 레시피 번호
