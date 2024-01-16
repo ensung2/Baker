@@ -12,12 +12,12 @@
 }
 
 .login {
-    padding: 50px 40px;
+    padding: 50px 0;
     width: 450px;
     margin: 0 auto;
 }
 
-.form_title h2 {
+.login_title h2 {
     font-size: 3rem;
     color: #313131;
     text-align: center;
@@ -32,11 +32,11 @@
     display: inline-block;
 }
 
-.login p {
+.choice {
     display: flex;
     align-items: center;
     flex-basis: 100%;
-    padding: 10px 20px;
+    padding: 10px 5px;
     color: #9f9f9f;
     font-size: 0.8rem;
     font-weight: 200;
@@ -48,8 +48,6 @@
     margin-right: 15px;
     background: rgba(0,0,0,0.2);
     height: 1px;
-    font-size: 0px;
-    line-height: 0px;
 }
 .login p::after {
     content: "";
@@ -57,35 +55,38 @@
     margin-left: 15px;
     background: rgba(0,0,0,0.2);
     height: 1px;
-    font-size: 0px;
-    line-height: 0px;
+
 }
 
 /* form_box */
 
-.form_box {
-    padding: 8px 35px;
+.login_box {
+    padding: 9px 35px;
+    width: 400px;
+    margin: 0 auto;
+    text-align: center;
 }
 
-.form_box label {
+.login_box label {
+    text-align: left;
     color: #424242;
-    width: 100%;
     display: block;
     font-weight: 600;
     padding-bottom: 3px;
+    padding-left: 15px;
 }
 
-.form_box input {
+.login_box input {
     width: 300px;
     padding: 10px;
     font-size: 0.9rem;
     border-radius: 5px;
     border: 2px solid #9f9f9f;
     color: #313131;
-    font-family: 'IBM Plex Sans KR', sans-serif4;
+    font-family: 'IBM Plex Sans KR', sans-serif;
 }
 
-.login_btn {
+.login_form_btn {
     display: block;
     margin: 15px auto;
     width: 300px;
@@ -97,14 +98,23 @@
 
 }
 
-.login_btn:hover {
+.login_form_btn:hover {
     background-color: #e17c3c;
     cursor: pointer;
     font-weight: 600;
 }
 
 .sign_up_btn {
+    display: block;
+    margin: 0 auto;
+    font-family: 'IBM Plex Sans KR', sans-serif;
     color: dimgrey;
-    text-align: center;
     font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.login_error {
+    text-align: center;
+    color: #c4302b;
+    font-size: 0.9rem;
 }
