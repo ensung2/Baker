@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/default::header">
+<head th:replace="~{fragments/default::header}">
   <meta charset="UTF-8">
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -8,7 +8,7 @@
 </head>
 <body>
 <div id="wrap">
-  <div th:replace="role/banner::#header"/>
+  <div th:replace="~{role/banner::#header}"></div>
   <div id="content" role="main">
     <form action="/content/recipeList" class="list_form" role="form">
       <div class="recipe_search" >

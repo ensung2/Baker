@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="fragments/default::header">
+<head th:replace="~{fragments/default::header}">
   <meta charset="UTF-8">
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -9,8 +9,8 @@
 </head>
 <body>
 <div id="wrap">
-<div th:replace="role/banner::#header"/>
-<div id="content" role="main">
+  <div th:replace="~{role/banner::#header}"></div>
+  <div id="content" role="main">
   <section class="info">
     <div class="info_left">
       <img src="/img/logo_500.png" alt="Baker 로고이미지">

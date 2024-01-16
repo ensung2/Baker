@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping(value = "/new")
 public class NewItemController {
 
-    @GetMapping(value = "/writeRecipe")
+    @GetMapping(value = "/")
     public String newRecipe() {
         return "/content/writeRecipe";
     }

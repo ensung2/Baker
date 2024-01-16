@@ -2,8 +2,6 @@ package Baker.community.repository;
 
 import Baker.community.constant.ItemType;
 import Baker.community.entity.Item;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +18,8 @@ class ItemRepositoryTest {
     @Autowired
     ItemRepository itemRepository;
 
-    @PersistenceContext
-    EntityManager em;
+//    @PersistenceContext
+//    EntityManager em;
 
     @Test
     @DisplayName("레시피 저장 테스트")

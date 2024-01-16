@@ -1,38 +1,46 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"
-                xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/default::header}">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Baker. 나만의 레시피 북</title>
+</head>
 <body>
-<div id="header" role="banner">
-    <div class="header_bar">
-        <h1 class="nav_bar">
-            <a href="/header"><i class="fas fa-light fa-bars"></i></a>
-        </h1>
-        <h1 class="header_logo">
-            <a th:href="@{/}">Baker.</a>
-        </h1>
+<div id="wrap">
+    <div id="header" role="banner">
+        <div class="header_bar">
+            <h1 class="nav_bar">
+                <a href="/header"><i class="fas fa-light fa-bars"></i></a>
+            </h1>
+            <h1 class="header_logo">
+                <a th:href="@{/}">Baker.</a>
+            </h1>
+        </div>
+        <nav class="header_menu">
+            <ul class="menu" >
+                <li class="menu_01">
+                    <a th:href="@{/new/}"><i class="fa-solid fa-cookie-bite"></i> 오늘의 레시피</a>
+                </li>
+                <li class="menu_02">
+                    <a th:href="@{/list/}"><i class="fa-solid fa-clipboard-list"></i> 레시피 리스트</a>
+                </li>
+                <li class="menu_03">
+                    <a th:href="@{/you_recommend/}"><i class="fa-brands fa-youtube"></i> 유튜브 레시피 추천</a>
+                </li>
+            </ul>
+            <div class="login_out" sec:authorize="isAnonymous()">
+                <a href="/members/login">로그인</a>
+            </div>
+            <div class="login_out" sec:authorize="isAuthenticated()">
+                <a href="/members/logout">로그아웃</a>
+            </div>
+        </nav>
+        <h5 class="git_link">
+            <a href="https://github.com/ensung2/Baker" target="_blank"><i class="fa-brands fa-github-alt"></i>@ensung2</a>
+        </h5>
     </div>
-    <nav class="header_menu">
-        <ul class="menu">
-            <li class="menu_01">
-                <a th:href="@{/new/}"><i class="fa-solid fa-cookie-bite"></i> 오늘의 레시피</a>
-            </li>
-            <li class="menu_02">
-                <a th:href="@{/list/}"><i class="fa-solid fa-clipboard-list"></i> 레시피 리스트</a>
-            </li>
-            <li class="menu_03">
-                <a th:href="@{/you_recommend/}"><i class="fa-brands fa-youtube"></i> 유튜브 레시피 추천</a>
-            </li>
-        </ul>
-        <div class="login_out">
-            <a th:href="@{/members/login}" sec:authorize="isAnonymous()">로그인</a>
-        </div>
-        <div class="login_out">
-            <a th:href="@{/}" sec:authorize="isAuthenticated()">로그아웃</a>
-        </div>
-    </nav>
-    <h5 class="git_link">
-        <a href="https://github.com/ensung2/Baker" target="_blank"><i class="fa-brands fa-github-alt"></i>@ensung2</a>
-    </h5>
 </div>
 </body>
 </html>
