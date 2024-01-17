@@ -31,9 +31,13 @@ public class ItemController {
     @PostMapping(value = "/write")
     public String recipeNew(@Valid ItemDto itemDto, BindingResult bindingResult,
                             Model model, @RequestParam("itemImgFile") List<MultipartFile> itemImgFile){
+
+        // 상품 등록값이 없다면! return
         if (bindingResult.hasErrors()){
             return "content/recipeForm";
         }
+
+        // 상품 등록 이미지가 없다면? return
         if (itemImgFile.get(0).isEmpty() && itemDto.getId() == null) {
             model.addAttribute("errorMessage", "이미지를 첨부해 주세요.");
             return "content/recipeForm";
@@ -41,11 +45,11 @@ public class ItemController {
         try {
             itemService.saveItem(itemDto, itemImgFile);
         } catch (Exception e) {
-            model.addAttribute("errorMessage", "레시피 등록이 실패되었습니다!");
+            model.addAttribute("errorMessage", "레시피 등록이 실패하였습니다.");
             return "content/recipeForm";
         }
 
-        return "content/recipeList";
+        return "redirect:/";
     }
 
 

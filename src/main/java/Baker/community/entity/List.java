@@ -25,10 +25,6 @@ public class List  extends CreateModify{
     @Length(min = 1, max = 25)
     private String info;                // 레시피 한 줄 설명
 
-    @Lob    // Large Object
-    @Column(nullable = false)
-    private String img;                 // 레시피 사진
-
     @Column(nullable = false, length = 200)
     private String material;            // 레시피 재료
 

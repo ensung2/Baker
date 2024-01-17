@@ -2,7 +2,6 @@ package Baker.community.dto;
 
 import Baker.community.constant.ItemType;
 import Baker.community.entity.Item;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
@@ -16,7 +15,7 @@ public class ItemDto {
 
     private Long id;                    // 레시피 번호
 
-    @NotBlank(message = "레시피 타입을 선택 해 주세요.")
+    @NotNull
     private ItemType itemType;          // 레시피 타입 (bread, cookie, cake)
 
     @NotNull
@@ -25,8 +24,6 @@ public class ItemDto {
 
     @Length(min = 1, max = 25)
     private String info;                // 레시피 한 줄 설명
-
-    private String img;                 // 레시피 사진
 
     @NotNull
     private String material;            // 레시피 재료

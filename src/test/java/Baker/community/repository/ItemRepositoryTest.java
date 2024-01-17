@@ -28,7 +28,6 @@ class ItemRepositoryTest {
         item.setItemType(ItemType.Bread);
         item.setItemName("레시피명");
         item.setInfo("레시피 한줄설명");
-        item.setImg("이미지.jpg");
         item.setMaterial("재료");
         item.setRecipe("레시피 순서");
         item.setRegTime(LocalDateTime.now());
@@ -44,7 +43,6 @@ class ItemRepositoryTest {
             item.setItemType(ItemType.Bread);
             item.setItemName("레시피명" + i);
             item.setInfo("레시피 한줄설명" + i);
-            item.setImg("이미지" + i + ".jpg");
             item.setMaterial("재료" + i);
             item.setRecipe("레시피 순서" + i);
             item.setRegTime(LocalDateTime.now());
