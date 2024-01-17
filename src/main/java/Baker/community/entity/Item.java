@@ -2,6 +2,7 @@ package Baker.community.entity;
 
 
 import Baker.community.constant.ItemType;
+import Baker.community.dto.ItemDto;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -32,7 +33,12 @@ public class Item  extends CreateModify{
     @Column(nullable = false)
     private String recipe;              // 레시피 설명
 
-/*    private LocalDateTime regTime;      // 등록 시간
-    private LocalDateTime updateTime;   // 수정 시간*/
+    public void updateItem(ItemDto itemDto) {
+        this.itemName = itemDto.getItemName();
+        this.itemType = itemDto.getItemType();
+        this.info = itemDto.getInfo();
+        this.material = itemDto.getMaterial();
+        this.recipe = itemDto.getRecipe();
+    }
 
 }

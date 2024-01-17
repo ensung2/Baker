@@ -7,7 +7,7 @@
   <title>Baker. 나만의 레시피 북</title>
   <script>
     $(document).ready(function(){
-      var errorMessage = [[${errorMessage}]];
+      var errorMessage = '';
       if(errorMessage != null){
         alert(errorMessage);
       }
@@ -35,7 +35,7 @@
 <div id="wrap">
   <div th:replace="~{role/banner::section}"></div>
   <div id="content" role="main">
-    <form action="/recipe/write" th:object="${itemDto}" class="recipe_form" role="form"  method="post" enctype="multipart/form-data">
+    <form th:object="${itemDto}" class="recipe_form" role="form" enctype="multipart/form-data">
       <section class="write">
         <div class="write_left">
             <div class="recipe_title">
@@ -66,7 +66,7 @@
             <button type="submit" th:formaction="@{/list}" class="write_end_btn">작성 완료</button>
           </div>
           <div class="submit_btn" th:unless="${#strings.isEmpty(itemDto.id)}" style="text-align: center">
-            <button th:formaction="@{/list/+${itemDto.id}" type="submit" class="modify_btn">수정</button>
+            <button type="submit" th:formaction="@{/list/+${itemDto.id}" class="modify_btn">수정</button>
           </div>
         </div>
         <!--/* csrf(사이트간 위조 요청) 를 막기 위한 csrf 토큰값 */-->

@@ -43,7 +43,7 @@ class ItemServiceTest {
             String path = "C:/work/project/recipeImg";
             String imageName = "image" + i + ".jpg";
             MockMultipartFile multipartFile =
-                    new MockMultipartFile(path, imageName, "image/jpg", new byte[]{1,2,3,4});
+                    new MockMultipartFile(path, imageName, "image/jpg", new byte[]{0});
             multipartFileList.add(multipartFile);
 
 
@@ -72,6 +72,8 @@ class ItemServiceTest {
         assertEquals(itemDto.getInfo(), item.getInfo());
         assertEquals(itemDto.getMaterial(), item.getMaterial());
         assertEquals(itemDto.getRecipe(), item.getRecipe());
+        assertEquals(multipartFileList.get(0).getOriginalFilename(),
+                itemImgList.get(0).getOriImgName());
     }
 
 }
