@@ -15,10 +15,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 // final이나 @NonNull이 붙은 필드에 생성자 생성
 @RequiredArgsConstructor
-public class MemberService implements UserDetailsService {  // DB에서 회원 정보를 가져오는 역할을 하는 인터페이스
+public class MemberService implements UserDetailsService {
+                                        // DB에서 회원 정보를 가져오는 역할을 하는 인터페이스(아이디 검증)
 
     private final MemberRepository memberRepository;
-
 
     public Member saveMember(Member member) {
         validateDuplicateMember(member);

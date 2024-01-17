@@ -29,7 +29,7 @@ public class MemberController {
 
     @PostMapping("/new")
     public String newMember(@Valid MemberFormDto memberFormDto,
-                            // 검사 후 결과를 BingingResult에 저장
+                            // 검사 후 결과를 BingingResult 에 저장
                             BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()){

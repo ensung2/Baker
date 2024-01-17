@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="header">
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -15,6 +16,7 @@
     <meta property="og:image" content="">
     <meta property="og:description" content="Baker. 나만의 레시피북을 만들어 보세요.">
 
+    <!-- CSRF 공격에 대비한 토큰 -->
     <meta name="_csrf" th:content="${_csrf.token}"/>
     <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 

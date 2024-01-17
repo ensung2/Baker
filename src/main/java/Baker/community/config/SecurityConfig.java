@@ -32,12 +32,17 @@ public class SecurityConfig {
         CsrfTokenRequestAttributeHandler requestHandler = new CsrfTokenRequestAttributeHandler();
         requestHandler.setCsrfRequestAttributeName("_csrf");
         return  http
+                // 1) csrf 공격 설정
+                .csrf(csrf -> csrf
+                        .csrfTokenRequestHandler(requestHandler)
+                        .ignoringRequestMatchers("/", "/account/login/**", "/logout/**", "/register/validate/email")
+                )
                 .formLogin(form -> form
                         .loginPage("/members/login")                            // 로그인 페이지 url
                         .loginProcessingUrl("/members/login")
                         .usernameParameter("email")                             // 로그인 시 사용할 파라미터 이름
                         .defaultSuccessUrl("/")                                 // 로그인 성공 시 이동할 url
-                        .failureUrl("/members/login/error") // 로그인 실패 시 이동할 url
+                        .failureUrl("/members/login/error")  // 로그인 실패 시 이동할 url
                 )
                 .logout(logout -> logout
                         .logoutRequestMatcher(new AntPathRequestMatcher("/members/logout"))     // 로그아웃 url
@@ -45,10 +50,11 @@ public class SecurityConfig {
                         .logoutSuccessUrl("/")                                                    // 로그아웃 성공 시 이동할 url
                 )
                 .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/list/", "/recipe/write").hasRole("USER")
                         .requestMatchers("/css/**", "/js/**", "/img/**").permitAll()
                         .requestMatchers("/", "/members/**", "/item/**", "/images/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
                 )
                 .exceptionHandling(exceptions -> exceptions
                         .authenticationEntryPoint(new CustomAuthenticationEntryPoint())
