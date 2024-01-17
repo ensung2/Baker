@@ -21,7 +21,7 @@
         <nav class="header_menu">
             <ul class="menu" >
                 <li class="menu_01">
-                    <a th:href="@{/write}"><i class="fa-solid fa-cookie-bite"></i> 오늘의 레시피</a>
+                    <a th:href="@{/recipe/write}"><i class="fa-solid fa-cookie-bite"></i> 오늘의 레시피</a>
                 </li>
                 <li class="menu_02">
                     <a th:href="@{/list}"><i class="fa-solid fa-clipboard-list"></i> 레시피 리스트</a>
@@ -30,12 +30,15 @@
                     <a th:href="@{/youtube}"> <i class="fa-brands fa-youtube"></i> 유튜브 레시피 추천</a>
                 </li>
             </ul>
-            <th:block sec:authorize="isAnonymous()">
-                <a class="login" th:href="@{/members/login}">로그인</a>
-            </th:block>
-            <th:block sec:authorize="isAuthenticated()">
-                <a class="logout" th:href="@{/members/logout}">로그아웃</a>
-            </th:block>
+            <div class="login_out">
+                <th:block sec:authorize="isAnonymous()">
+                    <a th:href="@{/members/login}">로그인</a>
+                </th:block>
+                <th:block sec:authorize="isAuthenticated()" th:class="login_btn">
+                    <a th:href="@{/members/logout}">로그아웃</a>
+                </th:block>
+            </div>
+
         </nav>
         <h5 class="git_link">
             <a href="https://github.com/ensung2/Baker" target="_blank"><i class="fa-brands fa-github-alt"></i>@ensung2</a>
