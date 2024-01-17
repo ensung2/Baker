@@ -11,6 +11,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Data
 public class Member {
 
+    private Long id;
+
     private String name;        // 닉네임
 
     @Id

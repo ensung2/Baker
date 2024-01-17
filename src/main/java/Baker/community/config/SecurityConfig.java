@@ -37,6 +37,7 @@ public class SecurityConfig {
                         .csrfTokenRequestHandler(requestHandler)
                         .ignoringRequestMatchers("/", "/account/login/**", "/logout/**", "/register/validate/email")
                 )
+                // 2) 로그인 시
                 .formLogin(form -> form
                         .loginPage("/members/login")                            // 로그인 페이지 url
                         .loginProcessingUrl("/members/login")
@@ -44,18 +45,21 @@ public class SecurityConfig {
                         .defaultSuccessUrl("/")                                 // 로그인 성공 시 이동할 url
                         .failureUrl("/members/login/error")  // 로그인 실패 시 이동할 url
                 )
+                // 3) 로그아웃 시
                 .logout(logout -> logout
                         .logoutRequestMatcher(new AntPathRequestMatcher("/members/logout"))     // 로그아웃 url
                         .invalidateHttpSession(true)
                         .logoutSuccessUrl("/")                                                    // 로그아웃 성공 시 이동할 url
                 )
+                // 4) 인증/인가
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/list/", "/recipe/write").hasRole("USER")
+//                        .requestMatchers("/list", "/recipe/write").hasRole("USER")
                         .requestMatchers("/css/**", "/js/**", "/img/**").permitAll()
                         .requestMatchers("/", "/members/**", "/item/**", "/images/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().permitAll()
                 )
+                // 5) 예외처리
                 .exceptionHandling(exceptions -> exceptions
                         .authenticationEntryPoint(new CustomAuthenticationEntryPoint())
                 )

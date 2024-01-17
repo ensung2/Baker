@@ -1,4 +1,4 @@
-package filter;
+package Baker.community.filter;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

@@ -5,13 +5,10 @@ import Baker.community.constant.ItemType;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.time.LocalDateTime;
-
 @Entity
 @Table(name = "item")
 @Data
-
-public class Item {
+public class Item  extends CreateModify{
 
     @Id
     @Column(name = "item_id")
@@ -39,7 +36,7 @@ public class Item {
     @Column(nullable = false)
     private String recipe;              // 레시피 설명
 
-    private LocalDateTime regTime;      // 등록 시간
-    private LocalDateTime updateTime;   // 수정 시간
+/*    private LocalDateTime regTime;      // 등록 시간
+    private LocalDateTime updateTime;   // 수정 시간*/
 
 }
