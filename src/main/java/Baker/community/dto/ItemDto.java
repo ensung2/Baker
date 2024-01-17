@@ -34,7 +34,7 @@ public class ItemDto {
     @NotNull
     private String recipe;              // 레시피 설명
 
-    private List<ItemImgDto> itemImgDtoList = new ArrayList<>();
+    private List<ItemImgDto> itemImgDto = new ArrayList<>();
 
     private List<Long> itemImgIds = new ArrayList<>();
 

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/default::header}">
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>Baker. 나만의 레시피 북</title>
+  <script>
+    $(document).ready(function(){
+      var errorMessage = [[${errorMessage}]];
+      if(errorMessage != null){
+        alert(errorMessage);
+      }
+      bindDomEvent();
+
+    });
+
+    function bindDomEvent(){
+      $(".custom-file-input").on("change", function() {
+        var fileName = $(this).val().split("\\").pop();  //이미지 파일명
+        var fileExt = fileName.substring(fileName.lastIndexOf(".")+1); // 확장자 추출
+        fileExt = fileExt.toLowerCase(); //소문자 변환
+
+        if(fileExt != "jpg" && fileExt != "jpeg" && fileExt != "gif" && fileExt != "png" && fileExt != "bmp"){
+          alert("이미지 파일만 등록이 가능합니다.");
+          return;
+        }
+
+        $(this).siblings(".custom-file-label").html(fileName);
+      });
+    }
+  </script>
+</head>
+<body>
+<div id="wrap">
+  <div th:replace="~{role/banner::section}"></div>
+  <div id="content" role="main">
+    <form action="/recipe/write" th:object="${itemDto}" class="recipe_form" role="form"  method="post" enctype="multipart/form-data">
+      <section class="write">
+        <div class="write_left">
+            <div class="recipe_title">
+              <select id="recipe_type" th:field="*{itemType}">
+                <option value="bread">Bread</option>
+                <option value="cookie">Cookie</option>
+                <option value="cake">Cake</option>
+              </select>
+              <input type="text" th:field="*{itemName}" class="recipeName" placeholder="레시피 이름을 입력해 주세요." required>
+              <input type="text" th:field="*{info}"  class="recipeInfo" placeholder="레시피를 한줄로 표현한다면? (최대 25자)">
+            </div>
+          <div th:if="${#lists.isEmpty(itemDto.itemImgDto)}">
+              <div class="recipe_img">
+                <input type="file" class="recipeImg custom-file-label" name="itemImgFile">
+            </div>
+          </div>
+            <div class="recipe_material">
+              <label th:for="material">[ 재료 ]</label>
+              <textarea th:field="*{material}" id="material" cols="45" rows="4" maxlength="200" required></textarea>
+            </div>
+        </div>
+        <div class="write_right">
+          <div class="recipe_write">
+            <label th:for="recipe">[ 레시피 ]</label>
+            <textarea th:field="*{recipe}" id="recipe" cols="45" rows="15" maxlength="500" required></textarea>
+          </div>
+          <div class="submit_btn" th:if="${#strings.isEmpty(itemDto.id)}">
+            <button type="submit" th:formaction="@{/list}" class="write_end_btn">작성 완료</button>
+          </div>
+          <div class="submit_btn" th:unless="${#strings.isEmpty(itemDto.id)}" style="text-align: center">
+            <button th:formaction="@{/list/+${itemDto.id}" type="submit" class="modify_btn">수정</button>
+          </div>
+        </div>
+        <!--/* csrf(사이트간 위조 요청) 를 막기 위한 csrf 토큰값 */-->
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+      </section>
+    </form>
+  </div>
+  </div>
+</body>
+</html>
