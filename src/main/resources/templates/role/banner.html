@@ -18,6 +18,11 @@
                 <a th:href="@{/}">Baker.</a>
             </h1>
         </div>
+<!--        <div class="user_name">
+            <th:block sec:authorize="isAuthenticated()">
+                <span th:text="${#authentication.principal}"></span>님 환영합니다.
+            </th:block>
+        </div>-->
         <nav class="header_menu">
             <ul class="menu" >
                 <li class="menu_01">
@@ -34,7 +39,7 @@
                 <th:block sec:authorize="isAnonymous()">
                     <a th:href="@{/members/login}">로그인</a>
                 </th:block>
-                <th:block sec:authorize="isAuthenticated()" th:class="login_btn">
+                <th:block sec:authorize="isAuthenticated()">
                     <a th:href="@{/members/logout}">로그아웃</a>
                 </th:block>
             </div>

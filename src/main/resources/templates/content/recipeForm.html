@@ -44,8 +44,8 @@
                 <option value="cookie">Cookie</option>
                 <option value="cake">Cake</option>
               </select>
-              <input type="text" th:field="*{itemName}" class="recipeName" placeholder="레시피 이름을 입력해 주세요." required>
-              <input type="text" th:field="*{info}"  class="recipeInfo" placeholder="레시피를 한줄로 표현한다면? (최대 25자)">
+              <input type="text" th:field="*{itemName}" class="recipeName" placeholder="레시피 이름을 입력해 주세요." maxlength="15"  required>
+              <input type="text" th:field="*{info}"  class="recipeInfo" placeholder="레시피를 한줄로 표현한다면? (최대 25자)" maxlength="25">
             </div>
           <div th:if="${#lists.isEmpty(itemDto.itemImgDto)}">
               <div class="recipe_img">
