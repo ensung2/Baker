@@ -10,12 +10,12 @@
     padding-bottom: 20px;
 }
 
-.creator i {
+.you_title i {
     color: #c4302b;
     padding-right: 5px;
 }
 
-.creator mark {
+.you_title mark {
     padding: 0 10px;
     border-radius: 5px;
     background-color: #313131;
