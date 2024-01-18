@@ -37,7 +37,7 @@
 }
 
 
-swiper-container {
+.you_content01 swiper-container {
     position: absolute;
     width: 25%;
     height: 25%;
@@ -48,7 +48,7 @@ swiper-container {
     overflow: hidden;
 }
 
-swiper-container a {
+.you_content01 swiper-container a {
     display: block;
     width: 100%;
     height: 100%;
@@ -87,14 +87,14 @@ swiper-container a {
 
 /*=================================================================================*/
 .swiper02, .level h3:nth-child(2) {
-    left: 36%;
+    left: 37%;
 }
 
 .swiper03, .level h3:nth-child(3) {
-    left: 63.5%;
+    left: 65.8%;
 }
 
-swiper-slide {
+.you_content01 swiper-slide {
     text-align: center;
     font-size: 18px;
     background: #fff;
@@ -103,10 +103,70 @@ swiper-slide {
     align-items: center;
 }
 
-swiper-slide img {
+.you_content01 swiper-slide img {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+/* you_content02 */
+
+
+.you_content02 {
+    padding-top: 265px;
+}
+
+.you_content02 swiper-container {
+    width: 100%;
+    height: 100%;
+}
+
+.you_content02 swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    margin-top: 10px;
+    overflow: hidden;
+}
+.you_content02 swiper-slide a {
+    font-size: 1.5rem;
+    color: #ffcc00;
+    background-color: rgba(0,0,0,0.8);
+    display: inline-block;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    line-height: 8;
+    transition: all 0.3s;
+}
+
+.you_content02 swiper-slide a:hover {
+    opacity: 1;
+}
+
+.slide_01 {
+    background: url("../img/slide_01.gif") no-repeat center;
+}
+.slide_02 {
+    background: url("../img/slide_02.gif") no-repeat center;
+}
+.slide_03 {
+    background: url("../img/slide_03.gif") no-repeat center;
+}
+.slide_04 {
+    background: url("../img/slide_04.gif") no-repeat center;
+}
+.slide_05 {
+    background: url("../img/slide_05.gif") no-repeat center;
+}
+.slide_06 {
+    background: url("../img/slide_06.gif") no-repeat center;
+}
+.slide_07 {
+    background: url("../img/slide_07.gif") no-repeat center;
 }
 
