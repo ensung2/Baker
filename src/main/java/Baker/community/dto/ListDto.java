@@ -1,11 +1,12 @@
 package Baker.community.dto;
 
 import Baker.community.constant.ItemType;
-import lombok.Data;
+import Baker.community.entity.Item;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 
-@Data
+@Getter
 public class ListDto {
 
     private Long id;                    // 레시피 번호
@@ -14,8 +15,13 @@ public class ListDto {
 
     private String itemName;            // 레시피명
 
-    private String material;            // 레시피 재료
+    private LocalDateTime regTime;
 
-    private LocalDateTime regTime;      // 등록 시간
-    private LocalDateTime updateTime;   // 수정 시간
+    public ListDto(Item item) {
+        this.id = item.getId();
+        this.itemType = item.getItemType();
+        this.itemName = item.getItemName();
+        this.regTime = item.getRegTime();
+
+    }
 }

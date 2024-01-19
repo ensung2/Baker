@@ -1,5 +1,7 @@
 package Baker.community.constant;
 
 public enum ItemType {
-    Bread, Cookie, Cake
+    BREAD,
+    COOKIE,
+    CAKE
 }

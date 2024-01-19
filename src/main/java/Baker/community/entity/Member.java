@@ -3,19 +3,25 @@ package Baker.community.entity;
 import Baker.community.constant.Role;
 import Baker.community.dto.MemberFormDto;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Entity
 @Table(name = "member")
-@Data
+@Getter
+@Setter
+@ToString
 public class Member {
 
+    @Id
+    @Column(unique = true, name = "member_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;        // 닉네임
 
-    @Id
     @Column(unique = true)
     private String email;       // 아이디
 

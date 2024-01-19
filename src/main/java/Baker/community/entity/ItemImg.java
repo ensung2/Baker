@@ -1,16 +1,18 @@
 package Baker.community.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "item_img")
-@Data
+@Getter
+@Setter
 public class ItemImg extends CreateModify{
 
     @Id
     @Column(name = "item_img_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String imgName;             // 파일명

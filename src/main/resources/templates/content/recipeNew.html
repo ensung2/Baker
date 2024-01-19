@@ -1,47 +1,43 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head th:replace="~{fragments/default::header}">
   <meta charset="UTF-8">
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <title>Baker. 나만의 레시피 북</title>
+  <title>Baker : 새로운 레시피</title>
 </head>
 <body>
 <div id="wrap">
   <div th:replace="~{role/banner::section}"></div>
   <div id="content" role="main">
-    <form action="/newRecipe/ex01" class="recipe_form" role="form"  method="post">
-      <section class="write">
-        <div class="write_left">
-            <div class="recipe_title">
-              <select name="recipe_type" id="recipe_type">
-                <option value="bread">Bread</option>
-                <option value="cookie">Cookie</option>
-                <option value="cake">Cake</option>
-              </select>
-              <input type="text" name="recipeName" class="recipeName" placeholder="레시피 이름을 입력해 주세요."  th:text="${itemDto.itemName}" readonly>
-              <input type="text" name="recipeInfo" class="recipeInfo" placeholder="레시피를 한줄로 표현한다면? (최대 25자)" th:text="${itemDto.info}" maxlength="25" readonly>
+      <section class="recipe_view">
+          <input type="hidden" id="section-id" th:value="${item.id}">
+        <div class="view_left">
+            <div class="view_title">
+              <p class="view_type" th:text="${item.itemType}"></p>
+              <p class="view_name" th:text="${item.itemName}"></p>
+              <p class="view_info" th:text="${item.info}"></p>
             </div>
-            <div class="recipe_img">
-              <input type="file" name="recipeImg" class="recipeImg" readonly>
-            </div>
-            <div class="recipe_material">
+            <div class="view_img"></div>
+            <div class="view_material">
               <label th:for="material">[ 재료 ]</label>
-              <textarea name="material" id="material" cols="45" rows="4" maxlength="200" th:text="${itemDto.material}" readonly></textarea>
+              <div class="material_text" th:text="${item.material}"></div>
             </div>
         </div>
-        <div class="write_right">
-          <div class="recipe_write">
+        <div class="view_right">
+          <div class="view_ex">
             <label th:for="recipe">[ 레시피 ]</label>
-            <textarea name="recipe" id="recipe" cols="45" rows="15" maxlength="500" th:text="${itemDto.recipe}" readonly></textarea>
+            <div class="ex_text" th:text="${item.recipe}"></div>
           </div>
-          <div class="submit_btn">
-            <input type="submit" class="modify_btn" value="레시피 수정"/>
+          <div class="view_btn">
+            <button type="button" class="modify_btn" id="Modify_btn"
+                    th:onclick="|location.href='@{/new_recipe?id={itemId}(itemId=${item.id})}'|">수정</button>
+            <button type="button" class="delete_btn" id="Delete_btn">삭제</button>
           </div>
-          </div>
+        </div>
       </section>
-    </form>
   </div>
   </div>
+<script src="/js/recipe.js"></script>
 </body>
 </html>
