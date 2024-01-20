@@ -1,7 +1,6 @@
 package Baker.community.controller;
 
 import Baker.community.dto.AddItemDto;
-import Baker.community.dto.ItemFormDto;
 import Baker.community.dto.NewItemDto;
 import Baker.community.dto.UpdateItemDto;
 import Baker.community.entity.Item;
@@ -9,7 +8,6 @@ import Baker.community.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,9 +18,8 @@ public class ItemController {
 
     private final ItemService itemService;
 
-    @GetMapping(value ="/recipe")
-    public String recipeForm(Model model) {
-        model.addAttribute("itemFormDto", new ItemFormDto());
+    @GetMapping("/recipe")
+    public String recipeForm() {
         return "content/recipeForm";
     }
 

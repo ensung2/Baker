@@ -10,7 +10,7 @@
 <div id="wrap">
   <div th:replace="~{role/banner::section}"></div>
   <div id="content" role="main">
-    <form action="/content/recipeList" class="list_form" role="form" th:object="${list}">
+    <form action="/content/recipeList" class="list_form" role="form">
       <div class="recipe_search" >
         <select class="recipe_type">
           <option value="BREAD">Bread</option>
@@ -31,10 +31,10 @@
         </tr>
         </thead>
         <tbody class="list_body">
-        <tr th:each="item, status:${list}">
+        <tr th:each="item : ${list}">
           <td th:text="${item.id}"></td>
-          <td th:text="${item.itemType}"></td>
-          <td th:text="${item.itemName}"></td>
+          <td th:text="${item.itemType}" id="itemType"></td>
+          <td th:text="${item.itemName}" id="itemName"></td>
           <td th:text="${#temporals.format(item.regTime, 'yyyy-MM-dd HH:mm')}"></td>
           <td><a th:href="@{/list/{id}(id=${item.id})}">보러가기</a></td>
         </tr>

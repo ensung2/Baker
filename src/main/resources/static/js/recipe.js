@@ -42,3 +42,27 @@ if (modifyButton) {
             });
     });
 }
+
+// 레시피 등록(저장)
+const createButton = document.getElementById('Create_btn');
+
+if (createButton) {
+    createButton.addEventListener('click', (event) => {
+        fetch("/recipe/new", {
+            method: "POST",
+            headers: {
+                "Content-Type" : "application/json",
+        },
+            body: JSON.stringify({
+                itemType: document.getElementById("itemType").value,
+                itemName: document.getElementById("itemName").value,
+                info: document.getElementById("info").value,
+                material: document.getElementById("material").value,
+                recipe: document.getElementById("recipe").value
+            }),
+        }).then(()=>{
+            alert("레시피 등록이 완료되었습니다.");
+            location.replace("/list");
+        });
+    });
+}

@@ -35,6 +35,10 @@
     color: #2d2d2d;
 }
 
+.recipe_name placeholder {
+    font-size: 1rem;
+}
+
 .recipe_info {
     border: none;
     font-weight: 200;
@@ -121,7 +125,11 @@
 .modify_btn {
     color: #313131;
     background-color: #ffcc00;
+}
 
+.create_btn {
+    color: #313131;
+    background-color: #ffcc00;
 }
 
 .delete_btn {

@@ -14,13 +14,13 @@
         <input type="hidden" id="section-id" th:value="${item.id}">
         <div class="write_left">
             <div class="recipe_title">
-              <select class="recipe_type">
+              <select class="recipe_type" id="itemType">
                 <option th:value="${item.itemType}">Bread</option>
                 <option th:value="${item.itemType}">Cookie</option>
                 <option th:value="${item.itemType}">Cake</option>
               </select>
               <br>
-              <input type="text" th:value="${item.itemName}" class="recipe_name" placeholder="레시피 이름을 입력해 주세요." maxlength="15"  required>
+              <input type="text" th:value="${item.itemName}" id="itemName" class="recipe_name" placeholder="레시피 이름을 입력해 주세요." maxlength="15"  required>
               <br>
               <input type="text" th:value="${item.info}"  class="recipe_info" placeholder="레시피를 한줄로 표현한다면? (최대 25자)" maxlength="25" required>
             </div>

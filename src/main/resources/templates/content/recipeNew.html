@@ -14,20 +14,20 @@
           <input type="hidden" id="section-id" th:value="${item.id}">
         <div class="view_left">
             <div class="view_title">
-              <p class="view_type" th:text="${item.itemType}"></p>
-              <p class="view_name" th:text="${item.itemName}"></p>
-              <p class="view_info" th:text="${item.info}"></p>
+              <p class="view_type" th:text="${item.itemType}" id="itemType"></p>
+              <p class="view_name" th:text="${item.itemName}" id="itemName"></p>
+              <p class="view_info" th:text="${item.info}" id="itemInfo"></p>
             </div>
             <div class="view_img"></div>
             <div class="view_material">
               <label th:for="material">[ 재료 ]</label>
-              <div class="material_text" th:text="${item.material}"></div>
+              <div class="material_text" th:text="${item.material}" id="material"></div>
             </div>
         </div>
         <div class="view_right">
           <div class="view_ex">
             <label th:for="recipe">[ 레시피 ]</label>
-            <div class="ex_text" th:text="${item.recipe}"></div>
+            <div class="ex_text" th:text="${item.recipe}" id="recipe"></div>
           </div>
           <div class="view_btn">
             <button type="button" class="modify_btn" id="Modify_btn"
