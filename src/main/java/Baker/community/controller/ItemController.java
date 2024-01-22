@@ -1,11 +1,13 @@
 package Baker.community.controller;
 
+import Baker.community.constant.ItemType;
 import Baker.community.dto.AddItemDto;
 import Baker.community.dto.ItemDto;
 import Baker.community.dto.UpdateItemDto;
 import Baker.community.entity.Item;
 import Baker.community.service.ItemImgService;
 import Baker.community.service.ItemService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,20 @@ public class ItemController {
 
     private final ItemService itemService;
     private final ItemImgService itemImgService;
+
+    @ModelAttribute("itemTypes")
+    public ItemType[] itemTypes() {
+        return ItemType.values();
+    }
+
+//    @ModelAttribute("typeCodes")
+//    public List<TypeCode> typeCodes(){
+//        List<TypeCode> typeCodes = new ArrayList<>();
+//        typeCodes.add(new TypeCode("BREAD", "BREAD"));
+//        typeCodes.add(new TypeCode("COOKIE", "COOKIE"));
+//        typeCodes.add(new TypeCode("CAKE", "CAKE"));
+//        return typeCodes;
+//    }
 
     @PostMapping("/recipe/new")
     public ResponseEntity<Item> addItem(@RequestBody AddItemDto addItemDto) {
@@ -55,6 +71,7 @@ public class ItemController {
                 .body(new ItemDto(item));
     }
 
+    // 레시피 삭제
     @DeleteMapping("/list/{id}")
     public ResponseEntity<Void> deleteItem(@PathVariable long id) {
         itemService.delete(id);
@@ -62,12 +79,15 @@ public class ItemController {
                 .build();
     }
 
+    // 레시피 수정
     @PutMapping("/recipe/new/{id}")
     public ResponseEntity<Item> updateItem(@PathVariable long id,
-                                           @RequestBody UpdateItemDto updateItem) {
-        Item updatedItem = itemService.updateItem(id, updateItem);
+                                           @Valid UpdateItemDto updateDtO) {
+        Item updatedItem = itemService.updateItem(id, updateDtO);
 
         return ResponseEntity.ok()
                 .body(updatedItem);
     }
+
+
 }

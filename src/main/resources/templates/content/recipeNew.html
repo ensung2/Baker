@@ -30,7 +30,7 @@
             <div class="ex_text" th:text="${item.recipe}" id="recipe"></div>
           </div>
           <div class="view_btn">
-            <button type="button" class="modify_btn" id="Modify_btn"
+            <button type="button" class="modify_btn"
                     th:onclick="|location.href='@{/new_recipe?id={itemId}(itemId=${item.id})}'|">수정</button>
             <button type="button" class="delete_btn" id="Delete_btn">삭제</button>
           </div>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head th:replace="~{fragments/default::header}">
   <meta charset="UTF-8">
   <meta name="viewport"
@@ -11,20 +11,20 @@
   <div th:replace="~{role/banner::section}"></div>
   <div id="content" role="main">
       <section class="recipe_form" th:object="${item}">
-        <input type="hidden" id="section-id" th:value="${item.id}">
+        <input type="hidden" id="item-id" th:value="${item.id}">
         <div class="write_left">
             <div class="recipe_title">
-              <select class="recipe_type" id="itemType">
-                <option th:value="${item.itemType}">Bread</option>
-                <option th:value="${item.itemType}">Cookie</option>
-                <option th:value="${item.itemType}">Cake</option>
-                <p th:if="${#fields.hasErrors('itemType')}" th:errors="*{itemType}" class="field_error"></p>
+              <select class="recipe_type" id="itemType" th:field="*{itemType}">
+                  <option
+                          th:each="itemType : ${T(Baker.community.constant.ItemType).values()}"
+                          th:value="${itemType.name()}"
+                          th:text="${itemType.name()}"></option>
               </select>
               <br>
               <input type="text" th:value="${item.itemName}" id="itemName" class="recipe_name" placeholder="레시피 이름을 입력해 주세요." maxlength="15"  required>
               <p th:if="${#fields.hasErrors('itemName')}" th:errors="*{itemName}" class="field_error"></p>
               <br>
-              <input type="text" th:value="${item.info}"  class="recipe_info" placeholder="레시피를 한줄로 표현한다면? (최대 25자)" maxlength="25" required>
+              <input type="text" th:value="${item.info}" id="info"  class="recipe_info" placeholder="레시피를 한줄로 표현한다면? (최대 25자)" maxlength="25" required>
             </div>
           <div>
               <div class="recipe_img">
@@ -42,13 +42,13 @@
             <textarea th:text="${item.recipe}" id="recipe" cols="45" rows="15" maxlength="500" required></textarea>
           </div>
           <div class="form_btn">
-            <button th:if="${item.id} != null" type="button" class="modify_btn" id="Modify_btn">수정</button>
-            <button th:if="${item.id} == null" type="button" class="create_btn" id="Create_btn">등록</button>
+            <button th:if="${item.id} != null" type="button" id="Modify_btn" class="modify_btn">수정</button>
+            <button th:if="${item.id} == null" type="button" id="Create_btn" class="create_btn">등록</button>
           </div>
         </div>
       </section>
   </div>
-  </div>
+</div>
 <script src="/js/recipe.js"></script>
 </body>
 </html>

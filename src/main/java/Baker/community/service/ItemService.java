@@ -39,12 +39,16 @@ public class ItemService {
     }
 
     @Transactional
-    public Item updateItem(long id, UpdateItemDto updateItem) {
+    public Item updateItem(long id, UpdateItemDto updateDto) {
         Item item = itemRepository.findById(id)
                 .orElseThrow(()->new IllegalArgumentException("not found" + id));
 
-        item.updateItem(updateItem.getItemType(), updateItem.getItemName(), updateItem.getInfo(),
-                updateItem.getMaterial(), updateItem.getRecipe());
+        item.updateItem(
+                updateDto.getItemType(),
+                updateDto.getItemName(),
+                updateDto.getInfo(),
+                updateDto.getMaterial(),
+                updateDto.getRecipe());
 
         return item;
     }

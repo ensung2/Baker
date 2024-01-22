@@ -22,19 +22,16 @@ if (modifyButton) {
     modifyButton.addEventListener('click', event => {
         let params = new URLSearchParams(location.search);
         let id = params.get('id');
+        let formData = new FormData();
+        formData.append('itemType', document.getElementById('itemType').value);
+        formData.append('itemName', document.getElementById('itemName').value);
+        formData.append('info', document.getElementById('info').value);
+        formData.append('material', document.getElementById('material').value);
+        formData.append('recipe', document.getElementById('recipe').value);
 
         fetch(`/recipe/new/${id}`, {
             method: 'PUT',
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                itemType: document.getElementById('itemType').value,
-                itemName: document.getElementById('itemName').value,
-                info: document.getElementById('info').value,
-                material: document.getElementById('material').value,
-                recipe: document.getElementById('recipe').value
-            })
+            body: formData
         })
             .then(()=>{
                 alert('레시피 수정이 완료되었습니다.');

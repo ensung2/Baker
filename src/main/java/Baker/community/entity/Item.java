@@ -11,7 +11,7 @@ import lombok.*;
 @Setter
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Item extends CreateModify{
+public class Item extends CreateModify {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,25 +52,4 @@ public class Item extends CreateModify{
         this.material = material;
         this.recipe = recipe;
     }
-
-
-    //    public static Item createItem(ItemFormDto itemFormDto) {
-//        Item item = new Item();
-//
-//        item.setItemType(itemFormDto.getItemType());
-//        item.setItemName(itemFormDto.getItemName());
-//        item.setInfo(itemFormDto.getInfo());
-//        item.setMaterial(itemFormDto.getMaterial());
-//        item.setRecipe(itemFormDto.getRecipe());
-//
-//        return item;
-//    }
-
-//    public void updateItem(ItemFormDto itemFormDto) {
-//        this.itemName = itemFormDto.getItemName();
-//        this.itemType = itemFormDto.getItemType();
-//        this.info = itemFormDto.getInfo();
-//        this.material = itemFormDto.getMaterial();
-//        this.recipe = itemFormDto.getRecipe();
-//    }
 }
