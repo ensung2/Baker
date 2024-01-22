@@ -11,6 +11,8 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,17 +29,10 @@ public class ItemController {
         return ItemType.values();
     }
 
-//    @ModelAttribute("typeCodes")
-//    public List<TypeCode> typeCodes(){
-//        List<TypeCode> typeCodes = new ArrayList<>();
-//        typeCodes.add(new TypeCode("BREAD", "BREAD"));
-//        typeCodes.add(new TypeCode("COOKIE", "COOKIE"));
-//        typeCodes.add(new TypeCode("CAKE", "CAKE"));
-//        return typeCodes;
-//    }
-
     @PostMapping("/recipe/new")
-    public ResponseEntity<Item> addItem(@RequestBody AddItemDto addItemDto) {
+    public ResponseEntity<Item> addItem(@Valid @RequestBody AddItemDto addItemDto,
+                                        BindingResult bindingResult, Model model) {
+
         Item savedItem = itemService.save(addItemDto);
         /*
          * 200 OK : 요청이 성공적으로 수행되었음
@@ -50,6 +45,7 @@ public class ItemController {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(savedItem);
     }
+
 
     @GetMapping("/recipe/new")
     public ResponseEntity<List<ItemDto>> findAllItem() {
@@ -88,6 +84,7 @@ public class ItemController {
         return ResponseEntity.ok()
                 .body(updatedItem);
     }
+
 
 
 }

@@ -35,8 +35,8 @@
 
             <button type="submit" class="login_btn" th:href="@{/members/new}">회원가입</button>
 
-            <!-- csrf(사이트간 위조 요청) 를 막기 위한 csrf 토큰값 -->
-            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+<!--            &lt;!&ndash; csrf(사이트간 위조 요청) 를 막기 위한 csrf 토큰값 &ndash;&gt;-->
+<!--            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">-->
         </section>
     </form>
 </div>

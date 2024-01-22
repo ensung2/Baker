@@ -62,22 +62,48 @@
     color: #e17c3c;
 }
 
-.list_body tr {
-
-}
-
 .list_body td {
     padding: 6px 0 6px 20px;
     color: #424242;
     border-bottom: 1.5px dashed rgba(225,124,60,0.3);
 }
 
+/* 페이징 */
+
 .list_page {
-    text-align: center;
     padding: 30px 50px;
     background-color: #ffffff;
-    color: #e17c3c;
+    color: whitesmoke;
+    display: flex;
+}
+
+.list_page ul {
+    list-style: none;
+    display: flex;
+    margin: 0 auto;
+}
+
+.page-link {
+    display: block;
+    color: #313131;
+    padding: 5px 10px;
+    border-radius: 5px;
     font-size: 1rem;
+    background-color: #e17c3c;
+    margin-right: 5px;}
+
+.page-num {
+    display: block;
+    color: #e17c3c;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: white;
+    margin-right: 5px;
+    border: 1px solid #e17c3c;
+}
+.page-link span {
+    background-color: #e17c3c;
 }
 
 

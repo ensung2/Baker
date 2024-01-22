@@ -32,6 +32,7 @@ dependencies {
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6:3.1.2.RELEASE'
 	implementation 'org.springframework.security:spring-security-crypto:6.2.1'	// 스프링부트 암호화 모듈
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client:3.1.5'
+	implementation 'org.hibernate.validator:hibernate-validator:8.0.1.Final'
 	implementation 'mysql:mysql-connector-java:8.0.33'
 	implementation 'org.modelmapper:modelmapper:3.1.1'
 	runtimeOnly 'com.h2database:h2'

@@ -3,6 +3,7 @@ package Baker.community.entity;
 
 import Baker.community.constant.ItemType;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Entity
@@ -36,7 +37,7 @@ public class Item extends CreateModify {
 
     // 빌더 패턴 방식으로 객체 생성 (필드에 어떤 값이 들어가는지 명시적으로 파악 가능)
     @Builder
-    public Item(ItemType itemType, String itemName, String info, String material, String recipe) {
+    public Item(ItemType itemType, @NotNull String itemName,String info,@NotNull String material,@NotNull String recipe) {
         this.itemType = itemType;
         this.itemName = itemName;
         this.info = info;

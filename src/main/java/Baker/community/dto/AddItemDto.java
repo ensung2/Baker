@@ -26,6 +26,9 @@ public class AddItemDto {       // 레시피 추가 코드
 
     // 레시피 추가 시 저장할 엔티티로 변환
     public Item toEntity() {
+        if (itemType == null || itemName == null || material == null || recipe == null) {
+            throw new IllegalArgumentException("itemType, itemName, material, and recipe cannot be null");
+        }
         return Item.builder()
                 .itemType(itemType)
                 .itemName(itemName)

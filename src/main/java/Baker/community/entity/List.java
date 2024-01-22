@@ -2,15 +2,14 @@ package Baker.community.entity;
 
 import Baker.community.constant.ItemType;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Entity
 @Table(name = "list")
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class List  extends CreateModify{
 
     @Id
@@ -29,6 +28,10 @@ public class List  extends CreateModify{
     @JoinColumn(name = "item_id")
     private Item item;
 
-
-
+    @Builder
+    public List(ItemType listType, String listName, Item item) {
+        this.listType = listType;
+        this.listName = listName;
+        this.item = item;
+    }
 }

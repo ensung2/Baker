@@ -4,7 +4,9 @@ import Baker.community.dto.ListDto;
 import Baker.community.dto.ViewItemDto;
 import Baker.community.entity.Item;
 import Baker.community.service.ItemService;
+import Baker.community.service.ListService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,9 +20,14 @@ import java.util.List;
 public class ListController {
 
     private final ItemService itemService;
+    private final ListService listService;
 
     @GetMapping("/list")
-    public String getItems(Model model) {
+    public String getItems(Model model,
+                           @RequestParam(value = "page", defaultValue = "0") int page) {
+        Page<Item> paging = itemService.getList(page);
+        model.addAttribute("paging", paging);
+
         List<ListDto> list = itemService.findAll()
                 .stream()
                 .map(ListDto::new)

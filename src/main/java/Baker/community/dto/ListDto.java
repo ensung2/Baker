@@ -2,11 +2,13 @@ package Baker.community.dto;
 
 import Baker.community.constant.ItemType;
 import Baker.community.entity.Item;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
 
 @Getter
+@AllArgsConstructor     // 모든 필드 값을 파라미터로 받는 생성자 추가
 public class ListDto {
 
     private Long id;                    // 레시피 번호
@@ -22,6 +24,5 @@ public class ListDto {
         this.itemType = item.getItemType();
         this.itemName = item.getItemName();
         this.regTime = item.getRegTime();
-
     }
 }

@@ -5,9 +5,14 @@ import Baker.community.dto.UpdateItemDto;
 import Baker.community.entity.Item;
 import Baker.community.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -31,6 +36,14 @@ public class ItemService {
     public Item findById(long id) {
         return itemRepository.findById(id)
                 .orElseThrow(()-> new IllegalArgumentException("not found" +id));
+    }
+
+    // 레시피 목록 조회
+    public Page<Item> getList(int page) {
+        List<Sort.Order> sorts = new ArrayList<>();
+        sorts.add(Sort.Order.desc("regTime"));
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(sorts));       // 한 페이지에 보여줄 레시피 갯수
+        return this.itemRepository.findAll(pageable);
     }
 
     // 레시피 삭제
