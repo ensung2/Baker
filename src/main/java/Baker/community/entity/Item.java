@@ -14,8 +14,8 @@ import lombok.*;
 public class Item extends CreateModify{
 
     @Id
-    @Column(name = "item_id", updatable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "item_id", updatable = false)
     private Long id;                    // 레시피 번호
 
     @Enumerated(EnumType.STRING)        // enum 타입 매핑 에노테이션
@@ -44,6 +44,7 @@ public class Item extends CreateModify{
         this.recipe = recipe;
     }
 
+    // 엔티티에 요청받은 내용으로 값을 수정
     public void updateItem(ItemType itemType, String itemName, String info, String material, String recipe) {
         this.itemType = itemType;
         this.itemName = itemName;

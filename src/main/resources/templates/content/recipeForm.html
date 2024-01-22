@@ -10,7 +10,7 @@
 <div id="wrap">
   <div th:replace="~{role/banner::section}"></div>
   <div id="content" role="main">
-      <section class="recipe_form">
+      <section class="recipe_form" th:object="${item}">
         <input type="hidden" id="section-id" th:value="${item.id}">
         <div class="write_left">
             <div class="recipe_title">
@@ -18,9 +18,11 @@
                 <option th:value="${item.itemType}">Bread</option>
                 <option th:value="${item.itemType}">Cookie</option>
                 <option th:value="${item.itemType}">Cake</option>
+                <p th:if="${#fields.hasErrors('itemType')}" th:errors="*{itemType}" class="field_error"></p>
               </select>
               <br>
               <input type="text" th:value="${item.itemName}" id="itemName" class="recipe_name" placeholder="레시피 이름을 입력해 주세요." maxlength="15"  required>
+              <p th:if="${#fields.hasErrors('itemName')}" th:errors="*{itemName}" class="field_error"></p>
               <br>
               <input type="text" th:value="${item.info}"  class="recipe_info" placeholder="레시피를 한줄로 표현한다면? (최대 25자)" maxlength="25" required>
             </div>

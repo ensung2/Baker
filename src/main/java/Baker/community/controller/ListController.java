@@ -50,26 +50,4 @@ public class ListController {
 
         return "content/recipeForm";
     }
-
-//    @GetMapping
-//    public String listPage() {
-//        return "content/recipeList";
-//    }
-
-
-//    @PostMapping(value="/{itemId})
-//    public String itemList(Model model,Item item) {
-//        List<ItemFormDto> itemDtoList = new ArrayList<>();
-//
-//            ItemDto itemDto = new ItemDto();
-//            itemDto.setItemType(item.getItemType());
-//            itemDto.setItemName(item.getItemName());
-//            itemDto.setRegTime(LocalDateTime.now());
-//
-//            itemDtoList.add(itemDto);
-//
-//        model.addAttribute("itemDtoList", itemDtoList);
-//        return "content/recipeList";
-//
-//    }
 }

@@ -11,7 +11,7 @@
   <div th:replace="~{role/banner::section}"></div>
   <div id="content" role="main">
       <section class="recipe_view">
-          <input type="hidden" id="section-id" th:value="${item.id}">
+          <input type="hidden" id="item-id" th:value="${item.id}">
         <div class="view_left">
             <div class="view_title">
               <p class="view_type" th:text="${item.itemType}" id="itemType"></p>

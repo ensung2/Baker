@@ -3,8 +3,8 @@ const deleteButton = document.getElementById('Delete_btn');
 
 if (deleteButton) {
     deleteButton.addEventListener('click', event => {
-        let id = document.getElementById('section-id').value;
-        fetch(`/recipe/new/${id}`, {
+        let id = document.getElementById('item-id').value;
+        fetch(`/list/${id}`, {
             method: 'DELETE'
         })
             .then(()=> {

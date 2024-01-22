@@ -4,9 +4,7 @@ import Baker.community.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -22,10 +20,10 @@ public class SecurityConfig {
     @Autowired
     MemberService memberService;
 
-    @Bean
-    AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
-    }
+//    @Bean
+//    AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+//        return authenticationConfiguration.getAuthenticationManager();
+//    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -34,8 +32,8 @@ public class SecurityConfig {
         return  http
                 // 1) csrf 공격 설정
                 .csrf(csrf -> csrf
-                        .csrfTokenRequestHandler(requestHandler)
-                        .ignoringRequestMatchers("/", "/account/login/**", "/logout/**", "/register/validate/email")
+                        .csrfTokenRequestHandler(requestHandler).disable()
+//                        .ignoringRequestMatchers("/", "/account/login/**", "/logout/**", "/register/validate/email")
                 )
                 // 2) 로그인 시
                 .formLogin(form -> form

@@ -1,13 +1,13 @@
 package Baker.community.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name = "item_img")
 @Getter
 @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ItemImg extends CreateModify{
 
     @Id
@@ -27,6 +27,14 @@ public class ItemImg extends CreateModify{
 
     // 파라미터로 입력받아 이미지 정보 업데이트 메소드
     public void updateItemImg(String imgName, String oriImgName, String imgUrl) {
+        this.imgName = imgName;
+        this.oriImgName = oriImgName;
+        this.imgUrl = imgUrl;
+    }
+
+    // 빌더 패턴 방식으로 객체 생성 (필드에 어떤 값이 들어가는지 명시적으로 파악 가능)
+    @Builder
+    public ItemImg(String imgName, String oriImgName, String imgUrl, Item item) {
         this.imgName = imgName;
         this.oriImgName = oriImgName;
         this.imgUrl = imgUrl;
