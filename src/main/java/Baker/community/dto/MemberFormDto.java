@@ -4,14 +4,17 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
+@NoArgsConstructor
 @Getter
 @Setter
 public class MemberFormDto {
 
     @NotBlank(message = "닉네임을 입력 해 주세요.")
+    @Length(min = 1, max = 6)
     private String name;        // 닉네임
 
     @NotEmpty(message = "아이디는 필수 입력 값입니다.")

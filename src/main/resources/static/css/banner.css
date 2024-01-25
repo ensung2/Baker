@@ -51,6 +51,11 @@
     padding: 10px;
 }
 
+/* 로그인 시 아이디 보이기 */
+.user_name {
+    text-align: center;
+}
+
 .header_menu {
     padding: 10px 0;
     font-family: 'IBM Plex Sans KR', sans-serif;

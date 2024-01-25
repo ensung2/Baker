@@ -18,21 +18,21 @@
                 <a th:href="@{/}">Baker.</a>
             </h1>
         </div>
-<!--        <div class="user_name">
+        <div class="user_name">
             <th:block sec:authorize="isAuthenticated()">
-                <span th:text="${#authentication.principal}"></span>님 환영합니다.
+                <i class="fa-solid fa-circle-user"></i><span th:text="${#authentication.getName()}"></span>
             </th:block>
-        </div>-->
+        </div>
         <nav class="header_menu">
             <ul class="menu">
                 <li class="menu_01">
-                    <a th:onclick="|location.href='@{/new_recipe}'|"><i class="fa-solid fa-cookie-bite"></i> 오늘의 레시피</a>
+                    <a th:onclick="|location.href='@{/new_recipe}'|" class="menu_tab"><i class="fa-solid fa-cookie-bite"></i> 오늘의 레시피</a>
                 </li>
                 <li class="menu_02">
-                    <a th:href="@{/list}"><i class="fa-solid fa-clipboard-list"></i> 레시피 리스트</a>
+                    <a th:href="@{/list}" class="menu_tab"><i class="fa-solid fa-clipboard-list"></i> 레시피 리스트</a>
                 </li>
                 <li class="menu_03">
-                    <a th:href="@{/youtube}"> <i class="fa-brands fa-youtube"></i> 유튜브 레시피 추천</a>
+                    <a th:href="@{/youtube}" class="menu_tab"> <i class="fa-brands fa-youtube"></i> 유튜브 레시피 추천</a>
                 </li>
             </ul>
             <div class="login_out">
@@ -51,5 +51,6 @@
     </div>
 </div>
 <script src="/js/recipe.js"></script>
+<script src="/js/effect.js"></script>
 </body>
 </html>
