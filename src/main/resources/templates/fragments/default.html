@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns="http://www.w3.org/1999/html"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns="http://www.w3.org/1999/html">
 <head th:fragment="header">
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -17,9 +16,9 @@
     <meta property="og:image" content="">
     <meta property="og:description" content="Baker. 나만의 레시피북을 만들어 보세요.">
 
-<!--    &lt;!&ndash; CSRF 공격에 대비한 토큰 &ndash;&gt;-->
-<!--    <meta name="_csrf" th:content="${_csrf.token}"/>-->
-<!--    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>-->
+    <!-- CSRF 공격에 대비한 토큰 -->
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 
     <link rel="shortcut icon" th:href="@{/img/logo_500.png}">
     <link rel="apple-touch-icon-precomposed" th:href="@{/img/logo_500.png}">

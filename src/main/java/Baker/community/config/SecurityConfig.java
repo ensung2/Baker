@@ -13,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
+import org.springframework.security.web.header.writers.frameoptions.XFrameOptionsHeaderWriter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -22,11 +23,14 @@ public class SecurityConfig {
     @Autowired
     MemberService memberService;
 
+
+    // 인증 관리자 관련 설정
     @Bean
-    AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+    public static AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
+    // 특정 http 요청에 대한 웹 기반 보안 구성
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         CsrfTokenRequestAttributeHandler requestHandler = new CsrfTokenRequestAttributeHandler();
@@ -34,8 +38,12 @@ public class SecurityConfig {
         return  http
                 // 1) csrf 공격 설정
                 .csrf(csrf -> csrf
-                        .csrfTokenRequestHandler(requestHandler).disable()
-//                        .ignoringRequestMatchers("/", "/account/login/**", "/logout/**", "/register/validate/email")
+                        .csrfTokenRequestHandler(requestHandler)
+                        .ignoringRequestMatchers("/", "/login/**", "/logout/**", "/static/**")
+                        .ignoringRequestMatchers(new AntPathRequestMatcher("/h2-console/**"))
+                )
+                .headers(headers -> headers
+                        .addHeaderWriter(new XFrameOptionsHeaderWriter(XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN))
                 )
                 // 2) 로그인 시
                 .formLogin(form -> form
@@ -44,26 +52,30 @@ public class SecurityConfig {
                         .usernameParameter("email")                             // 로그인 시 사용할 파라미터 이름
                         .defaultSuccessUrl("/")                                 // 로그인 성공 시 이동할 url
                         .failureUrl("/members/login/error")  // 로그인 실패 시 이동할 url
+                        .permitAll()
                 )
                 // 3) 로그아웃 시
                 .logout(logout -> logout
                         .logoutRequestMatcher(new AntPathRequestMatcher("/members/logout"))     // 로그아웃 url
                         .invalidateHttpSession(true)
                         .logoutSuccessUrl("/")                                                    // 로그아웃 성공 시 이동할 url
+                        .permitAll()
                 )
                 // 4) 인증/인가
                 .authorizeHttpRequests(authorize -> authorize
-//                        .requestMatchers("/list", "/recipe/write").hasRole("USER")
+                        .requestMatchers("/login", "/members/new","/youtube").permitAll()
                         .requestMatchers("/css/**", "/js/**", "/img/**").permitAll()
                         .requestMatchers("/", "/members/**", "/item/**", "/images/**").permitAll()
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/new_recipe", "/list/**").hasRole("USER") // 해당 경로는 인증된 사용자만 접근 가능
                         .anyRequest().permitAll()
                 )
                 // 5) 예외처리
                 .exceptionHandling(exceptions -> exceptions
-                        .authenticationEntryPoint(new CustomAuthenticationEntryPoint())
+                        .authenticationEntryPoint(new CustomAuthenticationEntryPoint()) // 인증 예외 핸들러 지정
+                        .accessDeniedHandler(new CustomAccessDeniedHandler())    // 인가 예외 핸들러 지정
                 )
                 .httpBasic(Customizer.withDefaults())
+//                .oauth2Login()
                 .build();
     }
 

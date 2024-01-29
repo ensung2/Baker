@@ -20,7 +20,7 @@
         </div>
         <div class="user_name">
             <th:block sec:authorize="isAuthenticated()">
-                <i class="fa-solid fa-circle-user"></i><span th:text="${#authentication.getName()}"></span>
+                <i class="fa-solid fa-circle-user"></i> <span th:text="${#authentication.getName()}"></span>
             </th:block>
         </div>
         <nav class="header_menu">

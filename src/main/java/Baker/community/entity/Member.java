@@ -3,9 +3,7 @@ package Baker.community.entity;
 import Baker.community.constant.Role;
 import Baker.community.dto.MemberFormDto;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Entity
@@ -13,7 +11,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Getter
 @Setter
 @ToString
-public class Member {
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class Member extends CreateModify{
 
     @Id
     @Column(unique = true, name = "member_id")
@@ -22,7 +21,7 @@ public class Member {
 
     private String name;        // 닉네임
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String email;       // 아이디
 
     private String password;    // 유저 비밀번호
@@ -30,17 +29,25 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @Builder
+    public Member(String name, String email, String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
+
     // member entity를 생성하는 메소드
     public static Member createMember(MemberFormDto memberFormDto,
                                       PasswordEncoder passwordEncoder) {
         Member member = new Member();
         member.setName(memberFormDto.getName());
         member.setEmail(memberFormDto.getEmail());
+        member.setRole(Role.USER);
 
         // 스프링 시큐리티 설정 클래스 빈을 파라미터로 넘김 -> 비밀번호 암호화
         String password = passwordEncoder.encode(memberFormDto.getPassword());
         member.setPassword(password);
-        member.setRole(Role.USER);
+
         return member;
     }
 }

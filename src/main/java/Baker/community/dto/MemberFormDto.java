@@ -14,7 +14,7 @@ import org.hibernate.validator.constraints.Length;
 public class MemberFormDto {
 
     @NotBlank(message = "닉네임을 입력 해 주세요.")
-    @Length(min = 1, max = 6)
+    @Length(min = 1, max = 6, message = "1~6자 사이로 입력해 주세요.")
     private String name;        // 닉네임
 
     @NotEmpty(message = "아이디는 필수 입력 값입니다.")

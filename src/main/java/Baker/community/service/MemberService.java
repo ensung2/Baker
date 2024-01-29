@@ -11,9 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-// 로직 처리중 오류 발생 시 변경된 데이터를 로직 수행 이전으로 콜백
-@Transactional
-// final이나 @NonNull이 붙은 필드에 생성자 생성
+@Transactional              // 로직 처리중 오류 발생 시 변경된 데이터를 로직 수행 이전으로 콜백
 @RequiredArgsConstructor
 public class MemberService implements UserDetailsService {
                                         // DB에서 회원 정보를 가져오는 역할을 하는 인터페이스(아이디 검증)
@@ -45,5 +43,6 @@ public class MemberService implements UserDetailsService {
                 .password(member.getPassword())
                 .roles(member.getRole().toString())
                 .build();
+
     }
 }

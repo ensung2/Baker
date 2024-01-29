@@ -15,8 +15,7 @@
         <div class="write_left">
             <div class="recipe_title">
               <select class="recipe_type" id="itemType" th:field="*{itemType}">
-                  <option
-                          th:each="itemType : ${T(Baker.community.constant.ItemType).values()}"
+                  <option th:each="itemType : ${T(Baker.community.constant.ItemType).values()}"
                           th:value="${itemType.name()}"
                           th:text="${itemType.name()}"></option>
               </select>

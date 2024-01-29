@@ -7,6 +7,7 @@ import Baker.community.service.ItemService;
 import Baker.community.service.ListService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +24,7 @@ public class ListController {
     private final ListService listService;
 
     @GetMapping("/list")
+    @PreAuthorize("hasRole('USER')")
     public String getItems(Model model,
                            @RequestParam(value = "page", defaultValue = "0") int page) {
         Page<Item> paging = itemService.getList(page);
@@ -38,6 +40,7 @@ public class ListController {
     }
 
     @GetMapping("/list/{id}")
+    @PreAuthorize("hasRole('USER')")
     public String getItem(@PathVariable Long id, Model model){
         Item item = itemService.findById(id);
         model.addAttribute("item", new ViewItemDto(item));
@@ -47,6 +50,7 @@ public class ListController {
     }
 
     @GetMapping("/new_recipe")
+    @PreAuthorize("hasRole('USER')")
     public String newRecipe(@RequestParam(required = false) Long id, Model model) {
         if (id == null) {
             model.addAttribute("item", new ViewItemDto());
