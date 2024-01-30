@@ -1,6 +1,8 @@
 package Baker.community.config;
 
+import Baker.community.constant.Role;
 import Baker.community.service.MemberService;
+import jakarta.servlet.DispatcherType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -61,13 +63,15 @@ public class SecurityConfig {
                         .logoutSuccessUrl("/")                                                    // 로그아웃 성공 시 이동할 url
                         .permitAll()
                 )
+                .userDetailsService(memberService)
                 // 4) 인증/인가
                 .authorizeHttpRequests(authorize -> authorize
+                        .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
                         .requestMatchers("/login", "/members/new","/youtube").permitAll()
                         .requestMatchers("/css/**", "/js/**", "/img/**").permitAll()
                         .requestMatchers("/", "/members/**", "/item/**", "/images/**").permitAll()
-                        .requestMatchers("/new_recipe", "/list/**").hasRole("USER") // 해당 경로는 인증된 사용자만 접근 가능
-                        .anyRequest().permitAll()
+                        .requestMatchers("/new_recipe", "/list/**").hasRole(Role.USER.name()) // 해당 경로는 인증된 사용자만 접근 가능
+                        .anyRequest().authenticated()
                 )
                 // 5) 예외처리
                 .exceptionHandling(exceptions -> exceptions

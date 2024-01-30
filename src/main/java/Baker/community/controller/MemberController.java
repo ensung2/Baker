@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -28,8 +29,7 @@ public class MemberController {
     }
 
     @PostMapping("/new")
-    public String newMember(@Valid MemberFormDto memberFormDto,
-                            // 검사 후 결과를 BingingResult 에 저장
+    public String newMember(@ModelAttribute @Valid MemberFormDto memberFormDto,
                             BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()){
@@ -42,8 +42,7 @@ public class MemberController {
             model.addAttribute("errorMessage", e.getMessage());
             return "members/memberForm";
         }
-
-        return "members/loginForm";
+        return  "members/loginForm";
     }
 
     @GetMapping(value = "/login")

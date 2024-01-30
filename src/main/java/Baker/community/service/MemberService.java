@@ -36,12 +36,12 @@ public class MemberService implements UserDetailsService {
         Member member = memberRepository.findByEmail(email);
 
         if (member == null) {
-            throw new UsernameNotFoundException(email);
+            throw new UsernameNotFoundException("없는 회원입니다.");
         }
         return User.builder()
                 .username(member.getEmail())
                 .password(member.getPassword())
-                .roles(member.getRole().toString())
+                .roles(member.getRole().name())
                 .build();
 
     }

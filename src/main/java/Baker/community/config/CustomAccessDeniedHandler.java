@@ -24,7 +24,7 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
         // 인증되어 있고, 사용자 권한이 ROLE_USER인 경우
         if (auth != null && auth.isAuthenticated() && auth.getPrincipal() instanceof UserDetails) {
             UserDetails user = (UserDetails) auth.getPrincipal();
-            if (user.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_USER"))) {
+            if (user.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("USER"))) {
                 // 사용자가 ROLE_USER 권한을 가지고 있으면 요청 경로로 리다이렉트
                 String requestedPath = getRequestedPath(request);
                 response.sendRedirect(requestedPath);
