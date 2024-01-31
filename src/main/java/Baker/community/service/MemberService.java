@@ -1,10 +1,12 @@
 package Baker.community.service;
 
+import Baker.community.domain.PrincipalDetails;
 import Baker.community.entity.Member;
 import Baker.community.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -58,9 +60,11 @@ public class MemberService implements UserDetailsService {
 } */
 
     @Override
-    public UserDetails loadUserByUsername(String email) {
-           return memberRepository.findByEmail(email)
-                   .orElseThrow(()->new IllegalArgumentException(email));
-
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Optional<Member> member = memberRepository.findByEmail(email);
+        if (member.isPresent()) {
+            return new PrincipalDetails(member.get());
+        }
+        return null;
     }
 }

@@ -4,13 +4,7 @@ import Baker.community.constant.Role;
 import Baker.community.dto.MemberFormDto;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import java.util.Collection;
-import java.util.List;
 
 @Entity
 @Table(name = "member")
@@ -18,7 +12,7 @@ import java.util.List;
 @Setter
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Member extends CreateModify implements UserDetails {
+public class Member extends CreateModify{
 
     @Id
     @Column(unique = true, name = "member_id")
@@ -35,16 +29,21 @@ public class Member extends CreateModify implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-//    private String socialId; // 로그인한 소셜 타입의 식별자 값 (일반 로그인인 경우 null)
-//
-//    private String refreshToken; // 리프레시 토큰
-//
-//    // 인증 포털 이름 : 전송용으로만 사용 : 추가
-//    @Column
-//    private String authVendor;
+    private String provider;
+    private String providerId;
 
     @Builder
-    public Member(String name, String email, String password,Role role) {
+    public Member(String name, String email, String password, Role role, String provider, String providerId) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.provider = provider;
+        this.providerId = providerId;
+    }
+
+
+    public Member(String name, String email, String password, Role role) {
         this.name = name;
         this.email = email;
         this.password = password;
@@ -71,43 +70,5 @@ public class Member extends CreateModify implements UserDetails {
         return this;
     }
 
-//    public String getRoleKey() {
-//        return this.role.getKey();
-//    }
-
-    @Override   // 권한 반환
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("user"));
-    }
-
-    @Override   // 사용자 ID 반환(고유값)
-    public String getUsername() {
-        return email;
-    }
-
-    @Override   //사용자의 패스워드 반환
-    public String getPassword() {
-        return password;
-    }
-
-    @Override   // 계정 만료 여부 반환
-    public boolean isAccountNonExpired() {
-        return true;    // 만료되지 않음
-    }
-
-    @Override   // 계정 잠금 여부 반환
-    public boolean isAccountNonLocked() {
-        return true;    // 잠금되지 않음
-    }
-
-    @Override   // 패스워드 만료 여부 반환
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override   // 계정 사용 가능 여부 반환
-    public boolean isEnabled() {
-        return true;
-    }
 
 }

@@ -16,7 +16,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -50,13 +49,21 @@ public class OAuthSecurityConfig {
                 .httpBasic(AbstractHttpConfigurer::disable)
                 .formLogin(AbstractHttpConfigurer::disable)
                 .logout(AbstractHttpConfigurer::disable);
-        http.sessionManagement(sessionManagement -> sessionManagement
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+//        http.sessionManagement(sessionManagement -> sessionManagement
+//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         http.addFilterBefore(tokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
         http.authorizeHttpRequests(request -> request
                 .requestMatchers("/api/token").permitAll()
                 .requestMatchers("/new_recipe/**", "/list/**").hasRole(Role.USER.name()) // 해당 경로는 인증된 사용자만 접근 가능
                 .anyRequest().permitAll());
+        http.formLogin(form -> form
+                        .loginPage("/members/login")                            // 로그인 페이지 url
+                        .loginProcessingUrl("/members/login")
+                        .usernameParameter("email")                             // 로그인 시 사용할 파라미터 이름
+                        .defaultSuccessUrl("/")                                 // 로그인 성공 시 이동할 url
+                        .failureUrl("/members/login/error")  // 로그인 실패 시 이동할 url
+                        .permitAll()
+                );
 
         http.oauth2Login(oauth2Login -> oauth2Login
                 .loginPage("/login")
@@ -65,9 +72,10 @@ public class OAuthSecurityConfig {
                 .successHandler(oAuth2SuccessHandler())
                 .userInfoEndpoint(userInfoEndpoint -> userInfoEndpoint
                         .userService(naverOAuthUserService)));
-
         http.logout(logout -> logout
-                .logoutSuccessUrl("/login"));
+                .logoutRequestMatcher(new AntPathRequestMatcher("/members/logout"))     // 로그아웃 url
+                .invalidateHttpSession(true)
+                .logoutSuccessUrl("/"));
         http.exceptionHandling(exceptionHandling -> exceptionHandling
                 .defaultAuthenticationEntryPointFor(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED),
                         new AntPathRequestMatcher("/api/**")));
