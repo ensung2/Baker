@@ -23,12 +23,10 @@
     text-align: center;
 }
 
-.kakaoLogin {
+.naver_login {
     width: 100%;
     margin: 0 auto;
     padding: 10px 0;
-}
-.kakaoLogin a {
     display: inline-block;
 }
 

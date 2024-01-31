@@ -35,6 +35,14 @@ public class Member extends CreateModify implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+//    private String socialId; // 로그인한 소셜 타입의 식별자 값 (일반 로그인인 경우 null)
+//
+//    private String refreshToken; // 리프레시 토큰
+//
+//    // 인증 포털 이름 : 전송용으로만 사용 : 추가
+//    @Column
+//    private String authVendor;
+
     @Builder
     public Member(String name, String email, String password,Role role) {
         this.name = name;
@@ -58,9 +66,18 @@ public class Member extends CreateModify implements UserDetails {
         return member;
     }
 
+    public Member update(String name) {
+        this.name = name;
+        return this;
+    }
+
+//    public String getRoleKey() {
+//        return this.role.getKey();
+//    }
+
     @Override   // 권한 반환
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("USER"));
+        return List.of(new SimpleGrantedAuthority("user"));
     }
 
     @Override   // 사용자 ID 반환(고유값)
@@ -92,4 +109,5 @@ public class Member extends CreateModify implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 }

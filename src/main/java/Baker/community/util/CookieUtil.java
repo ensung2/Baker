@@ -32,37 +32,41 @@ public class CookieUtil {
         }
     }
 
+
+//    public static <T> void addSerializedCookie(HttpServletResponse response, String name, T obj, int maxAge) {
+//        String serializedValue = serialize(obj);
+//        addCookie(response, name, serializedValue, maxAge);
+//    }
+//
+
+//    public static <T> T getDeserializedCookie(HttpServletRequest request, String name, Class<T> cls) {
+//        Cookie cookie = getCookie(request, name);
+//        return (cookie != null) ? deserialize(cookie, cls) : null;
+//    }
+
+//    private static Cookie getCookie(HttpServletRequest request, String name) {
+//        Cookie[] cookies = request.getCookies();
+//        if (cookies != null) {
+//            for (Cookie cookie : cookies) {
+//                if (name.equals(cookie.getName())) {
+//                    return cookie;
+//                }
+//            }
+//        }
+//        return null;
+//    }
+
     // 객체를 직렬화해서 쿠키 값으로 변환
-    public static <T> void addSerializedCookie(HttpServletResponse response, String name, T obj, int maxAge) {
-        String serializedValue = serialize(obj);
-        addCookie(response, name, serializedValue, maxAge);
-    }
-
-    // 쿠키에서 값을 역직렬화해서 객체로 변환
-    public static <T> T getDeserializedCookie(HttpServletRequest request, String name, Class<T> cls) {
-        Cookie cookie = getCookie(request, name);
-        return (cookie != null) ? deserialize(cookie, cls) : null;
-    }
-
-    private static Cookie getCookie(HttpServletRequest request, String name) {
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (name.equals(cookie.getName())) {
-                    return cookie;
-                }
-            }
-        }
-        return null;
-    }
-
-    private static String serialize(Object obj) {
+    public static String serialize(Object obj) {
         return Base64.getUrlEncoder().encodeToString(SerializationUtils.serialize(obj));
     }
-
-    private static <T> T deserialize(Cookie cookie, Class<T> cls) {
-        byte[] bytes = Base64.getUrlDecoder().decode(cookie.getValue());
-        return cls.cast(SerializationUtils.deserialize(bytes));
+    // 쿠키에서 값을 역직렬화해서 객체로 변환
+    public static <T> T deserialize(Cookie cookie, Class<T> cls) {
+        return cls.cast(
+                SerializationUtils.deserialize(
+                        Base64.getUrlDecoder().decode(cookie.getValue())
+                )
+        );
     }
 }
 

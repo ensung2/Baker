@@ -1,6 +1,5 @@
 <!doctype html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments/default::header}">
   <meta charset="UTF-8">
   <meta name="viewport"
@@ -28,7 +27,7 @@
         어느 순간 <mark>&nbsp;나만의 레시피북 </mark>&nbsp;이 완성됩니다.
       </p>
     </div>
-      <div class="info_right">
+    <div class="info_right">
         <img src="/img/info_img_01.jpg" alt="빵1">
         <img src="/img/info_img_02.jpg" alt="빵2">
         <img src="/img/info_img_03.jpg" alt="빵3">
@@ -36,7 +35,8 @@
     </div>
 
   </section>
+  </div>
 </div>
-</div>
+<script src="/js/token.js"></script>
 </body>
 </html>
