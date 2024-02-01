@@ -16,8 +16,8 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
     private Member member;
     private Map<String, Object> attributes;
 
-    // 일반 로그인 용
-    public PrincipalDetails(Member member) {
+    // 일반 로그인용
+    public PrincipalDetails(Member member){
         this.member = member;
     }
 
@@ -28,50 +28,49 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
     }
 
     @Override
-    public String getName() {
-        return member.getName();
-    }
-
-    @Override
     public Map<String, Object> getAttributes() {
         return attributes;
     }
 
-    // 해당 member의 권한을 반환
+    @Override
+    public String getName() {
+        return null;
+    }
+
+    // 해당 user의 권한을 반환
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> collection = new ArrayList<>();
         collection.add((GrantedAuthority) () -> member.getRole().name());
         return collection;
-
     }
 
-    @Override   // 사용자 ID 반환(고유값)
-    public String getUsername() {
-        return member.getName();
-    }
-
-    @Override   //사용자의 패스워드 반환
+    @Override
     public String getPassword() {
         return member.getPassword();
     }
 
-    @Override   // 계정 만료 여부 반환
+    @Override
+    public String getUsername() {
+        return member.getUsername();
+    }
+
+    @Override
     public boolean isAccountNonExpired() {
-        return true;    // 만료되지 않음
+        return true;
     }
 
-    @Override   // 계정 잠금 여부 반환
+    @Override
     public boolean isAccountNonLocked() {
-        return true;    // 잠금되지 않음
+        return true;
     }
 
-    @Override   // 패스워드 만료 여부 반환
+    @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
-    @Override   // 계정 사용 가능 여부 반환
+    @Override
     public boolean isEnabled() {
         return true;
     }
