@@ -1,7 +1,6 @@
 package Baker.community.controller;
 
 import Baker.community.dto.ItemSearchDto;
-import Baker.community.dto.ViewItemDto;
 import Baker.community.entity.Item;
 import Baker.community.service.ItemService;
 import Baker.community.service.ListService;
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Optional;
 
@@ -78,17 +76,4 @@ public class ListController {
 //        return "content/recipeNew";
 //
 //    }
-
-    @GetMapping("/new_recipe")
-    @PreAuthorize("hasRole('ROLE_USER')")
-    public String newRecipe(@RequestParam(required = false) Long id, Model model) {
-        if (id == null) {
-            model.addAttribute("item", new ViewItemDto());
-        }else {
-            Item item = itemService.findById(id);
-            model.addAttribute("item", new ViewItemDto(item));
-        }
-
-        return "content/recipeForm";
-    }
 }

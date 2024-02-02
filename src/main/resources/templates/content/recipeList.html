@@ -31,8 +31,8 @@
       <div class="recipe_search" th:object="${itemSearchDto}">
         <select class="recipe_type" th:field="*{searchitemType}">
           <option value="BREAD">Bread</option>
-          <option value="COOKIE">Cookie</option>
           <option value="CAKE">Cake</option>
+          <option value="COOKIE">Cookie</option>
         </select>
         <input type="text" class="search_field" th:field="*{searchQuery}" placeholder="레시피명를 입력해주세요" maxlength="15">
         <button id="searchBtn" type="submit">검색</button>

@@ -25,9 +25,8 @@ public class OAuthSecurityConfig {
     private final NaverOAuth2UserService naverOAuth2UserService;
 
     public static String[] ONLY_USER = {
-            "/new_recipe/**",
-            "/list/**",
-            "/recipe/**"
+            "/recipe/**",
+            "/list/**"
     };
 
     // 패스워드 암호화

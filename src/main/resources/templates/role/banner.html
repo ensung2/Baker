@@ -26,7 +26,7 @@
         <nav class="header_menu">
             <ul class="menu">
                 <li class="menu_01">
-                    <a th:onclick="|location.href='@{/new_recipe}'|" class="menu_tab"><i class="fa-solid fa-cookie-bite"></i> 오늘의 레시피</a>
+                    <a th:href="@{/recipe/new}" class="menu_tab"><i class="fa-solid fa-cookie-bite"></i> 오늘의 레시피</a>
                 </li>
                 <li class="menu_02">
                     <a th:href="@{/list}" class="menu_tab"><i class="fa-solid fa-clipboard-list"></i> 레시피 리스트</a>
@@ -50,6 +50,6 @@
         </h5>
     </div>
 </div>
-<script src="/js/recipe.js"></script>
+<!--<script src="/js/recipe.js"></script>-->
 </body>
 </html>

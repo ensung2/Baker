@@ -7,7 +7,6 @@ import lombok.*;
 @Table(name = "item_img")
 @Getter
 @Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ItemImg extends CreateModify{
 
     @Id
@@ -32,11 +31,11 @@ public class ItemImg extends CreateModify{
         this.imgUrl = imgUrl;
     }
 
-    // 빌더 패턴 방식으로 객체 생성 (필드에 어떤 값이 들어가는지 명시적으로 파악 가능)
-    @Builder
-    public ItemImg(String imgName, String oriImgName, String imgUrl, Item item) {
-        this.imgName = imgName;
-        this.oriImgName = oriImgName;
-        this.imgUrl = imgUrl;
-    }
+//    // 빌더 패턴 방식으로 객체 생성 (필드에 어떤 값이 들어가는지 명시적으로 파악 가능)
+//    @Builder
+//    public ItemImg(String imgName, String oriImgName, String imgUrl, Item item) {
+//        this.imgName = imgName;
+//        this.oriImgName = oriImgName;
+//        this.imgUrl = imgUrl;
+//    }
 }
