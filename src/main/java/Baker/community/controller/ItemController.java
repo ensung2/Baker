@@ -5,6 +5,7 @@ import Baker.community.dto.UpdateItemDto;
 import Baker.community.entity.Item;
 import Baker.community.service.ItemImgService;
 import Baker.community.service.ItemService;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -25,47 +26,14 @@ public class ItemController {
     private final ItemImgService itemImgService;
     private List<MultipartFile> multipartFileList;
 
-//    @ModelAttribute("itemTypes")
-//    public ItemType[] itemTypes() {
-//        return ItemType.values();
-//    }
 
-//    @PostMapping("/recipe/new")
-//    public ResponseEntity<Item> addItem(@Valid @RequestBody AddItemDto addItemDto) {
-//
-//        Item savedItem = itemService.save(addItemDto, multipartFileList);
-//        /*
-//         * 200 OK : 요청이 성공적으로 수행되었음
-//         * 201 CREATED : 요청이 성공적으로 수행되었고, 새로운 리소스가 생성되었음
-//         * 400 BAD REQUEST : 요청 값이 잘못되어 요청에 실패했음
-//         * 403 FORBIDDEN : 권한이 없어 요청에 실패했음
-//         * 404 NOT FOUND : 요청 값으로 찾은 리소스가 없어 요청에 실패했음
-//         * 500 INTERNAL SERVER ERROR : 서버 상에 문제가 있어 요청에 실패했음
-//         */
-//        return ResponseEntity.status(HttpStatus.CREATED)
-//                .body(savedItem);
-//    }
+/*    @GetMapping("/recipe/new/{id}")
+    public ResponseEntity<ItemDto> findArticle(@PathVariable long id) {
+        Item item = itemService.findById(id);
 
-
-//    @GetMapping("/recipe/new")
-//    public ResponseEntity<List<ItemDto>> findAllItem() {
-//        List<ItemDto> itemDtos = itemService.findAll()
-//                .stream()
-//                .map(ItemDto::new)
-//                .toList();
-//
-//        return ResponseEntity.ok()
-//                .body(itemDtos);
-//
-//    }
-
-//    @GetMapping("/recipe/new/{id}")
-//    public ResponseEntity<ItemDto> findArticle(@PathVariable long id) {
-//        Item item = itemService.findById(id);
-//
-//        return ResponseEntity.ok()
-//                .body(new ItemDto(item));
-//    }
+        return ResponseEntity.ok()
+                .body(new ItemDto(item));
+    }*/
 
 /*    // 레시피 등록 템플릿 연결
     @GetMapping(value = "/recipe/new")
@@ -109,11 +77,26 @@ public class ItemController {
             itemService.saveItem(itemFormDto, itemImgFileList);
         } catch (Exception e){
             model.addAttribute("errorMessage", "상품 등록 중 에러가 발생하였습니다.");
-            return "item/itemForm";
+            return "content/recipeForm";
         }
 
         return "redirect:/";
 
+    }
+
+    // 레시피 아이디(데이터) 조회
+    @GetMapping(value = "/recipe/new/{itemId}")
+    public String itemDtl(@PathVariable("itemId") Long itemId,
+                          Model model) {
+        try {
+            ItemFormDto itemFormDto = itemService.getItemDtl(itemId);
+            model.addAttribute("itemFormDto", itemFormDto);
+        }catch (EntityNotFoundException e){
+            model.addAttribute("errorMessage", "존재하지 않는 상품입니다.");
+            model.addAttribute("itemFormDto", new ItemFormDto());
+            return "content/recipeForm";
+        }
+        return "content/recipeForm";
     }
 
     // 레시피 삭제

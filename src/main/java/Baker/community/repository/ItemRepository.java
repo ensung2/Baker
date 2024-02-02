@@ -12,7 +12,7 @@ public interface ItemRepository extends JpaRepository<Item, Long>, QuerydslPredi
 ItemRepositoryCustom{
 
     // 레시피명으로 조회(findBy~, 엔티티명 생략 가능)
-    List<Item> findByItemName(String itemName);
+    List<Item> findByItemName(String itemNm);
 
     Page<Item> findAll(Pageable pageable);
 }

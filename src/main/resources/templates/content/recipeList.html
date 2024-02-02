@@ -58,7 +58,7 @@
           <td th:text="${item.id}"></td>
           <td th:text="${item.itemType}" id="itemType"></td>
           <td id="itemName">
-            <a th:href="@{/list/{id}(id=${item.id})}" th:text="${item.itemName}"></a>
+            <a th:href="'/recipe/new/'+${item.id}" th:text="${item.itemName}"></a>
           </td>
           <td th:text="${#temporals.format(item.regTime, 'yyyy-MM-dd HH:mm')}"></td>
         </tr>
