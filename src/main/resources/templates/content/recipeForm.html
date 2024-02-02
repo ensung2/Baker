@@ -36,8 +36,8 @@
 <div id="wrap">
   <div th:replace="~{role/banner::section}"></div>
   <div id="content" role="main">
-      <form class="recipe_form" th:object="${itemFormDto}" method="post" enctype="multipart/form-data">
-        <input type="hidden" id="item-id" th:field="*{id}">
+      <form class="recipe_form" th:object="${itemFormDto}" method="post" role="form" enctype="multipart/form-data">
+        <input type="hidden" th:field="*{id}">
         <div class="write_left">
             <div class="recipe_title">
               <select class="recipe_type" id="itemType" th:field="*{itemType}">
@@ -80,10 +80,10 @@
           <p th:if="${#fields.hasErrors('recipe')}" th:errors="*{recipe}" class="field_error"></p>
 
           <div th:if="${#strings.isEmpty(itemFormDto.id)}">
-            <button th:formaction="@{/recipe/new}" type="submit" id="Create_btn" class="create_btn">등록</button>
+            <button th:formaction="@{/recipe/new}" type="submit" class="create_btn">등록</button>
           </div>
           <div th:unless="${#strings.isEmpty(itemFormDto.id)}">
-            <button th:formaction="@{'/recipe/new/' + ${itemFormDto.id}" type="submit" id="Modify_btn" class="modify_btn">수정</button>
+            <button th:formaction="@{'/recipe/new/' + ${itemFormDto.id}}" type="submit" class="modify_btn">수정</button>
           </div>
         </div>
         <!-- csrf(사이트간 위조 요청) 를 막기 위한 csrf 토큰값 -->
@@ -91,6 +91,5 @@
       </form>
   </div>
 </div>
-<!--<script src="/js/recipe.js"></script>-->
 </body>
 </html>
