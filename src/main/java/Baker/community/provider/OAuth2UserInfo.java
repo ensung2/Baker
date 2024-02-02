@@ -1,8 +1,8 @@
 package Baker.community.provider;
 
 public interface OAuth2UserInfo {
-    String getProviderId();
     String getProvider();
+    String getProviderId();
     String getEmail();
     String getName();
 }

@@ -1,6 +1,6 @@
 package Baker.community.service;
 
-import Baker.community.dto.MemberFormDto;
+import Baker.community.dto.JoinMemberDto;
 import Baker.community.entity.Member;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,8 +26,8 @@ class MemberServiceTest {
 
     // 임의의 회원 생성
     public Member createMember(){
-        MemberFormDto memberFormDto = new MemberFormDto();
-        memberFormDto.setName("유저");
+        JoinMemberDto memberFormDto = new JoinMemberDto();
+        memberFormDto.setUsername("유저");
         memberFormDto.setEmail("user@email.com");
         memberFormDto.setPassword("1234");
         return Member.createMember(memberFormDto, passwordEncoder);
@@ -39,7 +39,7 @@ class MemberServiceTest {
         Member member = createMember();
         Member savedMember = memberService.saveMember(member);
 
-        assertEquals(member.getName(), savedMember.getName());
+        assertEquals(member.getUsername(), savedMember.getUsername());
         assertEquals(member.getEmail(), savedMember.getEmail());
         assertEquals(member.getPassword(), savedMember.getPassword());
         assertEquals(member.getRole(), savedMember.getRole());

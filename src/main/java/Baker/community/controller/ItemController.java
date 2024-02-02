@@ -11,9 +11,8 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -23,6 +22,7 @@ public class ItemController {
 
     private final ItemService itemService;
     private final ItemImgService itemImgService;
+    private List<MultipartFile> multipartFileList;
 
     @ModelAttribute("itemTypes")
     public ItemType[] itemTypes() {
@@ -30,10 +30,9 @@ public class ItemController {
     }
 
     @PostMapping("/recipe/new")
-    public ResponseEntity<Item> addItem(@Valid @RequestBody AddItemDto addItemDto,
-                                        BindingResult bindingResult, Model model) {
+    public ResponseEntity<Item> addItem(@Valid @RequestBody AddItemDto addItemDto) {
 
-        Item savedItem = itemService.save(addItemDto);
+        Item savedItem = itemService.save(addItemDto, multipartFileList);
         /*
          * 200 OK : 요청이 성공적으로 수행되었음
          * 201 CREATED : 요청이 성공적으로 수행되었고, 새로운 리소스가 생성되었음
@@ -59,13 +58,13 @@ public class ItemController {
 
     }
 
-    @GetMapping("/recipe/new/{id}")
-    public ResponseEntity<ItemDto> findArticle(@PathVariable long id) {
-        Item item = itemService.findById(id);
-
-        return ResponseEntity.ok()
-                .body(new ItemDto(item));
-    }
+//    @GetMapping("/recipe/new/{id}")
+//    public ResponseEntity<ItemDto> findArticle(@PathVariable long id) {
+//        Item item = itemService.findById(id);
+//
+//        return ResponseEntity.ok()
+//                .body(new ItemDto(item));
+//    }
 
     // 레시피 삭제
     @DeleteMapping("/list/{id}")

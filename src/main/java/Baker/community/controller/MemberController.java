@@ -1,12 +1,10 @@
 package Baker.community.controller;
 
-import Baker.community.dto.MemberFormDto;
+import Baker.community.dto.JoinMemberDto;
 import Baker.community.entity.Member;
 import Baker.community.service.MemberService;
-import Baker.community.service.NaverOAuthUserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,38 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/members")
 @RequiredArgsConstructor
-@Slf4j
 public class MemberController {
 
     private final MemberService memberService;
-    private final NaverOAuthUserService naverOAuthUserService;
     private final PasswordEncoder passwordEncoder;
 
-    @GetMapping(value = "/new")
-    public String memberForm(Model model){
-        model.addAttribute("memberFormDto", new MemberFormDto());
-        return "members/memberForm";
-    }
-
-    @PostMapping("/new")
-    public String newMember(@ModelAttribute @Valid MemberFormDto memberFormDto,
-                            BindingResult bindingResult, Model model) {
-
-        if (bindingResult.hasErrors()){
-            return "members/memberForm";
-        }
-        try {
-            Member member = Member.createMember(memberFormDto, passwordEncoder);
-            memberService.saveMember(member);
-        } catch (IllegalStateException e) {
-            model.addAttribute("errorMessage", e.getMessage());
-            return "members/memberForm";
-        }
-        return  "members/loginForm";
-    }
-
     @GetMapping(value = "/login")
-    public String loginForm() {
+    public String loginFrom() {
         return "members/loginForm";
     }
 
@@ -60,9 +33,28 @@ public class MemberController {
         return "members/loginForm";
     }
 
-    @GetMapping(value = "/oauth2/authorization/naver")
-    public String naverLogin() {
-        return "main";
+    @GetMapping(value = "/join")
+    public String joinFrom(Model model) {
+        model.addAttribute("joinMemberDto", new JoinMemberDto());
+        return "members/joinForm";
+    }
+
+
+    @PostMapping(value = "/join")
+    public String joinUser(@ModelAttribute @Valid JoinMemberDto joinMemberDto,
+                           BindingResult bindingResult, Model model) {
+
+        if (bindingResult.hasErrors()){
+            return "members/joinForm";
+        }
+        try {
+            Member member = Member.createMember(joinMemberDto, passwordEncoder);
+            memberService.saveMember(member);
+        } catch (IllegalStateException e) {
+            model.addAttribute("joinErrorMsg", "이미 가입된 이메일입니다.");
+            return "members/joinForm";
+        }
+        return  "members/loginForm";
     }
 
 

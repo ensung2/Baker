@@ -8,9 +8,7 @@ import lombok.Setter;
 @Setter
 public class ItemSearchDto {
 
-    private ItemType itemType;
+    private ItemType searchitemType;          // 조회할 아이템 타입
 
-    private String searchBy;
-
-    private String searchQuery = "";
+    private String searchQuery = "";    // 조회할 검색어 저장 변수
 }

@@ -11,7 +11,7 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor/*(access = AccessLevel.PROTECTED)*/
 public class Item extends CreateModify {
 
     @Id

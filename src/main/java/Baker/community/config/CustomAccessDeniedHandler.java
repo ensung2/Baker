@@ -1,24 +1,24 @@
 package Baker.community.config;
 
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.AccessDeniedException;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
 @Component
+@Slf4j
+@RequiredArgsConstructor
 public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 
-    @Override
+/*    @Override
     public void handle(HttpServletRequest request,
                        HttpServletResponse response,
-                       AccessDeniedException accessDeniedException) throws IOException, ServletException {
+                       AccessDeniedException accessDeniedException) throws IOException {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
         // 인증되어 있고, 사용자 권한이 ROLE_USER인 경우
@@ -39,5 +39,14 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
     private String getRequestedPath(HttpServletRequest request) {
         // 요청 경로를 추출하여 반환
         return request.getRequestURI() + (request.getQueryString() != null ? "?" + request.getQueryString() : "");
+    }*/
+
+    @Override
+    public void handle(HttpServletRequest request, HttpServletResponse response,
+                       AccessDeniedException accessDeniedException) throws IOException {
+        response.sendError(HttpServletResponse.SC_FORBIDDEN, "Access Denied");
     }
+
+
+
 }
