@@ -3,10 +3,10 @@ package Baker.community.config;
 import Baker.community.constant.Role;
 import Baker.community.service.MemberService;
 import Baker.community.service.NaverOAuth2UserService;
+import jakarta.servlet.DispatcherType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -14,7 +14,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
@@ -39,7 +38,7 @@ public class OAuthSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable);
         http.authorizeHttpRequests(request -> request
-//                .requestMatchers("/api/token").permitAll()
+                .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
                 .requestMatchers("/new_recipe/**", "/list/**").hasRole(Role.USER.name()) // 해당 경로는 인증된 사용자만 접근 가능
                 .anyRequest().permitAll());
         http.userDetailsService(memberService);
@@ -59,14 +58,14 @@ public class OAuthSecurityConfig {
                 .logoutRequestMatcher(new AntPathRequestMatcher("/members/logout"))     // 로그아웃 url
                 .invalidateHttpSession(true)
                 .logoutSuccessUrl("/"));
-        http.exceptionHandling(exceptionHandling -> exceptionHandling
-                .defaultAuthenticationEntryPointFor(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED),
-                        new AntPathRequestMatcher("/api/**")));
+//        http.exceptionHandling(exceptionHandling -> exceptionHandling
+//                .defaultAuthenticationEntryPointFor(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED),
+//                        new AntPathRequestMatcher("/api/**")));
         // 5) 예외처리
-//        http.exceptionHandling(exceptions -> exceptions
-//                .authenticationEntryPoint(new CustomAuthenticationEntryPoint()) // 인증 예외 핸들러 지정
-//                .accessDeniedHandler(new CustomAccessDeniedHandler())    // 인가 예외 핸들러 지정
-//        );
+        http.exceptionHandling(exceptions -> exceptions
+                .authenticationEntryPoint(new CustomAuthenticationEntryPoint()) // 인증 예외 핸들러 지정
+                .accessDeniedHandler(new CustomAccessDeniedHandler())    // 인가 예외 핸들러 지정
+        );
         http.httpBasic(Customizer.withDefaults());
 
         return http.build();

@@ -32,6 +32,17 @@ public class MemberService implements UserDetailsService {
         }
     }
 
+    // 전달받은 유저 id로 유저를 검색하여 전달하는 메서드
+    public Member findById(Long userId) {
+        return memberRepository.findById(userId)
+                .orElseThrow(()->new IllegalArgumentException("Unexpected user"));
+    }
+
+    public Member findByEmail(String email) {
+        return memberRepository.findByEmail(email)
+                .orElseThrow(() -> new IllegalArgumentException("Unexpected user"));
+    }
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<Member> member = memberRepository.findByEmail(email);
