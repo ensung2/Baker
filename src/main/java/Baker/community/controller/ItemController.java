@@ -1,19 +1,19 @@
 package Baker.community.controller;
 
 import Baker.community.dto.ItemFormDto;
-import Baker.community.dto.UpdateItemDto;
-import Baker.community.entity.Item;
 import Baker.community.service.ItemImgService;
 import Baker.community.service.ItemService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -99,15 +99,7 @@ public class ItemController {
         return "content/recipeForm";
     }
 
-    // 레시피 삭제
-    @DeleteMapping("/list/{id}")
-    public ResponseEntity<Void> deleteItem(@PathVariable long id) {
-        itemService.delete(id);
-        return ResponseEntity.ok()
-                .build();
-    }
-
-    // 레시피 수정
+/*    // 레시피 수정
     @PutMapping("/recipe/new/{id}")
     public ResponseEntity<Item> updateItem(@PathVariable long id,
                                            @Valid UpdateItemDto updateDtO) {
@@ -115,7 +107,30 @@ public class ItemController {
 
         return ResponseEntity.ok()
                 .body(updatedItem);
+    }*/
+
+    @PostMapping(value = "/recipe/new/{itemId}")
+    public String recipeUpdate(@Valid ItemFormDto itemFormDto,
+                               BindingResult bindingResult, Model model,
+                               @RequestParam("itemImgFile") List<MultipartFile> itemImgFileList) {
+        if (bindingResult.hasErrors()){
+            return "content/recipeForm";
+        }
+        if (itemImgFileList.get(0).isEmpty() && itemFormDto.getId() == null){
+            model.addAttribute("errorMessage", "상품 이미지를 넣어주세요.");
+            return "content/recipeForm";
+        }
+        try {
+            itemService.updateItem(itemFormDto, itemImgFileList);
+        }catch (Exception e){
+            model.addAttribute("errorMessage", "상품 수정 중 에러가 발생하였습니다.");
+            return "content/recipeForm";
+        }
+        return "redirect:/";
     }
+
+
+
 
 
 

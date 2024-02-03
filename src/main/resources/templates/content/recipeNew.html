@@ -14,24 +14,29 @@
           <input type="hidden" id="item-id" th:value="${itemId}">
         <div class="view_left">
             <div class="view_title">
-              <p class="view_type" th:text="${itemFormDto.itemType}" id="itemType"></p>
-              <p class="view_name" th:text="${itemFormDto.itemName}" id="itemName"></p>
-              <p class="view_info" th:text="${itemFormDto.info}" id="itemInfo"></p>
+              <p class="view_type" th:text="${item.itemType}" id="itemType"></p>
+              <p class="view_name" th:text="${item.itemName}" id="itemName"></p>
+              <p class="view_info" th:text="${item.info}" id="itemInfo"></p>
             </div>
-            <div class="view_img"></div>
+<!--            <div th:each="itemImg : ${item.itemImgDtoList}" class="text-center">-->
+<!--                <img th:if="${not #strings.isEmpty(itemImg.imgUrl)}" th:src="${itemImg.imgUrl}" class="rounded mgb-15" width="800">-->
+<!--            </div>-->
             <div class="view_material">
               <label th:for="material">[ 재료 ]</label>
-              <div class="material_text" th:text="${itemFormDto.material}" id="material"></div>
+              <div class="material_text" th:text="${item.material}" id="material"></div>
             </div>
         </div>
         <div class="view_right">
           <div class="view_ex">
             <label th:for="recipe">[ 레시피 ]</label>
-            <div class="ex_text" th:text="${itemFormDto.recipe}" id="recipe"></div>
+            <div class="ex_text" th:text="${item.recipe}" id="recipe"></div>
           </div>
           <div class="view_btn">
-            <button type="button" class="modify_btn"
-                    th:onclick="|location.href='@{/new_recipe?id={itemId}(itemId=${item.id})}'|">수정</button>
+            <!--<button type="button" class="modify_btn"
+                    th:onclick="|location.href='@{/new_recipe?id={itemId}(itemId=${item.id})}'|">수정</button>-->
+<!--              <button type="button" class="modify_btn"
+                      th:onclick="|location.href='@{'/recipe/new/' + ${item.id)}'|">수정</button>-->
+              <a th:href="@{/recipe/new/{itemId}(itemId=${item.id})}" class="modify_btn">수정</a>
             <button type="button" class="delete_btn" id="Delete_btn">삭제</button>
           </div>
         </div>

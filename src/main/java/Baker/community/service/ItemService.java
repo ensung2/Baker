@@ -3,7 +3,6 @@ package Baker.community.service;
 import Baker.community.dto.ItemFormDto;
 import Baker.community.dto.ItemImgDto;
 import Baker.community.dto.ItemSearchDto;
-import Baker.community.dto.UpdateItemDto;
 import Baker.community.entity.Item;
 import Baker.community.entity.ItemImg;
 import Baker.community.repository.ItemImgRepository;
@@ -57,7 +56,7 @@ public class ItemService {
         // 레시피 이미지 조회 (오름차순)
         List<ItemImg> itemImgList = itemImgRepository.findByItemIdOrderByIdAsc(itemId);
         List<ItemImgDto> itemImgDtoList = new ArrayList<>();
-        for (ItemImg itemImg:itemImgList){
+        for (ItemImg itemImg : itemImgList) {
             ItemImgDto itemImgDto = ItemImgDto.of(itemImg);
             itemImgDtoList.add(itemImgDto);
         }
@@ -66,6 +65,7 @@ public class ItemService {
         Item item = itemRepository.findById(itemId)
                 .orElseThrow(EntityNotFoundException::new);
         ItemFormDto itemFormDto = ItemFormDto.of(item);
+        itemFormDto.setItemImgDtoList(itemImgDtoList);
         return itemFormDto;
     }
 
@@ -93,19 +93,20 @@ public class ItemService {
         itemRepository.deleteById(id);
     }
 
-    @Transactional
-    public Item updateItem(long id, UpdateItemDto updateDto) {
-        Item item = itemRepository.findById(id)
-                .orElseThrow(()->new IllegalArgumentException("not found" + id));
+    // 레시피 업데이트(레시피, 레시피 이미지)
+    public Long updateItem(ItemFormDto itemFormDto, List<MultipartFile> itemImgFileList)throws Exception {
 
-        item.updateItem(
-                updateDto.getItemType(),
-                updateDto.getItemName(),
-                updateDto.getInfo(),
-                updateDto.getMaterial(),
-                updateDto.getRecipe());
+        // 레시피 수정
+        Item item = itemRepository.findById(itemFormDto.getId())
+                .orElseThrow(EntityNotFoundException::new);
+        item.updateItem(itemFormDto);
+        List<Long> itemImgIds = itemFormDto.getItemImgIds();    // 이미지 아이디 리스트 조회
 
-        return item;
+        // 이미지 수정 등록
+        for (int i=0; i<itemImgFileList.size(); i++){
+            itemImgService.updateItemImg(itemImgIds.get(i), itemImgFileList.get(i));
+        }
+        return item.getId();
     }
 
     // 상품 데이터 조회

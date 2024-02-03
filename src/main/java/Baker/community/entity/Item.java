@@ -2,6 +2,7 @@ package Baker.community.entity;
 
 
 import Baker.community.constant.ItemType;
+import Baker.community.dto.ItemFormDto;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -46,11 +47,11 @@ public class Item extends CreateModify {
     }
 
     // 엔티티에 요청받은 내용으로 값을 수정
-    public void updateItem(ItemType itemType, String itemName, String info, String material, String recipe) {
-        this.itemType = itemType;
-        this.itemName = itemName;
-        this.info = info;
-        this.material = material;
-        this.recipe = recipe;
+    public void updateItem(ItemFormDto itemFormDto) {
+        this.itemType = itemFormDto.getItemType();
+        this.itemName = itemFormDto.getItemName();
+        this.info = itemFormDto.getInfo();
+        this.material = itemFormDto.getMaterial();
+        this.recipe = itemFormDto.getRecipe();
     }
 }

@@ -57,15 +57,22 @@
             <div th:if="${#lists.isEmpty(itemFormDto.itemImgDtoList)}" class="recipe_img">
                 <div class="recipeImg">
                   <input type="file" class="custom-file-input" name="itemImgFile">
+                  <label class="custom-file-label" th:text="상품이미지 + ${num}"></label>
                 </div>
             </div>
+
             <!-- 상품 이미지 리스트가 존재한다면(비어있지 않다면) 상품 수정-->
-            <div th:if="${not #lists.isEmpty(itemFormDto.itemImgDtoList)}">
-              <div>
-                <input type="file" class="custom-file-input" name="itemImgFile">
+            <div th:if="${not #lists.isEmpty(itemFormDto.itemImgDtoList)}" class="recipe_img">
+              <div th:each="itemImgDto, status: ${itemFormDto.itemImgDtoList}">
+                <div class="recipeImg">
+                  <input type="file" class="custom-file-input" name="itemImgFile">
+                  <input type="hidden" name="itemImgIds" th:value="${itemImgDto.id}">
+                  <label class="custom-file-label" th:text="${not #strings.isEmpty(itemImgDto.oriImgName)} ? ${itemImgDto.oriImgName} : '상품이미지' + ${status.index+1}"></label>
+                </div>
               </div>
             </div>
           </div>
+
             <div class="recipe_material">
               <label th:for="material">[ 재료 ]</label>
               <textarea th:field="*{material}" id="material" cols="45" rows="4" maxlength="200"></textarea>
@@ -83,7 +90,7 @@
             <button th:formaction="@{/recipe/new}" type="submit" class="create_btn">등록</button>
           </div>
           <div th:unless="${#strings.isEmpty(itemFormDto.id)}">
-            <button th:formaction="@{'/recipe/new/' + ${itemFormDto.id}}" type="submit" class="modify_btn">수정</button>
+            <button th:formaction="@{'/recipe/new/' + ${itemId}}" type="submit" class="modify_btn">수정</button>
           </div>
         </div>
         <!-- csrf(사이트간 위조 요청) 를 막기 위한 csrf 토큰값 -->

@@ -1,5 +1,6 @@
 package Baker.community.controller;
 
+import Baker.community.dto.ItemFormDto;
 import Baker.community.dto.ItemSearchDto;
 import Baker.community.entity.Item;
 import Baker.community.service.ItemService;
@@ -8,9 +9,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -65,6 +68,22 @@ public class ListController {
         model.addAttribute("maxPage", 5);
 
         return "content/recipeList";
+    }
+
+    // 레시피 목록(name) 클릭 시 레시피북 형태로 볼 수 있는 로직
+    @GetMapping(value = "/recipeBook/{itemId}")
+    public String recipeBook(Model model, @PathVariable("itemId") Long itemId){
+        ItemFormDto itemFormDto = itemService.getItemDtl(itemId);
+        model.addAttribute("item", itemFormDto);
+        return "content/recipeNew";
+    }
+
+    // 레시피 삭제
+    @DeleteMapping("/list/{id}")
+    public ResponseEntity<Void> deleteItem(@PathVariable long id) {
+        itemService.delete(id);
+        return ResponseEntity.ok()
+                .build();
     }
 
 //    @GetMapping("/list/{id}")
