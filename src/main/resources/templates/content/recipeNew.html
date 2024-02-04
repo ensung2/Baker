@@ -35,12 +35,8 @@
             <div class="ex_text" th:text="${item.recipe}" id="recipe"></div>
           </div>
           <div class="view_btn">
-            <!--<button type="button" class="modify_btn"
-                    th:onclick="|location.href='@{/new_recipe?id={itemId}(itemId=${item.id})}'|">수정</button>-->
-<!--              <button type="button" class="modify_btn"
-                      th:onclick="|location.href='@{'/recipe/new/' + ${item.id)}'|">수정</button>-->
               <a th:href="@{/recipe/new/{itemId}(itemId=${item.id})}" class="modify_btn">수정</a>
-            <button type="button" class="delete_btn" id="Delete_btn">삭제</button>
+              <a th:href="@{/recipe/delete/{itemId}(itemId=${item.id})}" class="delete_btn">삭제</a>
           </div>
         </div>
       </section>

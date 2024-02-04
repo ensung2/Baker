@@ -99,16 +99,7 @@ public class ItemController {
         return "content/recipeForm";
     }
 
-/*    // 레시피 수정
-    @PutMapping("/recipe/new/{id}")
-    public ResponseEntity<Item> updateItem(@PathVariable long id,
-                                           @Valid UpdateItemDto updateDtO) {
-        Item updatedItem = itemService.updateItem(id, updateDtO);
-
-        return ResponseEntity.ok()
-                .body(updatedItem);
-    }*/
-
+    // 레시피 수정
     @PostMapping(value = "/recipe/new/{itemId}")
     public String recipeUpdate(@Valid ItemFormDto itemFormDto,
                                BindingResult bindingResult, Model model,
@@ -126,6 +117,13 @@ public class ItemController {
             model.addAttribute("errorMessage", "상품 수정 중 에러가 발생하였습니다.");
             return "content/recipeForm";
         }
+        return "redirect:/";
+    }
+
+    // 레시피 삭제
+    @GetMapping(value = "/recipe/delete/{itemId}")
+    public String recipeDelete(@PathVariable("itemId") Long itemId) throws Exception {
+        itemService.deleteItem(itemId);
         return "redirect:/";
     }
 

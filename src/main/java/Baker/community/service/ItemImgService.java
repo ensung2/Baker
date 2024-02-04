@@ -53,10 +53,24 @@ public class ItemImgService {
             if (!StringUtils.isEmpty(savedItemImg.getImgName())){
                 fileService.deleteFile(itemImgLocation+"/"+savedItemImg.getImgName());
             }
-            String oriImgName = itemImgFile.getOriginalFilename();
-            String imgName = fileService.uploadFile(itemImgLocation, oriImgName, itemImgFile.getBytes());
+            String originalName = itemImgFile.getOriginalFilename();
+            String imgName = fileService.uploadFile(itemImgLocation, originalName, itemImgFile.getBytes());
             String imgUrl = "/images/recipeImg/" + imgName;
-            savedItemImg.updateItemImg(oriImgName, imgName, imgUrl);
+            savedItemImg.updateItemImg(originalName, imgName, imgUrl);
         }
+    }
+
+    // 레시피 삭제 시 이미지도 삭제
+    public void deleteItemImg(Long itemImgId) throws Exception {
+        ItemImg itemImg = itemImgRepository.findById(itemImgId)
+                .orElseThrow(EntityNotFoundException::new);
+
+        // 이미지 파일 삭제
+        if (!StringUtils.isEmpty(itemImg.getImgName())) {
+            fileService.deleteFile(itemImgLocation + "/" + itemImg.getImgName());
+        }
+
+        // 이미지 엔티티 삭제
+        itemImgRepository.delete(itemImg);
     }
 }

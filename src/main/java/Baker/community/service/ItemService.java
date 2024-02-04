@@ -88,11 +88,6 @@ public class ItemService {
         return this.itemRepository.findAll(pageable);
     }*/
 
-    // 레시피 삭제
-    public void delete(long id) {
-        itemRepository.deleteById(id);
-    }
-
     // 레시피 업데이트(레시피, 레시피 이미지)
     public Long updateItem(ItemFormDto itemFormDto, List<MultipartFile> itemImgFileList)throws Exception {
 
@@ -107,6 +102,23 @@ public class ItemService {
             itemImgService.updateItemImg(itemImgIds.get(i), itemImgFileList.get(i));
         }
         return item.getId();
+    }
+
+    // 레시피 삭제
+    @Transactional
+    public void deleteItem(Long itemId) throws Exception {
+        // 레시피 아이디 조회 후 레시피 엔티티 조회 (존재하지 않을시 오류 발생)
+        Item item = itemRepository.findById(itemId)
+                .orElseThrow(EntityNotFoundException::new);
+
+        // 레시피에 속한 이미지들 삭제
+        List<ItemImg> itemImgList = itemImgRepository.findByItemIdOrderByIdAsc(itemId);
+        for (ItemImg itemImg : itemImgList) {
+            itemImgService.deleteItemImg(itemImg.getId());
+        }
+
+        // 레시피 삭제
+        itemRepository.delete(item);
     }
 
     // 상품 데이터 조회
