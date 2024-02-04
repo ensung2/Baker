@@ -54,8 +54,8 @@ public class ItemImgService {
                 fileService.deleteFile(itemImgLocation+"/"+savedItemImg.getImgName());
             }
             String oriImgName = itemImgFile.getOriginalFilename();
-            String imgName = fileService.uploadFile(itemImgLocation,oriImgName,itemImgFile.getBytes());
-            String imgUrl = "/images/item/" + imgName;
+            String imgName = fileService.uploadFile(itemImgLocation, oriImgName, itemImgFile.getBytes());
+            String imgUrl = "/images/recipeImg/" + imgName;
             savedItemImg.updateItemImg(oriImgName, imgName, imgUrl);
         }
     }

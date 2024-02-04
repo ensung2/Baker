@@ -65,7 +65,7 @@ public class ItemService {
         Item item = itemRepository.findById(itemId)
                 .orElseThrow(EntityNotFoundException::new);
         ItemFormDto itemFormDto = ItemFormDto.of(item);
-        itemFormDto.setItemImgDtoList(itemImgDtoList);
+        itemFormDto.setItemImgDtoList(itemImgDtoList);  // (24.02.03) 해당 코드 누락으로 이미지 저장 오류, 해결했음!
         return itemFormDto;
     }
 
