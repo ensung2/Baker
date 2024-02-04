@@ -1,25 +1,48 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head th:replace="~{fragments/default::header}">
   <meta charset="UTF-8">
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <title>Baker : 레시피 리스트</title>
-  <script>
-    $(document).ready(function(){
-      $("#searchBtn").on("click", function (e) {
-        e.preventDefault();
-        page(0);
+<!--    <th:block layout:fragment="script">
+      <script th:inline="javascript">
+        $(document).ready(function(){
+          $("#searchBtn").on("click", function (e) {
+            e.preventDefault();
+            page(0);
+          });
+        });
+
+        function page(page) {
+          var searchItemType = $("#searchItemType").val();
+          var searchQuery = $("#searchQuery").val();
+
+          location.href="/list/" + page + "?searchItemType=" + searchItemType + "&searchQuery=" + searchQuery;
+        }
+      </script>
+    </th:block>-->
+
+  <th:block layout:fragment="script">
+    <script th:inline="javascript">
+
+      $(document).ready(function(){
+        $("#searchBtn").on("click",function(e) {
+          e.preventDefault();
+          page(0);
+        });
       });
-    });
 
-    function page(page) {
-      var searchItemType = $("#searchItemType").val();
-      var searchQuery = $("#searchQuery").val();
+      function page(page) {
+        var searchItemType = $("#searchItemType").val();
+        var searchQuery = $("#searchQuery").val();
 
-      location.href="/list/" + page + "?searchItemType=" + searchItemType + "&searchQuery=" + searchQuery;
-    }
-  </script>
+        location.href="/list/" + page + "?searchItemType=" + searchItemType + "&searchQuery=" + searchQuery;
+      }
+
+    </script>
+  </th:block>
 </head>
 <body>
 <div id="wrap">
@@ -47,18 +70,10 @@
         </tr>
         </thead>
         <tbody class="list_body">
-<!--        <tr th:each="item, loop : ${paging}">
-          <td th:text="${item.id}"></td>
-          <td th:text="${item.itemType}" id="itemType"></td>
-          <td th:text="${item.itemName}" id="itemName"></td>
-          <td th:text="${#temporals.format(item.regTime, 'yyyy-MM-dd HH:mm')}"></td>
-          <td><a th:href="@{/list/{id}(id=${item.id})}">보러가기</a></td>
-        </tr>-->
         <tr th:each="item, status: ${items.getContent()}">
           <td th:text="${item.id}"></td>
           <td th:text="${item.itemType}" id="itemType"></td>
           <td id="itemName">
-<!--            <a th:href="'/list/'+${itemSearchDto.id}" th:text="${item.itemName}"></a>-->
             <a th:href="@{/recipeBook/{itemId}(itemId=${item.id})}" th:text="${item.itemName}"></a>
           </td>
           <td th:text="${#temporals.format(item.regTime, 'yyyy-MM-dd HH:mm')}"></td>
@@ -66,7 +81,7 @@
         </tbody>
       </table>
       <!-- 페이징처리 시작 -->
-      <div th:with="start=${(items.number/maxPage)*maxPage + 1}, end=(${(items.totalPages == 0) ? 1 : (start + (maxPage - 1) < items.totalPages ? start + (maxPage - 1) : items.totalPages)})"  class="list_page">
+<!--      <div th:with="start=${(items.number/maxPage)*maxPage + 1}, end=(${(items.totalPages == 0) ? 1 : (start + (maxPage - 1) < items.totalPages ? start + (maxPage - 1) : items.totalPages)})"  class="list_page">
         <ul>
           <li class="page-item" th:classappend="${items.first}?'disabled'">
             <a class="page-link" th:onclick="'javascript:page(' + ${items.number - 1} + ')'" aria-label='Previous'>
@@ -78,11 +93,27 @@
           </li>
           <li class="page-item" th:classappend="${items.last}?'disabled'">
             <a class="page-link" th:onclick="'javascript:page(' + ${items.number + 1} + ')'" aria-label='Next'>
-              <span aria-hidden="true">다음</span>
+              <span aria-hiddenclass="page-link"="true">다음</span>
             </a>
           </li>
         </ul>
-      </div>
+      </div>-->
+      <div class="list_page">
+      <ul class="pagination" th:with="start=${(items.number/maxPage)*maxPage + 1}, end=(${(items.totalPages == 0) ? 1 : (start + (maxPage - 1) < items.totalPages ? start + (maxPage - 1) : items.totalPages)})">
+
+        <li th:if="${items.last}" class="page-item">
+          <a th:href="@{/list/{page}(page=${start - 1})}" th:text="'<<'" class="page-link"></a>
+        </li>
+
+        <li th:each="page: ${#numbers.sequence(start, end)}">
+          <a th:text="${page}" th:href="@{/list/{page}(page=${page - 1})}" class="page-num"></a>
+        </li>
+
+        <li th:if="${items.first}" class="page-item">
+          <a th:href="@{/list/{page}(page=${start + 1})}" th:text="'>>'" class="page-link"></a>
+        </li>
+      </ul>
+    </div>
       <!-- 페이징처리 끝 -->
     </form>
   </div>
