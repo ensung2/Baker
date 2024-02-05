@@ -6,7 +6,7 @@ import lombok.Getter;
 import java.time.LocalDateTime;
 
 @Getter
-public class ItemDto{
+public class ItemDto{   // test용으로 사용
     private Long id;
 
     private ItemType itemType;          // 레시피 타입 (bread, cookie, cake)

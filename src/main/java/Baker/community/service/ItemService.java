@@ -27,11 +27,6 @@ public class ItemService {
     private final ItemImgService itemImgService;
     private final ItemImgRepository itemImgRepository;
 
-/*    @Transactional
-    public Item save(AddItemDto addItemDto, List<MultipartFile> multipartFileList)  {
-        return itemRepository.save(addItemDto.toEntity());
-    }*/
-
     // 레시피 등록 구현
     public Long saveItem(ItemFormDto itemFormDto,
                          List<MultipartFile> itemImgFileList) throws Exception{
@@ -79,14 +74,6 @@ public class ItemService {
         return itemRepository.findById(id)
                 .orElseThrow(()-> new IllegalArgumentException("not found" +id));
     }
-
-/*    // 레시피 목록 조회
-    public Page<Item> getList(int page) {
-        List<Sort.Order> sorts = new ArrayList<>();
-        sorts.add(Sort.Order.desc("regTime"));
-        Pageable pageable = PageRequest.of(page, 10, Sort.by(sorts));       // 한 페이지에 보여줄 레시피 갯수
-        return this.itemRepository.findAll(pageable);
-    }*/
 
     // 레시피 업데이트(레시피, 레시피 이미지)
     public Long updateItem(ItemFormDto itemFormDto, List<MultipartFile> itemImgFileList)throws Exception {

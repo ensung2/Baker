@@ -34,23 +34,25 @@
     display: block;
     color: #9f9f9f;
     font-weight: 200;
-    border: 2px solid #ffcc00;
 }
 
 .view_img {
     width: 100%;
     height: 200px;
-    padding: 20px 0;
-    background-color: aquamarine;
+    padding: 15px 0;
+}
+
+.view_img img {
+    display: block;
+    margin: 0 auto;
 }
 
 .view_material {
     padding: 15px 40px 0 40px;
-    /*background-color: #e17c3c;*/
-    text-align: center;
 }
 
 .view_material label {
+    text-align: center;
     display: block;
     font-size: 1.2rem;
     color: #e17c3c;
@@ -67,18 +69,19 @@
     font-family: 'IBM Plex Sans KR', sans-serif;
     border-radius: 10px;
     border: 2px dashed rgba(0,0,0,0.1);
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 /* 오른쪽 화면 - 레시피 */
 
 .view_ex {
     padding: 0 40px 10px 40px;
-    /*background-color: #e17c3c;*/
-    text-align: center;
 }
 
 .view_ex label {
     display: block;
+    text-align: center;
     font-size: 1.2rem;
     color: #e17c3c;
     padding-bottom: 10px;
@@ -86,22 +89,25 @@
 
 .ex_text {
     height: 360px;
-    text-align: left;
     padding: 5px 10px;
     color: #313131;
     font-weight: lighter;
     font-family: 'IBM Plex Sans KR', sans-serif;
     border-radius: 10px;
     border: 2px dashed rgba(0,0,0,0.1);
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 /* 버튼 */
 
 .view_btn {
-    padding: 15px 170px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0;
 }
-.view_btn button {
-    display: inline-block;
+.view_btn a {
     padding: 5px 20px;
     border-radius: 5px;
     margin: 5px;
@@ -111,13 +117,12 @@
 .modify_btn {
     color: #313131;
     background-color: #ffcc00;
-
 }
 
 .delete_btn {
     background-color: #313131;
-
 }
+
 
 
 

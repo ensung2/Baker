@@ -6,13 +6,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.modelmapper.ModelMapper;
 
 @NoArgsConstructor      // 기본 생성자 추가
 @AllArgsConstructor     // 모든 필드 값을 파라미터로 받는 생성자 추가
 @Getter
 @Setter
-public class AddItemDto {       // 레시피 추가 코드
+public class AddItemDto {       // 레시피 추가 코드 (테스트용으로 사용)
 
     private ItemType itemType;          // 레시피 타입 (bread, cookie, cake)
 
@@ -37,20 +36,6 @@ public class AddItemDto {       // 레시피 추가 코드
                 .recipe(recipe)
                 .build();
     }
-
-//    private List<ItemImgDto> itemImgDto = new ArrayList<>();
-//
-//    private List<Long> itemImgIds = new ArrayList<>();
-
-    private static ModelMapper modelMapper = new ModelMapper();
-
-//    public Item createItem() {
-//        return modelMapper.map(this, Item.class);
-//    }
-//
-//    public static AddItemDto of(Item item) {
-//        return modelMapper.map(item, AddItemDto.class);
-//    }
 
 
 }

@@ -33,7 +33,7 @@ public class Item extends CreateModify {
     private String material;            // 레시피 재료
 
     @Lob
-    @Column(nullable = false)
+    @Column(nullable = false, length = 300)
     private String recipe;              // 레시피 설명
 
     // 빌더 패턴 방식으로 객체 생성 (필드에 어떤 값이 들어가는지 명시적으로 파악 가능)

@@ -30,13 +30,11 @@
 
 .recipe_name {
     border: none;
-    font-size: 2rem;
+    font-size: 1.8rem;
+    padding: 3px;
     text-align: center;
     color: #2d2d2d;
-}
-
-.recipe_name placeholder {
-    font-size: 1rem;
+    width: 80%;
 }
 
 .recipe_info {
@@ -44,13 +42,14 @@
     font-weight: 200;
     text-align: center;
     color: #313131;
+    padding: 3px;
+    width: 60%;
 }
 
 .recipe_img {
     width: 100%;
     height: 200px;
     padding: 20px 0;
-    border: 2px solid #ffcc00;
 
 }
 
@@ -112,14 +111,17 @@
 }
 
 .form_btn {
-    padding: 15px 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0;
 }
 .form_btn button {
-    display: inline-block;
     padding: 5px 20px;
     border-radius: 5px;
-    margin: 5px;
     cursor: pointer;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    font-size: 1rem;
 }
 
 .modify_btn {
@@ -131,11 +133,5 @@
     color: #313131;
     background-color: #ffcc00;
 }
-
-.delete_btn {
-    background-color: #313131;
-
-}
-
 
 
