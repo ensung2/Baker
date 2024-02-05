@@ -1,6 +1,7 @@
 package Baker.community.domain;
 
 import Baker.community.entity.Member;
+import lombok.Builder;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -23,6 +24,7 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
     }
 
     // OAuth 로그인 용
+    @Builder
     public PrincipalDetails(Member member, Map<String, Object> attributes) {
         this.member = member;
         this.attributes = attributes;
@@ -45,6 +47,8 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
 //        collection.add((GrantedAuthority) () -> member.getRole().name());
 //        return collection;
 //    }
+
+
 
     @Override // Granted Authorities=[ROLE_USER] DEBUG 확인 가능 (24.02.02)
     public Collection<? extends GrantedAuthority> getAuthorities() {

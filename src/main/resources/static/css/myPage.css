@@ -1,0 +1,58 @@
+.myPage_form {
+    width: 400px;
+    height: 470px;
+    border-radius: 20px;
+    position: relative;
+    top: 120px;
+    margin: 0 auto;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    box-sizing: border-box;
+    background-color: #ffffff;
+}
+
+.myPage_wrap {
+    padding: 50px;
+    margin: 0 auto;
+}
+
+.my_title h2 {
+    font-size: 3rem;
+    color: #313131;
+    text-align: center;
+}
+
+.myBox {
+    padding: 9px 35px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.myBox label {
+    text-align: left;
+    color: #424242;
+    display: block;
+    font-weight: 600;
+    padding-bottom: 3px;
+}
+
+.myBox p {
+    padding: 5px 0;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    border: 2px solid #9f9f9f;
+    color: #313131;
+}
+.user_unregister {
+    margin-top: 20px;
+}
+.unregister_btn {
+    display: block;
+    margin: 0 auto;
+    color: dimgrey;
+    font-size: 0.8rem;
+    cursor: pointer;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+}
+.unregister_btn:hover {
+ color: #c4302b;
+}

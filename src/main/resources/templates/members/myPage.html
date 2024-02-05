@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/default::header}">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Baker. 나만의 레시피 북</title>
+</head>
+<body>
+<div id="wrap">
+    <div th:replace="~{role/banner::section}"></div>
+    <div id="content" role="main">
+        <section class="myPage_form">
+            <div class="myPage_wrap">
+                <div class="my_title">
+                    <h2>MY PAGE</h2>
+                </div>
+                <!-- 유저 아이디 -->
+                <div class="myBox user_name">
+                    <label th:for="username">닉네임</label>
+                    <p th:text="${memberDto.getUsername()}" id="username"></p>
+                </div>
+                <!-- 유저 이메일 -->
+                <div class="myBox user_email">
+                    <label th:for="emial">이메일</label>
+                    <p th:text="${memberDto.getEmail()}" id="email"></p>
+                </div>
+                <!-- 유저 가입날짜 -->
+                <div class="myBox user_regTime">
+                    <label th:for="regTime">가입날짜</label>
+                    <p th:text="${#temporals.format(memberDto.regTime, 'yyyy-MM-dd HH:mm')}" id="regTime"></p>
+                </div>
+
+                <form action="/members/delete" method="post" class="user_unregister">
+                        <button type="submit" class="unregister_btn">회원탈퇴</button>
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                </form>
+            </div>
+        </section>
+    </div>
+</div>
+<script src="/js/token.js"></script>
+</body>
+</html>

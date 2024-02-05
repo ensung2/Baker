@@ -11,31 +11,33 @@
 <div id="wrap">
     <div th:replace="~{role/banner::section}"></div>
     <div id="content" role="main">
-        <button class="naver_login">
-            <a th:href="@{/oauth2/authorization/naver}"><img src="/img/kakao_login.png" alt="카카오톡 로그인 버튼"></a>
-        </button>
-        <form action="/members/login" class="sign_form" role="form" method="post">
-            <!--/* csrf(사이트간 위조 요청) 를 막기 위한 csrf 토큰값 */-->
-            <input type="hidden" th:name="${_csrf?.parameterName}" th:value="${_csrf?.token}" />
+        <div  class="sign_form">
             <section class="login">
                 <div class="login_title">
                     <h2>LOGIN</h2>
                 </div>
+                <button class="naver_login">
+                    <a th:href="@{/oauth2/authorization/naver}"><img src="/img/kakao_login.png" alt="카카오톡 로그인 버튼"></a>
+                </button>
                 <p class="choice">또는 이메일로 로그인</p>
-
+                <form action="/members/login" method="post" role="form">
                 <div class="login_box">
                     <label th:for="email">아이디</label>
-                    <input type="email" name="email" id="email" class="text_form" placeholder="이메일을 입력하세요" required>
+                    <input type="email" name="email" id="email" placeholder="이메일을 입력하세요" required>
                 </div>
                 <div class="login_box">
                     <label th:for="password">비밀번호</label>
-                    <input type="password" name="password" id="password" class="text_form" placeholder="비밀번호를 입력하세요" required>
+                    <input type="password" name="password" id="password"  placeholder="비밀번호를 입력하세요" required>
                 </div>
                 <p th:if="${loginErrorMsg}" class="login_error" th:text="${loginErrorMsg}"></p>
                 <button type="submit" class="login_form_btn">로그인</button>
                 <a class="sign_up_btn" href="/members/join">이메일로 회원가입</a>
+
+                <!--/* csrf(사이트간 위조 요청) 를 막기 위한 csrf 토큰값 */-->
+                <input type="hidden" th:name="${_csrf?.parameterName}" th:value="${_csrf?.token}" />
+                </form>
             </section>
-        </form>
+        </div>
     </div>
 </div>
 <script src="/js/token.js"></script>

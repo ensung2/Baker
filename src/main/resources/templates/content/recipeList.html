@@ -6,24 +6,6 @@
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <title>Baker : 레시피 리스트</title>
-<!--    <th:block layout:fragment="script">
-      <script th:inline="javascript">
-        $(document).ready(function(){
-          $("#searchBtn").on("click", function (e) {
-            e.preventDefault();
-            page(0);
-          });
-        });
-
-        function page(page) {
-          var searchItemType = $("#searchItemType").val();
-          var searchQuery = $("#searchQuery").val();
-
-          location.href="/list/" + page + "?searchItemType=" + searchItemType + "&searchQuery=" + searchQuery;
-        }
-      </script>
-    </th:block>-->
-
   <th:block layout:fragment="script">
     <script th:inline="javascript">
 
@@ -99,22 +81,22 @@
         </ul>
       </div>-->
       <div class="list_page">
-      <ul class="pagination" th:with="start=${(items.number/maxPage)*maxPage + 1}, end=(${(items.totalPages == 0) ? 1 : (start + (maxPage - 1) < items.totalPages ? start + (maxPage - 1) : items.totalPages)})">
+      <ul th:with="start=${(items.number/maxPage)*maxPage + 1}, end=(${(items.totalPages == 0) ? 1 : (start + (maxPage - 1) < items.totalPages ? start + (maxPage - 1) : items.totalPages)})">
 
-        <li th:if="${items.last}" class="page-item">
-          <a th:href="@{/list/{page}(page=${start - 1})}" th:text="'<<'" class="page-link"></a>
+        <li th:classappend="${items.first}?'disabled'" class="page-item">
+          <a th:href="@{/list/{page}(page=0)}" th:text="'<<'" class="page-link"></a>
         </li>
 
-        <li th:each="page: ${#numbers.sequence(start, end)}">
+        <li th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${items.number}">
           <a th:text="${page}" th:href="@{/list/{page}(page=${page - 1})}" class="page-num"></a>
         </li>
 
-        <li th:if="${items.first}" class="page-item">
-          <a th:href="@{/list/{page}(page=${start + 1})}" th:text="'>>'" class="page-link"></a>
+        <li th:classappend="${items.last}?'disabled'" class="page-item">
+          <a th:href="@{/list/{page}(page=${items.totalPages - 1})}" th:text="'>>'" class="page-link"></a>
         </li>
       </ul>
     </div>
-      <!-- 페이징처리 끝 -->
+<!-- 페이징처리 끝 -->
     </form>
   </div>
 </div>

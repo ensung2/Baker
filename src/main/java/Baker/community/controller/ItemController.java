@@ -35,21 +35,6 @@ public class ItemController {
                 .body(new ItemDto(item));
     }*/
 
-/*    // 레시피 등록 템플릿 연결
-    @GetMapping(value = "/recipe/new")
-    @PreAuthorize("hasRole('ROLE_USER')")
-    public String recipeForm(Long id, Model model) {
-        model.addAttribute("itemFormDto", new ItemFormDto());
-        if (id == null) {
-            model.addAttribute("item", new ViewItemDto());
-        }else {
-            Item item = itemService.findById(id);
-            model.addAttribute("item", new ViewItemDto(item));
-        }
-
-        return "content/recipeForm";
-    }*/
-
     // 레시피 등록 템플릿 연결
     @GetMapping(value = "/recipe/new")
     @PreAuthorize("hasRole('ROLE_USER')")

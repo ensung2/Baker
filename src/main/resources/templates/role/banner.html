@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="~{fragments/default}">
+<head th:replace="~{fragments/z}">
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -18,9 +18,14 @@
                 <a th:href="@{/}">Baker.</a>
             </h1>
         </div>
-        <div class="user_name">
+        <div class="my_page">
             <th:block sec:authorize="isAuthenticated()">
-                <i class="fa-solid fa-circle-user"></i> <span th:text="${#authentication.getName()}"></span>
+                <p></p>
+                <a th:href="@{members/myPage}">
+                    <i class="fa-solid fa-circle-user"></i>
+                     <span th:text="${#authentication.getName()}"></span> 님의 마이페이지
+                </a>
+                <p></p>
             </th:block>
         </div>
         <nav class="header_menu">

@@ -43,7 +43,7 @@ public class ListController {
     @PreAuthorize("hasRole('ROLE_USER')")
     public String itemList(ItemSearchDto itemSearchDto,
                            @PathVariable("page") Optional<Integer> page, Model model) {
-        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 10);
+        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 9);
         Page<Item> items = itemService.getItemPage(itemSearchDto, pageable);
         model.addAttribute("items", items);
         model.addAttribute("itemSearchDto", itemSearchDto);

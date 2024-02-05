@@ -1,10 +1,13 @@
 package Baker.community.controller;
 
+import Baker.community.domain.PrincipalDetails;
 import Baker.community.dto.JoinMemberDto;
 import Baker.community.entity.Member;
+import Baker.community.repository.MemberRepository;
 import Baker.community.service.MemberService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MemberController {
 
     private final MemberService memberService;
+    private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
 
     @GetMapping(value = "/login")
@@ -55,6 +59,13 @@ public class MemberController {
             return "members/joinForm";
         }
         return  "members/loginForm";
+    }
+
+    // 마이페이지
+    @GetMapping("/myPage")
+    public String myPage(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model){
+        model.addAttribute("memberDto", principalDetails.getMember());
+        return "members/myPage";
     }
 
 
