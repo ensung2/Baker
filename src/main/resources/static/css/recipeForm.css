@@ -57,6 +57,10 @@
     color: dimgrey;
     padding-left: 50px;
 }
+.recipeImg>.on {
+    color: #e17c3c;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+}
 
 .recipe_material {
     padding: 15px 40px 0 40px;

@@ -59,7 +59,7 @@
             <!-- 상품 이미지 리스트가 비어있다면 상품 등록 -->
             <div th:if="${#lists.isEmpty(itemFormDto.itemImgDtoList)}" class="recipe_img">
                 <div class="recipeImg">
-                  <input type="file" class="custom-file-input" name="itemImgFile" required>
+                  <input type="file" class="custom-file-input on" name="itemImgFile" required>
                   <label class="custom-file-label" th:text="상품이미지 + ${num}"></label>
                 </div>
             </div>
@@ -68,10 +68,10 @@
             <div th:if="${not #lists.isEmpty(itemFormDto.itemImgDtoList)}" class="recipe_img">
               <div th:each="itemImgDto, status: ${itemFormDto.itemImgDtoList}">
                 <div class="recipeImg">
-                  <input type="file" class="custom-file-input" name="itemImgFile">
+                  <input type="file" class="custom-file-input on" name="itemImgFile">
                   <input type="hidden" name="itemImgIds" th:value="${itemImgDto.id}">
                   <br>
-                  <label class="custom-file-label" th:text="${not #strings.isEmpty(itemImgDto.oriImgName)} ? ${itemImgDto.oriImgName} : '상품이미지' + ${status.index+1}"></label>
+                  <label class="custom-file-label on" th:text="${not #strings.isEmpty(itemImgDto.oriImgName)} ? ${itemImgDto.oriImgName} : '상품이미지' + ${status.index+1}"></label>
                 </div>
               </div>
             </div>

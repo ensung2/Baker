@@ -19,7 +19,9 @@
               <p class="view_info" th:text="${item.info}" id="itemInfo"></p>
             </div>
             <div class="view_img" th:each="itemImg : ${item.itemImgDtoList}">
-                <a th:href="@{(${itemImg.imgUrl})}" target="_blank"><img th:if="${not #strings.isEmpty(itemImg.imgUrl)}" th:src="${itemImg.imgUrl}" width="170"></a>
+                <a th:href="@{(${itemImg.imgUrl})}" target="_blank">
+                    <img th:if="${not #strings.isEmpty(itemImg.imgUrl)}" th:src="${itemImg.imgUrl}" width="170">
+                </a>
             </div>
 <!--            <div class="repImgDiv">-->
 <!--                <img th:src="${item.itemImgDtoList[0].imgUrl}" class = "rounded repImg" th:alt="${item.itemNm}">-->
