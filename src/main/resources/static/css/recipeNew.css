@@ -40,12 +40,15 @@
     width: 100%;
     height: 200px;
     padding: 15px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.view_img a{
+    display: inline-block;
+    cursor: zoom-in;
 }
 
-.view_img img {
-    display: block;
-    margin: 0 auto;
-}
 
 .view_material {
     padding: 15px 40px 0 40px;
@@ -71,6 +74,7 @@
     border: 2px dashed rgba(0,0,0,0.1);
     overflow-x: hidden;
     overflow-y: scroll;
+    white-space: pre-wrap;
 }
 
 /* 오른쪽 화면 - 레시피 */
@@ -97,6 +101,7 @@
     border: 2px dashed rgba(0,0,0,0.1);
     overflow-x: hidden;
     overflow-y: scroll;
+    white-space: pre-wrap;
 }
 
 /* 버튼 */
