@@ -16,9 +16,10 @@
                 <div class="login_title">
                     <h2>LOGIN</h2>
                 </div>
-                <button class="naver_login">
-                    <a th:href="@{/oauth2/authorization/naver}"><img src="/img/kakao_login.png" alt="카카오톡 로그인 버튼"></a>
-                </button>
+                <div class="naver_login">
+                    <a th:href="@{/oauth2/authorization/naver}">
+                        <img src="/img/naver_login.png" alt=""><span>네이버로 로그인하기</span></a>
+                </div>
                 <p class="choice">또는 이메일로 로그인</p>
                 <form action="/members/login" method="post" role="form">
                 <div class="login_box">

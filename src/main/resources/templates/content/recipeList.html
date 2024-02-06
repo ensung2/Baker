@@ -6,27 +6,48 @@
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <title>Baker : 레시피 리스트</title>
-  <th:block layout:fragment="script">
-    <script th:inline="javascript">
-
-      $(document).ready(function(){
-        $("#searchBtn").on("click",function(e) {
+<!--  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var searchBtn = document.getElementById("searchBtn");
+      if (searchBtn) {
+        searchBtn.addEventListener("click", function (e) {
           e.preventDefault();
           page(0);
         });
-      });
-
-      function page(page) {
-        var searchItemType = $("#searchItemType").val();
-        var searchQuery = $("#searchQuery").val();
-
-        location.href="/list/" + page + "?searchItemType=" + searchItemType + "&searchQuery=" + searchQuery;
       }
+    });
 
-    </script>
-  </th:block>
+    function page(page) {
+      var searchItemType = document.getElementById("searchItemType").value;
+      var searchQuery = document.getElementById("searchQuery").value;
+
+      location.href = "/list/" + page + "?searchItemType=" + searchItemType + "&searchQuery=" + searchQuery;
+    }
+
+  </script>-->
 </head>
 <body>
+<th:block layout:fragment="script">
+  <script th:inline="javascript">
+
+    $(document).ready(function(){
+      $("#searchBtn").on("click",function(e) {
+        e.preventDefault();
+        page(0);
+      });
+    });
+
+    function page(page) {
+      var searchItemType = $("#searchItemType").val();
+      var searchQuery = $("#searchQuery").val();
+
+      location.href="/list/" + page + "?searchItemType=" + searchItemType + "&searchQuery=" + searchQuery;
+    }
+
+
+
+  </script>
+</th:block>
 <div id="wrap">
   <div th:replace="~{role/banner::section}"></div>
   <div id="content" role="main">
@@ -34,7 +55,8 @@
 <!--      &lt;!&ndash; csrf(사이트간 위조 요청) 를 막기 위한 csrf 토큰값 &ndash;&gt;-->
 <!--      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">-->
       <div class="recipe_search" th:object="${itemSearchDto}">
-        <select class="recipe_type" th:field="*{searchitemType}">
+        <select class="recipe_type" th:field="*{searchItemType}">
+          <option value="">-- 전체 --</option>
           <option value="BREAD">Bread</option>
           <option value="CAKE">Cake</option>
           <option value="COOKIE">Cookie</option>
@@ -63,40 +85,20 @@
         </tbody>
       </table>
       <!-- 페이징처리 시작 -->
-<!--      <div th:with="start=${(items.number/maxPage)*maxPage + 1}, end=(${(items.totalPages == 0) ? 1 : (start + (maxPage - 1) < items.totalPages ? start + (maxPage - 1) : items.totalPages)})"  class="list_page">
+      <div th:with="start=${(items.number/maxPage)*maxPage + 1}, end=(${(items.totalPages == 0) ? 1 : (start + (maxPage - 1) < items.totalPages ? start + (maxPage - 1) : items.totalPages)})" class="list_page">
         <ul>
-          <li class="page-item" th:classappend="${items.first}?'disabled'">
-            <a class="page-link" th:onclick="'javascript:page(' + ${items.number - 1} + ')'" aria-label='Previous'>
-              <span aria-hidden="true">이전</span>
-            </a>
+          <li id="Previous" class="page-item" th:classappend="${items.first} ? 'disabled' : ''">
+            <a class="page-link" th:if="${not items.first}" th:onclick="'javascript:page(' + ${items.number - 1} + ')'" aria-label='Previous' th:text="이전"></a>
           </li>
-          <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${items.number eq page-1}?'active':''">
-            <a th:onclick="'javascript:page(' + ${page - 1} + ')'" th:inline="text" class="page-link">[[${page}]]</a>
+          <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${page == items.number} ? 'active' : ''">
+            <a th:onclick="'javascript:page(' + ${page - 1} + ')'" th:inline="text" class="page-num" th:text="${page}"></a>
           </li>
-          <li class="page-item" th:classappend="${items.last}?'disabled'">
-            <a class="page-link" th:onclick="'javascript:page(' + ${items.number + 1} + ')'" aria-label='Next'>
-              <span aria-hiddenclass="page-link"="true">다음</span>
-            </a>
+          <li id="Next" class="page-item" th:classappend="${items.last} ? 'disabled' : ''">
+            <a class="page-link" th:if="${not items.last}" th:onclick="'javascript:page(' + ${items.number + 1} + ')'" aria-label='Next' th:text="다음"></a>
           </li>
         </ul>
-      </div>-->
-      <div class="list_page">
-      <ul th:with="start=${(items.number/maxPage)*maxPage + 1}, end=(${(items.totalPages == 0) ? 1 : (start + (maxPage - 1) < items.totalPages ? start + (maxPage - 1) : items.totalPages)})">
-
-        <li th:classappend="${items.first}?'disabled'" class="page-item">
-          <a th:href="@{/list/{page}(page=0)}" th:text="'<<'" class="page-link"></a>
-        </li>
-
-        <li th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${items.number}">
-          <a th:text="${page}" th:href="@{/list/{page}(page=${page - 1})}" class="page-num"></a>
-        </li>
-
-        <li th:classappend="${items.last}?'disabled'" class="page-item">
-          <a th:href="@{/list/{page}(page=${items.totalPages - 1})}" th:text="'>>'" class="page-link"></a>
-        </li>
-      </ul>
-    </div>
-<!-- 페이징처리 끝 -->
+      </div>
+    <!-- 페이징처리 끝 -->
     </form>
   </div>
 </div>

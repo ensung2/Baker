@@ -34,7 +34,7 @@ public class ItemRepositoryCustomImpl  implements ItemRepositoryCustom{
     public Page<Item> getItemPage(ItemSearchDto itemSearchDto, Pageable pageable) {
         QueryResults<Item> results = queryFactory
                 .selectFrom(QItem.item)
-                .where(searchItemTypeEq(itemSearchDto.getSearchitemType()),
+                .where(searchItemTypeEq(itemSearchDto.getSearchItemType()),
                         searchByLike(itemSearchDto.getSearchQuery()))
                 .orderBy(QItem.item.id.desc())
                 .offset(pageable.getOffset())

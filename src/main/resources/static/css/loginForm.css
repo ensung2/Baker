@@ -24,11 +24,32 @@
 }
 
 .naver_login {
-    width: 100%;
+    width: 300px;
     margin: 0 auto;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    color: #313131;
+    font-family: 'IBM Plex Sans KR', sans-serif;
     padding: 10px 0;
-    display: inline-block;
+
 }
+.naver_login a {
+    display: inline-block;
+    width: 100%;
+    background-color: #01c73c;
+    padding: 13px;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+.naver_login span {
+    padding-left: 50px;
+}
+
+.naver_login img {
+    width: 1.2rem;
+}
+
 
 .choice {
     display: flex;

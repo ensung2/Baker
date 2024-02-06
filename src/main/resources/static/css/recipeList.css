@@ -84,15 +84,18 @@
 }
 
 .page-link {
+    font-family: 'IBM Plex Sans KR', sans-serif;
     display: block;
-    color: #313131;
+    color: #ffffff;
     padding: 5px 10px;
     border-radius: 5px;
     font-size: 1rem;
     background-color: #e17c3c;
-    margin-right: 5px;}
+    margin-right: 5px;
+    border: 1px solid #e17c3c;}
 
 .page-num {
+    font-family: 'IBM Plex Sans KR', sans-serif;
     display: block;
     color: #e17c3c;
     padding: 5px 10px;
