@@ -5,6 +5,7 @@ import Baker.community.dto.JoinMemberDto;
 import Baker.community.entity.Member;
 import Baker.community.repository.MemberRepository;
 import Baker.community.service.MemberService;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -25,6 +26,7 @@ public class MemberController {
     private final MemberService memberService;
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
+    private final HttpSession httpSession;
 
     @GetMapping(value = "/login")
     public String loginFrom() {
@@ -62,10 +64,20 @@ public class MemberController {
     }
 
     // 마이페이지
-    @GetMapping("/myPage")
+    @GetMapping(value = "/myPage")
     public String myPage(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model){
         model.addAttribute("memberDto", principalDetails.getMember());
         return "members/myPage";
+    }
+
+    // 탈퇴하기
+    @GetMapping("/exit")
+    public String exit() {
+        Member member = (Member) httpSession.getAttribute("principalDetails");
+        memberRepository.delete(member);
+        httpSession.invalidate();
+
+        return "redirect:/";
     }
 
 

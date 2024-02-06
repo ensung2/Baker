@@ -32,14 +32,24 @@
                     <p th:text="${#temporals.format(memberDto.regTime, 'yyyy-MM-dd HH:mm')}" id="regTime"></p>
                 </div>
 
-                <form action="/members/delete" method="post" class="user_unregister">
-                        <button type="submit" class="unregister_btn">회원탈퇴</button>
-                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-                </form>
+<!--                <form  method="post" class="user_unregister">-->
+<!--                        <button type="submit" class="unregister_btn">회원탈퇴</button>-->
+<!--                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>-->
+<!--                </form>-->
+                <div>
+                    <button class="exit" id="exit" th:onclick="confirmDeletion()">회원탈퇴</button>
+                </div>
             </div>
         </section>
     </div>
 </div>
+<script>
+    function confirmDeletion() {
+        if (confirm("정말로 회원탈퇴를 하시겠습니까?")) {
+            location.href = "/members/exit";
+        }
+    }
+</script>
 <script src="/js/token.js"></script>
 </body>
 </html>

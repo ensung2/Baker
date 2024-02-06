@@ -21,7 +21,7 @@
         <div class="my_page">
             <th:block sec:authorize="isAuthenticated()">
                 <p></p>
-                <a th:href="@{members/myPage}">
+                <a th:href="@{/members/myPage}">
                     <i class="fa-solid fa-circle-user"></i>
                      <span th:text="${#authentication.getName()}"></span> 님의 마이페이지
                 </a>

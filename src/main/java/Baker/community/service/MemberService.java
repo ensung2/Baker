@@ -19,6 +19,7 @@ public class MemberService implements UserDetailsService {
 
     private final MemberRepository memberRepository;
 
+
     public Member saveMember(Member member) {
     validateDuplicateMember(member);
     return memberRepository.save(member);
@@ -26,9 +27,9 @@ public class MemberService implements UserDetailsService {
 
     // 이미 가입된 회원의 경우 예외 발생
     private void validateDuplicateMember(Member member) {
-        Optional<Member> optionalMember = memberRepository.findByEmail(member.getEmail());
-        if (optionalMember.isPresent()){
-            throw new IllegalStateException("이미 가입된 회원입니다.");
+        Optional<Member> optionalEmil = memberRepository.findByEmail(member.getEmail());
+        if (optionalEmil.isPresent()){
+            throw new IllegalStateException("joinErrorMsg");
         }
     }
 
@@ -40,4 +41,7 @@ public class MemberService implements UserDetailsService {
         }
         throw new UsernameNotFoundException("User not found with email: " + email);
     }
+
 }
+
+

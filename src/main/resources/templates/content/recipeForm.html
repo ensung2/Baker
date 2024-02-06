@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head th:replace="~{fragments/default::header}">
   <meta charset="UTF-8">
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <title>Baker : 레시피 수정</title>
-  <th:block layout:fragment="script">
+  <!--<th:block layout:fragment="script">
     <script th:inline="javascript">
     $(document).ready(function(){
       var errorMessage = [[${errorMessage}]];
@@ -33,7 +32,7 @@
       });
     }
     </script>
-  </th:block>
+  </th:block>-->
 </head>
 <body>
 <div id="wrap">
@@ -68,7 +67,7 @@
             <div th:if="${not #lists.isEmpty(itemFormDto.itemImgDtoList)}" class="recipe_img">
               <div th:each="itemImgDto, status: ${itemFormDto.itemImgDtoList}">
                 <div class="recipeImg">
-                  <input type="file" class="custom-file-input on" name="itemImgFile">
+                  <input type="file" class="custom-file-input on" name="itemImgFile" id="itemImgFile">
                   <input type="hidden" name="itemImgIds" th:value="${itemImgDto.id}">
                   <br>
                   <label class="custom-file-label on" th:text="${not #strings.isEmpty(itemImgDto.oriImgName)} ? ${itemImgDto.oriImgName} : '상품이미지' + ${status.index+1}"></label>
@@ -79,21 +78,23 @@
 
             <div class="recipe_material">
               <label th:for="material">[ 재료 ]</label>
-              <textarea th:field="*{material}" id="material" cols="45" rows="4" maxlength="200" required></textarea>
+              <textarea th:field="*{material}" id="material" cols="42" rows="4" maxlength="200" required></textarea>
             </div>
         </div>
         <div class="write_right">
           <div class="recipe_write">
             <label th:for="recipe">[ 레시피 ]</label>
-            <textarea th:field="*{recipe}" id="recipe" cols="45" rows="15" maxlength="500" required></textarea>
+            <textarea th:field="*{recipe}" id="recipe" cols="42" rows="15" maxlength="500" required></textarea>
           </div>
 
           <div class="form_btn">
             <div th:if="${#strings.isEmpty(itemFormDto.id)}">
-              <button th:formaction="@{/recipe/new}" type="submit" class="create_btn">등록</button>
+              <button th:formaction="@{/recipe/new}" type="submit" class="create_btn"
+              th:onclick="create()">등록</button>
             </div>
             <div th:unless="${#strings.isEmpty(itemFormDto.id)}">
-              <button th:formaction="@{'/recipe/new/' + ${itemId}}" type="submit" class="modify_btn">수정</button>
+              <button th:formaction="@{'/recipe/new/' + ${itemId}}" type="submit" class="modify_btn"
+              th:onclick="modify()">수정</button>
             </div>
           </div>
 
@@ -103,5 +104,32 @@
       </form>
   </div>
 </div>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    bindDomEvent();
+  });
+  function bindDomEvent() {
+    var customFileInputs = document.querySelectorAll(".custom-file-input");
+    customFileInputs.forEach(function(input) {
+      input.addEventListener("change", function() {
+        var fileName = this.value.split("\\").pop();  //이미지 파일명
+        var fileExt = fileName.substring(fileName.lastIndexOf(".") + 1); // 확장자 추출
+        fileExt = fileExt.toLowerCase(); //소문자 변환
+
+        if(fileExt !== "jpg" && fileExt !== "jpeg" && fileExt !== "gif" && fileExt !== "png" && fileExt !== "bmp") {
+          alert("이미지 파일만 등록이 가능합니다.");
+          return;
+        }
+
+        var customFileLabel = this.nextElementSibling;
+        customFileLabel.innerHTML = fileName;
+      });
+    });
+  }
+
+  function modify() {
+    alert("레시피가 수정되었습니다.");
+  }
+</script>
 </body>
 </html>

@@ -19,7 +19,7 @@
                 </div>
                 <div class="form_box">
                     <label th:for="username">닉네임</label>
-                    <input type="text" th:field="*{username}" class="text_form" placeholder="닉네임을 입력해 주세요." required>
+                    <input type="text" th:field="*{username}" class="text_form" placeholder="닉네임을 입력해 주세요. (최대 6자)" required>
                     <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="field_error"></p>
                 </div>
 

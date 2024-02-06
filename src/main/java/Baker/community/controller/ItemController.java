@@ -65,7 +65,7 @@ public class ItemController {
             return "content/recipeForm";
         }
 
-        return "redirect:/";
+        return "redirect:/list";
 
     }
 
@@ -102,19 +102,14 @@ public class ItemController {
             model.addAttribute("errorMessage", "상품 수정 중 에러가 발생하였습니다.");
             return "content/recipeForm";
         }
-        return "redirect:/";
+        return "redirect:/list";
     }
 
     // 레시피 삭제
     @GetMapping(value = "/recipe/delete/{itemId}")
     public String recipeDelete(@PathVariable("itemId") Long itemId) throws Exception {
         itemService.deleteItem(itemId);
-        return "redirect:/";
+        return "redirect:/list";
     }
-
-
-
-
-
 
 }
