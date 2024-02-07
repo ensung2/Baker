@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.annotation.CreatedBy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,9 @@ public class ItemFormDto {
 
     @NotBlank(message = "레시피 전체설명을 입력해주세요.")
     private String recipe;              // 레시피 설명
+
+    @CreatedBy
+    private String createBy;
 
     // 상품 저장 후 수정시 상품 이미지 정보를 저장하는 리스트
     private List<ItemImgDto> itemImgDtoList = new ArrayList<>();

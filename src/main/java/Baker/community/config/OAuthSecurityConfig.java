@@ -70,10 +70,6 @@ public class OAuthSecurityConfig {
                 .logoutRequestMatcher(new AntPathRequestMatcher("/members/logout"))     // 로그아웃 url
                 .invalidateHttpSession(true)
                 .logoutSuccessUrl("/"));
-//        http.exceptionHandling(exceptionHandling -> exceptionHandling
-//                .defaultAuthenticationEntryPointFor(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED),
-//                        new AntPathRequestMatcher("/new_recipe")));
-//         5) 예외처리
         http.exceptionHandling(exceptions -> exceptions
                 .authenticationEntryPoint(new CustomAuthenticationEntryPoint()) // 인증 예외 핸들러 지정
                 .accessDeniedHandler(new CustomAccessDeniedHandler())    // 인가 예외 핸들러 지정

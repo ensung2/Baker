@@ -69,6 +69,7 @@
         <tr>
           <td>No.</td>
           <td>Type</td>
+          <td>Author</td>
           <td>Recipe Name</td>
           <td>Date</td>
         </tr>
@@ -77,6 +78,7 @@
         <tr th:each="item, status: ${items.getContent()}">
           <td th:text="${item.id}"></td>
           <td th:text="${item.itemType}" id="itemType"></td>
+          <td th:text="${item.createBy}" id="createBy"></td>
           <td id="itemName">
             <a th:href="@{/recipeBook/{itemId}(itemId=${item.id})}" th:text="${item.itemName}"></a>
           </td>
