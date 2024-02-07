@@ -20,8 +20,10 @@
 
 .recipe_type {
     margin: 0 auto;
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: #e17c3c;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    border: 1px solid #e17c3c;
 }
 
 .recipe_type option {
@@ -30,11 +32,16 @@
 
 .recipe_name {
     border: none;
-    font-size: 1.8rem;
+    font-size: 2rem;
     padding: 3px;
     text-align: center;
     color: #2d2d2d;
     width: 80%;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+}
+.recipe_name::placeholder {
+    color: rgba(225, 124, 60, 0.5);
+    font-size: 1.8rem;
 }
 
 .recipe_info {
@@ -44,6 +51,11 @@
     color: #313131;
     padding: 3px;
     width: 60%;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+}
+
+.recipe_info::placeholder {
+    color: #a6a6a6;
 }
 
 .recipe_img {
@@ -64,7 +76,6 @@
 
 .recipe_material {
     padding: 15px 40px 0 40px;
-    /*background-color: #e17c3c;*/
     text-align: center;
 }
 
@@ -86,6 +97,10 @@
     font-family: 'IBM Plex Sans KR', sans-serif;
     border-radius: 10px;
     border: 2px dashed rgba(0,0,0,0.1);
+}
+
+#material::placeholder {
+    color: #a6a6a6;
 }
 
 .recipe_write {
@@ -112,6 +127,10 @@
     font-family: 'IBM Plex Sans KR', sans-serif;
     border-radius: 10px;
     border: 2px dashed rgba(0,0,0,0.1);
+}
+
+#recipe::placeholder {
+    color: #a6a6a6;
 }
 
 .form_btn {

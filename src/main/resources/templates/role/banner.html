@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="~{fragments/z}">
+<head th:replace="~{fragments/default::header}">
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -11,12 +11,12 @@
 <div id="wrap">
     <div id="section" role="banner" th:fragment="section">
         <div class="header_bar">
-            <h1 class="nav_bar">
+<!--            <h1 class="nav_bar">
                 <a href="#"><i class="fas fa-light fa-bars"></i></a>
-            </h1>
-            <h1 class="header_logo">
-                <a th:href="@{/}">Baker.</a>
-            </h1>
+            </h1>-->
+            <div class="header_logo">
+                <a th:href="@{/}"><img src="/img/logo_500.png" alt="logo"> Baker.</a>
+            </div>
         </div>
         <div class="my_page">
             <th:block sec:authorize="isAuthenticated()">
@@ -55,6 +55,5 @@
         </h5>
     </div>
 </div>
-<!--<script src="/js/recipe.js"></script>-->
 </body>
 </html>

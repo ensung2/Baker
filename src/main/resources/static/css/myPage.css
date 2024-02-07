@@ -8,6 +8,7 @@
     font-family: 'IBM Plex Sans KR', sans-serif;
     box-sizing: border-box;
     background-color: #ffffff;
+    position: relative;
 }
 
 .myPage_wrap {
@@ -42,17 +43,52 @@
     border: 2px solid #9f9f9f;
     color: #313131;
 }
+
 .user_unregister {
-    margin-top: 20px;
-}
-.unregister_btn {
-    display: block;
-    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items:  center;
     color: dimgrey;
     font-size: 0.8rem;
-    cursor: pointer;
-    font-family: 'IBM Plex Sans KR', sans-serif;
 }
+
+.user_unregister i {
+    font-size: 1rem;
+    padding-left: 5px;
+    color: #c4302b;
+    cursor: pointer;
+}
+
+.user_unregister:hover ~ .alert_unregister {
+    opacity: 1;
+}
+
+.alert_unregister {
+    position: absolute;
+    background-color: #ffcc00;
+    border: 1px solid #eeeeee;
+    border-radius: 5px;
+    padding: 10px;
+    left: 145px;
+    top: 390px;
+    opacity: 0;
+    transition: all 0.8s;
+}
+.alert_unregister p {
+    color: #313131;
+    font-size: 0.8rem;
+}
+
+.alert_unregister a {
+    color: #c4302b;
+    font-weight: 600;
+    border-bottom: 1px solid #c4302b;
+}
+
+.unregister_btn {
+    display: inline-block;
+}
+
 .unregister_btn:hover {
- color: #c4302b;
+    color: #e17c3c;
 }

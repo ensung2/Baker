@@ -34,12 +34,13 @@
 
 }
 .naver_login a {
-    display: inline-block;
     width: 100%;
     background-color: #01c73c;
     padding: 13px;
     font-size: 1rem;
     border-radius: 5px;
+    display: flex;
+    align-items: center;
 }
 
 .naver_login span {
@@ -124,11 +125,18 @@
 }
 
 .sign_up_btn {
-    display: block;
-    margin: 0 auto;
+    display: flex;
+    justify-content: center;
     color: dimgrey;
     font-size: 0.8rem;
-    cursor: pointer;
+}
+
+.sign_up_btn a {
+    display: inline-block;
+}
+
+.sign_up_btn a:hover {
+    color: #e17c3c;
 }
 
 .login_error {

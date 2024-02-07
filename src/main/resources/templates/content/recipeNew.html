@@ -33,7 +33,7 @@
             <label th:for="recipe">[ 레시피 ]</label>
             <p class="ex_text" th:text="${item.recipe}" id="recipe"></p>
           </div>
-          <div class="view_btn">
+          <div class="view_btn" th:if="${item.createBy == #authentication.getName()}">
               <a th:href="@{/recipe/new/{itemId}(itemId=${item.id})}" class="modify_btn">수정</a>
               <a th:href="@{/recipe/delete/{itemId}(itemId=${item.id})}" th:onclick="delete_btn()" class="delete_btn">삭제</a>
           </div>

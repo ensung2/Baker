@@ -68,6 +68,15 @@
     border-bottom: 1.5px dashed rgba(225,124,60,0.3);
 }
 
+#itemName {
+    color: #e17c3c;
+    font-weight: 600;
+}
+
+#itemName a:hover {
+    border-bottom: 1px solid #e17c3c;
+}
+
 /* 페이징 */
 
 .list_page {

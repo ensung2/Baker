@@ -11,6 +11,10 @@
     background-color: #ffffff;
 }
 
+.sign_form input::placeholder {
+        color: #a6a6a6;
+}
+
 .sign_up {
     padding: 50px 40px;
     width: 450px;
@@ -28,7 +32,7 @@
 /* form_box */
 
 .form_box {
-    padding: 0px 35px 20px 35px;
+    padding: 0 35px 20px 35px;
     position: relative;
 }
 

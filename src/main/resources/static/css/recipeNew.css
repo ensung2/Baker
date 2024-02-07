@@ -27,7 +27,8 @@
 .view_name {
     display: block;
     font-size: 2rem;
-    color: #2d2d2d;
+    color: #e17c3c;
+    font-family: 'IBM Plex Sans KR', sans-serif;
 }
 
 .view_info {
