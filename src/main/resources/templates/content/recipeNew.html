@@ -23,9 +23,6 @@
                     <img th:if="${not #strings.isEmpty(itemImg.imgUrl)}" th:src="${itemImg.imgUrl}" width="170">
                 </a>
             </div>
-<!--            <div class="repImgDiv">-->
-<!--                <img th:src="${item.itemImgDtoList[0].imgUrl}" class = "rounded repImg" th:alt="${item.itemNm}">-->
-<!--            </div>-->
             <div class="view_material">
               <label th:for="material">[ 재료 ]</label>
               <p class="material_text" th:text="${item.material}" id="material"></p>

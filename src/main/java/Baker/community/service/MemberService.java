@@ -42,13 +42,6 @@ public class MemberService implements UserDetailsService {
         }
     }
 
-/*    // 회원 삭제
-    public void deleteMember(Long memberId) throws Exception {
-        Member member = memberRepository.findById(memberId)
-                .orElseThrow(EntityNotFoundException::new);
-        memberRepository.delete(member);
-    }*/
-
     @Transactional
     public void deleteMember(Long memberId) throws Exception {
         // 1. 회원 아이디로 회원 엔티티 조회
@@ -67,12 +60,11 @@ public class MemberService implements UserDetailsService {
         }
 
         // 4. 회원이 작성한 레시피(아이템)들 삭제
-        itemRepository.deleteAll(itemList);
+        itemRepository.deleteAllInBatch(itemList);
 
         // 5. 회원 삭제
         memberRepository.delete(member);
     }
-
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -82,6 +74,8 @@ public class MemberService implements UserDetailsService {
         }
         throw new UsernameNotFoundException("User not found with email: " + email);
     }
+
+
 }
 
 
