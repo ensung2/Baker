@@ -26,7 +26,8 @@ public class OAuthSecurityConfig {
 
     public static String[] ONLY_USER = {
             "/recipe/**",
-            "/list/**"
+            "/list/**",
+            "/members/myPage"
     };
 
     // 패스워드 암호화

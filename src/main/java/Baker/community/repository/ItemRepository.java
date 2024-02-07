@@ -15,4 +15,6 @@ ItemRepositoryCustom{
     List<Item> findByItemName(String itemNm);
 
     Page<Item> findAll(Pageable pageable);
+
+    List<Item> findByMemberId(Long memberId);
 }

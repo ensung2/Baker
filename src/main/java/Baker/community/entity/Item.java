@@ -36,6 +36,10 @@ public class Item extends CreateModify {
     @Column(nullable = false, length = 300)
     private String recipe;              // 레시피 설명
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private Member member;
+
     // 빌더 패턴 방식으로 객체 생성 (필드에 어떤 값이 들어가는지 명시적으로 파악 가능)
     @Builder
     public Item(ItemType itemType, @NotNull String itemName, String info, @NotNull String material, @NotNull String recipe) {

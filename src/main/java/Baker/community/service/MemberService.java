@@ -1,8 +1,13 @@
 package Baker.community.service;
 
 import Baker.community.domain.PrincipalDetails;
+import Baker.community.entity.Item;
+import Baker.community.entity.ItemImg;
 import Baker.community.entity.Member;
+import Baker.community.repository.ItemImgRepository;
+import Baker.community.repository.ItemRepository;
 import Baker.community.repository.MemberRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -10,6 +15,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -18,6 +24,9 @@ import java.util.Optional;
 public class MemberService implements UserDetailsService {
 
     private final MemberRepository memberRepository;
+    private final ItemRepository itemRepository;
+    private final ItemImgRepository itemImgRepository;
+    private final ItemImgService itemImgService;
 
 
     public Member saveMember(Member member) {
@@ -33,6 +42,38 @@ public class MemberService implements UserDetailsService {
         }
     }
 
+/*    // 회원 삭제
+    public void deleteMember(Long memberId) throws Exception {
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(EntityNotFoundException::new);
+        memberRepository.delete(member);
+    }*/
+
+    @Transactional
+    public void deleteMember(Long memberId) throws Exception {
+        // 1. 회원 아이디로 회원 엔티티 조회
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(EntityNotFoundException::new);
+
+        // 2. 회원이 작성한 레시피(아이템) 목록 조회
+        List<Item> itemList = itemRepository.findByMemberId(memberId);
+
+        // 3. 각 레시피(아이템)에 속한 이미지들 삭제
+        for (Item item : itemList) {
+            List<ItemImg> itemImgList = itemImgRepository.findByItemIdOrderByIdAsc(item.getId());
+            for (ItemImg itemImg : itemImgList) {
+                itemImgService.deleteItemImg(itemImg.getId());
+            }
+        }
+
+        // 4. 회원이 작성한 레시피(아이템)들 삭제
+        itemRepository.deleteAll(itemList);
+
+        // 5. 회원 삭제
+        memberRepository.delete(member);
+    }
+
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<Member> member = memberRepository.findByEmail(email);
@@ -41,7 +82,6 @@ public class MemberService implements UserDetailsService {
         }
         throw new UsernameNotFoundException("User not found with email: " + email);
     }
-
 }
 
 

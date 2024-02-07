@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.List;
+
 @Entity
 @Table(name = "member")
 @Getter
@@ -31,6 +33,9 @@ public class Member extends CreateModify{
 
     private String provider;
     private String providerId;
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE,  fetch = FetchType.LAZY)
+    private List<Item> items;
 
     @Builder
     public Member(String username, String email, String password, Role role, String provider, String providerId) {
@@ -64,9 +69,9 @@ public class Member extends CreateModify{
         return member;
     }
 
-    public Member update(String username) {
+/*    public Member update(String username) {
         this.username = username;
         return this;
-    }
+    }*/
 
 }
