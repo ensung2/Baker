@@ -3,11 +3,11 @@
 <img src="/">
 
 * 카카오 오븐 : https://ovenapp.io/view/AadnNCJCgxI4KeNySh1Zso6mIbe1FkVb/75rSY
-* 🔗 링크 :
+* 🔗 링크 : http://ec2-13-125-222-241.ap-northeast-2.compute.amazonaws.com:8080/
 ---
 
 ### 📄 개요
-* 프로젝트 일정 : 2024. 01. 08 ~
+* 프로젝트 일정 : 2024. 01. 08 ~ 02. 08
 * 기여도 : 개인 프로젝트 (100%)
 ---
 
@@ -16,8 +16,8 @@
 * 레시피 작성, 사진 업로드, 페이지 내에서 유튜브 바로 검색
 ---
 ### 🛠️ 사용 기술 및 개발 환경
-* server : 
-* DB : MySQL, H2 Database
+* server : AWS EC2
+* DB : AWS RDS, MySQL
 * Langueage : Java, Html5, Css3, JavaScript
 * Tool : IntelliJ IDEA, GitHub, POSTMAN
 ---
