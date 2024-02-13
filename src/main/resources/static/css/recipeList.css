@@ -51,6 +51,17 @@
     font-family: 'IBM Plex Sans KR', sans-serif;
 }
 
+#itemCount {
+    color: #e17c3c;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    padding-bottom: 5px;
+}
+
+#itemCount span {
+    color: #e17c3c;
+    font-weight: 600;
+}
+
 .list_head {
     background-color: #ffffff;
     padding: 10px 0 10px 30px;
@@ -80,7 +91,7 @@
 /* 페이징 */
 
 .list_page {
-    padding: 30px 50px;
+    padding: 20px 50px;
     background-color: #ffffff;
     color: whitesmoke;
     display: flex;
@@ -98,10 +109,11 @@
     color: #ffffff;
     padding: 5px 10px;
     border-radius: 5px;
-    font-size: 1rem;
+    font-size: 0.8rem;
     background-color: #e17c3c;
     margin-right: 5px;
-    border: 1px solid #e17c3c;}
+    border: 1px solid #e17c3c;
+    cursor: pointer}
 
 .page-num {
     font-family: 'IBM Plex Sans KR', sans-serif;
@@ -109,10 +121,11 @@
     color: #e17c3c;
     padding: 5px 10px;
     border-radius: 5px;
-    font-size: 1rem;
+    font-size: 0.8rem;
     background-color: white;
     margin-right: 5px;
     border: 1px solid #e17c3c;
+    cursor: pointer
 }
 .page-link span {
     background-color: #e17c3c;

@@ -3,6 +3,7 @@ package Baker.community.controller;
 import Baker.community.dto.ItemFormDto;
 import Baker.community.dto.ItemSearchDto;
 import Baker.community.entity.Item;
+import Baker.community.repository.ItemRepository;
 import Baker.community.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -21,6 +22,7 @@ import java.util.Optional;
 public class ListController {
 
     private final ItemService itemService;
+    private final ItemRepository itemRepository;
 
 /*    @GetMapping("/list")
     @PreAuthorize("hasRole('ROLE_USER')")
@@ -48,7 +50,6 @@ public class ListController {
         model.addAttribute("items", items);
         model.addAttribute("itemSearchDto", itemSearchDto);
         model.addAttribute("maxPage", 5);
-
         return "content/recipeList";
     }
 
