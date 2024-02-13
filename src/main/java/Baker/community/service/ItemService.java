@@ -64,7 +64,10 @@ public class ItemService {
         return itemFormDto;
     }
 
-    // Item에 있는 모든 데이터 조회
+    @Transactional
+    public int updateView(Long itemId) {return itemRepository.updateView(itemId);}
+
+/*    // Item에 있는 모든 데이터 조회
     public List<Item> findAll() {
         return itemRepository.findAll();
     }
@@ -73,7 +76,7 @@ public class ItemService {
     public Item findById(long id) {
         return itemRepository.findById(id)
                 .orElseThrow(()-> new IllegalArgumentException("not found" +id));
-    }
+    }*/
 
     // 레시피 업데이트(레시피, 레시피 이미지)
     public Long updateItem(ItemFormDto itemFormDto, List<MultipartFile> itemImgFileList)throws Exception {

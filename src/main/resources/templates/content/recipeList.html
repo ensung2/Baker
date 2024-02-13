@@ -45,9 +45,6 @@
       location.href="/list/" + page + "?searchItemType=" + searchItemType +
           "&searchBy=" + searchBy + "&searchQuery=" + searchQuery;
     }
-
-
-
   </script>
 </th:block>
 <div id="wrap">
@@ -76,6 +73,7 @@
           <td>Type</td>
           <td>Creator</td>
           <td>Recipe Name</td>
+          <td>View</td>
           <td>Date</td>
         </tr>
         </thead>
@@ -89,6 +87,7 @@
           <td id="itemName">
             <a th:href="@{/recipeBook/{itemId}(itemId=${item.id})}" th:text="${item.itemName}"></a>
           </td>
+          <td th:text="${item.view}"></td>
           <td th:text="${#temporals.format(item.regTime, 'yyyy-MM-dd HH:mm')}"></td>
         </tr>
         </tbody>

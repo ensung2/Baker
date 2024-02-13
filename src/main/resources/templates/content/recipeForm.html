@@ -60,7 +60,7 @@
             <textarea th:field="*{recipe}" id="recipe" cols="42" rows="15" maxlength="500"
                        placeholder="상세 레시피를 입력해 주세요. (최대 500자)" required></textarea>
           </div>
-
+          <p th:field="*{view}"></p>
           <div class="form_btn">
             <div th:if="${#strings.isEmpty(itemFormDto.id)}">
               <button th:formaction="@{/recipe/new}" type="submit" class="create_btn"

@@ -34,6 +34,8 @@ public class ItemFormDto {
     @CreatedBy
     private String createBy;
 
+    private int view;
+
     // 상품 저장 후 수정시 상품 이미지 정보를 저장하는 리스트
     private List<ItemImgDto> itemImgDtoList = new ArrayList<>();
 

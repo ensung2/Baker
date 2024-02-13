@@ -48,6 +48,7 @@ class ItemRepositoryTest {
     public void createItemTest() {
         Item item = new Item();
         item.setItemType(ItemType.BREAD);
+        item.setCreateBy("작성자");
         item.setItemName("레시피명");
         item.setInfo("레시피 한줄설명");
         item.setMaterial("재료");
@@ -61,6 +62,7 @@ class ItemRepositoryTest {
         for (int i = 1; i <= 10; i++) {
             Item item = new Item();
             item.setItemType(ItemType.BREAD);
+            item.setCreateBy("작성자" + i);
             item.setItemName("레시피명" + i);
             item.setInfo("레시피 한줄설명" + i);
             item.setMaterial("재료" + i);

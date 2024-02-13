@@ -56,6 +56,7 @@ public class ListController {
     @GetMapping(value = "/recipeBook/{itemId}")
     public String recipeBook(Model model, @PathVariable("itemId") Long itemId){
         ItemFormDto itemFormDto = itemService.getItemDtl(itemId);
+        itemService.updateView(itemId);
         model.addAttribute("item", itemFormDto);
         return "content/recipeNew";
     }

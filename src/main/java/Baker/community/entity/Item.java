@@ -36,19 +36,24 @@ public class Item extends CreateModify {
     @Column(nullable = false, length = 300)
     private String recipe;              // 레시피 설명
 
+    @Column(columnDefinition = "integer default 0", nullable = false)
+    private Long view;                   // 조회수
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
 
     // 빌더 패턴 방식으로 객체 생성 (필드에 어떤 값이 들어가는지 명시적으로 파악 가능)
     @Builder
-    public Item(ItemType itemType, @NotNull String itemName, String info, @NotNull String material, @NotNull String recipe, String createBy) {
+    public Item(ItemType itemType, @NotNull String itemName, String info, @NotNull String material, @NotNull String recipe, Long view) {
         this.itemType = itemType;
         this.itemName = itemName;
         this.info = info;
         this.material = material;
         this.recipe = recipe;
+        this.view = view;
     }
+
 
     // 엔티티에 요청받은 내용으로 값을 수정
     public void updateItem(ItemFormDto itemFormDto) {
