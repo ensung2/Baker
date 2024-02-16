@@ -55,7 +55,6 @@ public class MemberController {
             memberService.saveMember(member);
         } catch (IllegalStateException e) {
             model.addAttribute("joinErrorMsg", "이미 가입된 이메일입니다.");
-            model.addAttribute("joinNameErrorMsg", "이미 가입된 닉네임입니다.");
             return "members/joinForm";
         }
         return  "members/loginForm";

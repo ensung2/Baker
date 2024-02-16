@@ -18,11 +18,14 @@
               <p class="view_name" th:text="${item.itemName}" id="itemName"></p>
               <p class="view_info" th:text="${item.info}" id="itemInfo"></p>
             </div>
-            <div class="view_img" th:each="itemImg : ${item.itemImgDtoList}">
-                <a th:href="@{(${itemImg.imgUrl})}" target="_blank">
-                    <img th:if="${not #strings.isEmpty(itemImg.imgUrl)}" th:src="${itemImg.imgUrl}" width="170">
-                </a>
+            <div class="view_img_wrap">
+                <div class="view_img" th:each="itemImg : ${item.itemImgDtoList}">
+                    <a th:href="@{(${itemImg.imgUrl.replace('http://www.communitybaker.shop/recipeBook/', '')})}" target="_blank">
+                        <img th:if="${not #strings.isEmpty(itemImg.imgUrl)}" th:src="${itemImg.imgUrl}" width="170">
+                    </a>
+                </div>
             </div>
+
             <div class="view_material">
               <label th:for="material">[ 재료 ]</label>
               <p class="material_text" th:text="${item.material}" id="material"></p>

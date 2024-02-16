@@ -31,14 +31,16 @@
                     <p th:text="${#temporals.format(memberDto.regTime, 'yyyy-MM-dd HH:mm')}" id="regTime"></p>
                 </div>
                 <div class="user_unregister">
+                    <div class="unregister_wrap">
                     <a th:href="@{/members/delete/{memberId}(memberId=${memberDto.id})}"
                        th:onclick="confirmDeletion()" class="unregister_btn">회원 탈퇴하기</a>
                     <i class="fa-solid fa-triangle-exclamation"></i>
-                </div>
-                <div class="alert_unregister">
-                    <p>- [회원 탈퇴하기] 클릭 시 바로 철회됩니다.<br>
-                       - 탈퇴 후에도 작성한 게시글은 보관됩니다.<br>
-                       - 문의시 <a href="mailto:iieunsung@gmail.com">이곳으로</a> 연락 바랍니다.</p>
+                    </div>
+                    <div class="alert_unregister">
+                        <p>- [회원 탈퇴하기] 클릭 시 바로 철회됩니다.<br>
+                           - 탈퇴 후에도 작성한 게시글은 보관됩니다.<br>
+                           - 문의시 <a href="mailto:iieunsung@gmail.com">이곳으로</a> 연락 바랍니다.</p>
+                    </div>
                 </div>
 
             </div>

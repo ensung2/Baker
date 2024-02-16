@@ -18,8 +18,12 @@ public class NaverUserInfo implements OAuth2UserInfo{
     @Override
     public String getProviderId() {
         return (String) attributes.get("id");
-
     }
+
+//    @Override
+//    public String getAccessToken() {
+//        return (String) attributes.get("access_token");
+//    }
 
     @Override
     public String getEmail() {

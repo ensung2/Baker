@@ -12,7 +12,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import java.time.LocalDateTime;
 
 @EntityListeners(AuditingEntityListener.class)        // auditing 적용
-@MappedSuperclass                                               // 공통 매핑 정보 (상속자에게 정보만 제공)
+@MappedSuperclass                                     // 공통 매핑 정보 (상속자에게 정보만 제공)
 @Data
 public abstract class CreateModify {
 

@@ -1,3 +1,4 @@
+/*
 package Baker.community.service;
 
 import Baker.community.entity.ItemImg;
@@ -13,35 +14,36 @@ import org.thymeleaf.util.StringUtils;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class ItemImgService {
+public class ItemImgService2 {
 
-    @Value("${cloud.aws.s3.bucket}")
-    private String bucket;
+    @Value("${itemImgLocation}")
+    private String itemImgLocation;
 
     private final ItemImgRepository itemImgRepository;
-    private final S3Uploader s3Uploader;
+    private final FileService fileService;
 
     public void saveItemImg(ItemImg itemImg, MultipartFile itemImgFile) throws Exception {
-        String oriImgName = itemImgFile.getOriginalFilename();
+        String originalName = itemImgFile.getOriginalFilename();
         String imgName = "";
         String imgUrl = "";
 
-
         // 파일업로드
-        if (!StringUtils.isEmpty(oriImgName)) {
+        if (!StringUtils.isEmpty(originalName)) {
             // 상품 이미지 등록 시 해당 파라미터로 uploadFile메소드 호출 -> imgName 변수에 저장
-            imgName = s3Uploader.uploadFile(itemImgFile);
+            imgName = fileService.uploadFile(itemImgLocation, originalName, itemImgFile.getBytes());
             // 저장할 상품 이미지를 불러올 경로
-            imgUrl = imgName;
+            imgUrl = "/images/recipeImg/" + imgName;
         }
 
         // 상품 이미지 정보 저장
-        /**
+        */
+/**
          *  originalName : 업로드했던 상품 이미지 파일의 원래 이름
          *  imgName : 실제 로컬에 저장되 상품 이미지 파일의 이름
          *  imgUrl : 업로드 결과 로컬에 저장된 상품 이미지 파일을 불러오는 경로
-         */
-        itemImg.updateItemImg(oriImgName, imgName, imgUrl);
+         *//*
+
+        itemImg.updateItemImg(originalName, imgName, imgUrl);
         itemImgRepository.save(itemImg);
     }
 
@@ -52,11 +54,11 @@ public class ItemImgService {
                     .orElseThrow(EntityNotFoundException::new);
         // 기존 이미지 파일 삭제
             if (!StringUtils.isEmpty(savedItemImg.getImgName())){
-                s3Uploader.deleteFile(savedItemImg.getImgName());
+                fileService.deleteFile(itemImgLocation+"/"+savedItemImg.getImgName());
             }
             String originalName = itemImgFile.getOriginalFilename();
-            String imgName = s3Uploader.uploadFile(itemImgFile);
-            String imgUrl = imgName;
+            String imgName = fileService.uploadFile(itemImgLocation, originalName, itemImgFile.getBytes());
+            String imgUrl = "/images/recipeImg/" + imgName;
             savedItemImg.updateItemImg(originalName, imgName, imgUrl);
         }
     }
@@ -68,10 +70,11 @@ public class ItemImgService {
 
         // 이미지 파일 삭제
         if (!StringUtils.isEmpty(itemImg.getImgName())) {
-            s3Uploader.deleteFile(itemImg.getImgName());
+            fileService.deleteFile(itemImgLocation + "/" + itemImg.getImgName());
         }
 
         // 이미지 엔티티 삭제
         itemImgRepository.delete(itemImg);
     }
 }
+*/

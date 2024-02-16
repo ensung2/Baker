@@ -27,6 +27,7 @@ public class OAuthSecurityConfig {
     public static String[] ONLY_USER = {
             "/recipe/**",
             "/list/**",
+            "/recipeBook/**",
             "/members/myPage"
     };
 

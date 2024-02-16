@@ -46,10 +46,15 @@
 
 .user_unregister {
     display: flex;
+    align-items: center;
     justify-content: center;
-    align-items:  center;
+    margin: 0 auto;
     color: dimgrey;
     font-size: 0.8rem;
+}
+
+.unregister_wrap {
+    display: inline-block;
 }
 
 .user_unregister i {
@@ -59,7 +64,7 @@
     cursor: pointer;
 }
 
-.user_unregister:hover ~ .alert_unregister {
+.unregister_wrap:hover~ .alert_unregister {
     opacity: 1;
 }
 
@@ -87,8 +92,5 @@
 
 .unregister_btn {
     display: inline-block;
-}
-
-.unregister_btn:hover {
     color: #e17c3c;
 }

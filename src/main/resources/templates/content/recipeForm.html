@@ -32,6 +32,8 @@
                 <div class="recipeImg">
                   <input type="file" class="custom-file-input on" name="itemImgFile" required>
                   <label class="custom-file-label" th:text="상품이미지 + ${num}"></label>
+                  <input type="file" class="custom-file-input on" name="itemImgFile">
+                  <label class="custom-file-label" th:text="상품이미지 + ${num}"></label>
                 </div>
             </div>
 
@@ -40,6 +42,7 @@
               <div th:each="itemImgDto, status: ${itemFormDto.itemImgDtoList}">
                 <div class="recipeImg">
                   <input type="file" class="custom-file-input on" name="itemImgFile" id="itemImgFile">
+                  <input type="hidden" name="itemImgIds" th:value="${itemImgDto.id}">
                   <input type="hidden" name="itemImgIds" th:value="${itemImgDto.id}">
                   <br>
                   <label class="custom-file-label on" th:text="${not #strings.isEmpty(itemImgDto.oriImgName)} ? ${itemImgDto.oriImgName} : '상품이미지' + ${status.index+1}"></label>
