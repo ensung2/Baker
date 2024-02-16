@@ -1,6 +1,6 @@
 ## 나만의 레시피북 'Baker'
 
-<img src="![image](https://github.com/ensung2/Baker/assets/147688649/ea536faf-897a-42c7-b91e-254b9c183179)">
+<img src="C:\Users\은또\OneDrive\사진\스크린샷\20240216.png">
 
 * 카카오 오븐 : https://ovenapp.io/view/AadnNCJCgxI4KeNySh1Zso6mIbe1FkVb/JuXUp
 * 🔗 링크 : http://www.communitybaker.shop/
